@@ -79,6 +79,20 @@ const ELITE_FEATURES: Feature[] = [
   { icon: '🎵', title: 'spotify_play_song', desc: 'Specific track execution.' },
   { icon: '❤️', title: 'spotify_play_liked', desc: 'Favorites library playback.' },
   { icon: '⏸️', title: 'spotify_pause', desc: 'Audio state suspension.' },
+  { icon: '🔍', title: 'spotify_search_play_quick', desc: 'Instant track search & play.' },
+  { icon: '🖼️', title: 'set_wallpaper', desc: 'Desktop background customization.' },
+  { icon: '📝', title: 'modify_code_file', desc: 'Direct source code manipulation.' },
+  { icon: '🌐', title: 'create_advanced_website', desc: 'Full-stack web generation.' },
+  { icon: '⚡', title: 'quick_code_change', desc: 'Rapid snippet injection.' },
+  { icon: '🧠', title: 'add_user_instruction', desc: 'Custom behavioral training.' },
+  { icon: '💾', title: 'save_user_instructions', desc: 'Persist learned behaviors.' },
+  { icon: '⚙️', title: 'save_user_preferences', desc: 'Store user configuration.' },
+  { icon: '📂', title: 'load_user_instructions', desc: 'Retrieve behavioral models.' },
+  { icon: '🔄', title: 'load_user_preferences', desc: 'Restore user settings.' },
+  { icon: '📊', title: 'generate_instructions_report', desc: 'Behavioral audit logging.' },
+  { icon: 'ℹ️', title: 'get_current_preferences', desc: 'Active config retrieval.' },
+  { icon: '🧹', title: 'clear_all_preferences', desc: 'Reset configuration state.' },
+  { icon: '🚫', title: 'deactivate_instruction', desc: 'Disable specific behaviors.' },
 ];
 
 const ANDROID_FEATURES: Feature[] = [
@@ -252,7 +266,12 @@ const App: React.FC = () => {
     if (!activeProduct || !paymentId) return;
     const invoiceNo = `${selectedPlatform?.toUpperCase()}-ELITE-${Date.now()}`;
     
-    const targetPhone = "917574821527";
+    let targetPhone = "919512194144";
+    
+    if (activeProduct.id !== 'custom-ai') {
+      const phones = ["919512194144", "917574821527"];
+      targetPhone = phones[Math.floor(Math.random() * phones.length)];
+    }
     
     let message = `Hello! I just purchased ${activeProduct.title}.
 
@@ -306,7 +325,7 @@ const App: React.FC = () => {
             </div>
             <div>
               <p className="text-xs uppercase tracking-widest font-black text-text-secondary mb-1">Mobile No</p>
-              <p className="text-sm text-primary font-bold">7574821527</p>
+              <p className="text-sm text-primary font-bold">9512194144</p>
             </div>
             <p className="text-[10px] text-text-secondary italic pt-4">Response time: 24-48 hours</p>
           </div>
