@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
+import { Star, MapPin, ShieldCheck } from 'lucide-react';
 
 const reviews = [
   { name: "Rahul Sharma", location: "Delhi", text: "I was skeptical about the one-time payment, but Nova actually works perfectly. The automation for opening apps is instant.", stars: 5, product: "NOVA 5.0" },
@@ -49,81 +50,79 @@ const CustomerReviews: React.FC = () => {
   }, [isPaused]);
 
   return (
-    <div className="mt-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bg-primary/5 blur-[100px] pointer-events-none"></div>
+      <div className="mt-24 relative overflow-hidden py-16">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 bg-primary/5 blur-[120px] pointer-events-none"></div>
 
-      <div className="text-center mb-16 relative z-10 px-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface border border-white/10 text-white/70 text-[10px] font-black uppercase tracking-widest mb-4 shadow-lg">
-           <i className="fas fa-users text-primary"></i> Community Feedback
+        <div className="text-center mb-16 relative z-10 px-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
+            <Star className="w-3 h-3 text-primary" />
+            <span className="text-[10px] font-bold tracking-widest uppercase text-white/70">User Testimonials</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white/80">The Elite</span>
+          </h2>
+          <p className="text-text-secondary text-base font-light max-w-2xl mx-auto leading-relaxed">
+            Join over 500+ active users across India who have upgraded their digital ecosystem with our advanced AI solutions.
+          </p>
         </div>
-        <h2 className="font-orbitron text-2xl md:text-4xl text-white font-black uppercase tracking-tighter mb-2">
-          Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">India's Tech Elite</span>
-        </h2>
-        <p className="text-text-secondary text-xs uppercase tracking-widest font-bold opacity-60">
-          500+ Active Users across 28 States
-        </p>
-      </div>
 
-      {/* Infinite Scroll Container */}
-      <div 
-        className="flex overflow-x-hidden py-4"
-        ref={scrollRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
-      >
-        <div className="flex gap-6 px-6">
-          {displayReviews.map((review, index) => (
-            <div 
-              key={index} 
-              className="w-[300px] md:w-[350px] flex-shrink-0 glass-card p-6 rounded-3xl bg-[#0a0a12]/40 hover:bg-[#151525] transition-all duration-300 hover:scale-105 group relative"
-            >
-              {/* Card Glow on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
+        {/* Infinite Scroll Container */}
+        <div 
+          className="flex overflow-x-hidden py-8 relative z-10"
+          ref={scrollRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
+          {/* Gradient Masks for smooth edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none"></div>
 
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex items-start justify-between mb-4">
-                   <div className="flex items-center">
-                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center text-white font-bold text-sm shadow-inner">
-                       {review.name.charAt(0)}
-                     </div>
-                     <div className="ml-3">
-                       <div className="text-sm font-bold text-white leading-tight">{review.name}</div>
-                       <div className="text-[10px] text-text-secondary flex items-center mt-0.5">
-                         <i className="fas fa-map-marker-alt mr-1 text-primary/70 text-[9px]"></i> {review.location}
+          <div className="flex gap-6 px-6" style={{ width: 'max-content' }}>
+            {displayReviews.map((review, index) => (
+              <div 
+                key={index} 
+                className="w-[320px] md:w-[380px] flex-shrink-0 p-6 md:p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 hover:border-primary/30 transition-all duration-300 group relative shadow-xl hover:shadow-2xl overflow-hidden flex flex-col"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-start justify-between mb-6">
+                     <div className="flex items-center gap-4">
+                       <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white font-bold text-lg group-hover:scale-105 transition-transform duration-300">
+                         {review.name.charAt(0)}
+                       </div>
+                       <div>
+                         <div className="text-sm font-bold text-white mb-0.5 group-hover:text-primary transition-colors duration-300">{review.name}</div>
+                         <div className="text-[10px] text-text-secondary font-medium flex items-center gap-1.5 uppercase tracking-wider">
+                           <MapPin className="w-3 h-3 text-white/30" /> {review.location}
+                         </div>
                        </div>
                      </div>
-                   </div>
-                   <div className="text-yellow-500 text-[9px] flex gap-0.5 bg-yellow-500/5 px-2 py-1 rounded-full border border-yellow-500/10">
-                      {[...Array(review.stars)].map((_, i) => <i key={i} className="fas fa-star"></i>)}
-                   </div>
-                </div>
+                     <div className="flex gap-1 text-primary">
+                        {[...Array(review.stars)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                     </div>
+                  </div>
 
-                <p className="text-text-secondary text-xs leading-relaxed font-medium mb-6 flex-grow">
-                  "{review.text}"
-                </p>
+                  <p className="text-text-secondary text-sm leading-relaxed font-light mb-6 flex-grow">
+                    "{review.text}"
+                  </p>
 
-                <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-auto">
-                   <span className="text-[9px] font-black uppercase text-primary/80 tracking-wider bg-primary/5 px-2 py-1 rounded border border-primary/10">
-                     {review.product}
-                   </span>
-                   <span className="text-[9px] text-green-400 font-bold flex items-center opacity-80">
-                     <i className="fas fa-check-circle mr-1"></i> Verified
-                   </span>
+                  <div className="flex justify-between items-center pt-5 border-t border-white/10 mt-auto">
+                     <span className="text-[10px] font-bold uppercase text-white/50 tracking-widest bg-white/5 px-2.5 py-1 rounded-lg">
+                       {review.product}
+                     </span>
+                     <span className="text-[10px] text-primary font-bold flex items-center uppercase tracking-widest bg-primary/10 px-2.5 py-1 rounded-lg border border-primary/20">
+                       <ShieldCheck className="w-3 h-3 mr-1.5" /> Verified
+                     </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-      
-      {/* Swipe Hint for Mobile */}
-      <div className="text-center md:hidden mt-4 text-text-secondary/30 text-[9px] uppercase tracking-widest font-bold animate-pulse">
-        <i className="fas fa-hand-pointer mr-2"></i> Swipe to pause
-      </div>
-    </div>
   );
 };
 

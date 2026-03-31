@@ -2,8 +2,8 @@
 export enum AppScreen {
   WELCOME = 'welcome',
   MAIN_SELECTION = 'main-selection',
+  FEATURES = 'features',
   PRODUCT_OPTIONS = 'product-options',
-  VARIANTS = 'variants', 
   PRODUCT_DETAILS = 'product-details',
   PAYMENT_FORM = 'payment-form',
   ABOUT = 'about',
@@ -18,9 +18,10 @@ export enum AppScreen {
 export enum Platform {
   NOVA = 'nova',
   MJ = 'mj',
-  ANDROID = 'android',
-  SPECIAL_OFFER = 'special-offer'
+  COMBO = 'combo'
 }
+
+export type Variant = 'windows' | 'macos' | 'custom';
 
 export interface Feature {
   icon: string;

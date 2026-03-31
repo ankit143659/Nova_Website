@@ -1,5 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
+import { X, Bot, Monitor, ChevronDown, Send } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -169,13 +170,9 @@ const SupportChatBot: React.FC = () => {
         aria-label="Open Support Chat"
       >
         {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-8 h-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <X className="w-8 h-8" />
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
-             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12h1.5m12 0h1.5m-1.5 3.75h1.5m-16.5 0h1.5M12 3v2.25m0 12.75V12m0 12.75v-1.5M12 21.75c-1.371 0-2.628-.276-3.75-.783-1.636-.74-2.92-1.956-3.763-3.468C4.09 16.666 4.29 15.698 4.5 14.815c.196-.827.818-1.5 1.636-1.77.72-.239 1.488-.367 2.276-.376a6.006 6.006 0 015.176 0c.788.009 1.556.137 2.276.376.818.27 1.44.943 1.636 1.77.21.883.41 1.851.013 2.689-.843 1.512-2.127 2.728-3.763 3.469-1.122.507-2.379.783-3.75.783z" />
-          </svg>
+          <Bot className="w-8 h-8" />
         )}
         {!isOpen && (
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-ping"></span>
@@ -196,9 +193,7 @@ const SupportChatBot: React.FC = () => {
           <div className="flex items-center space-x-3">
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center border border-primary/50 shadow-inner text-primary">
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                 </svg>
+                 <Monitor className="w-6 h-6" />
               </div>
               <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-surface shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
             </div>
@@ -208,9 +203,7 @@ const SupportChatBot: React.FC = () => {
             </div>
           </div>
           <button onClick={() => setIsOpen(false)} className="absolute right-4 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-white hover:bg-white/10 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
+            <ChevronDown className="w-5 h-5" />
           </button>
         </div>
 
@@ -267,9 +260,7 @@ const SupportChatBot: React.FC = () => {
             disabled={!inputText.trim() || isTyping}
             className="w-12 h-12 bg-gradient-to-br from-primary to-blue-500 text-black rounded-xl flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:scale-100 disabled:grayscale"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-            </svg>
+            <Send className="w-5 h-5" />
           </button>
         </form>
       </div>
