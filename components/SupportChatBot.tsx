@@ -166,7 +166,7 @@ const SupportChatBot: React.FC = () => {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary text-black shadow-[0_0_40px_rgba(0,242,255,0.6)] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white/20 ${isOpen ? 'rotate-90' : 'animate-bounce-slow'}`}
+        className={`fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 rounded-full bg-white text-black shadow-[0_0_40px_rgba(255,255,255,0.3)] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-transparent ${isOpen ? 'rotate-90' : 'animate-bounce-slow'}`}
         aria-label="Open Support Chat"
       >
         {isOpen ? (
@@ -181,53 +181,52 @@ const SupportChatBot: React.FC = () => {
 
       {/* Chat Window */}
       <div 
-        className={`fixed z-50 bg-[#0a0a12]/95 backdrop-blur-xl border border-primary/40 shadow-2xl transition-all duration-500 overflow-hidden flex flex-col origin-bottom-right
+        className={`fixed z-50 bg-[#09090b] border border-white/[0.1] shadow-2xl transition-all duration-500 overflow-hidden flex flex-col origin-bottom-right
           ${isOpen 
-            ? 'bottom-24 right-4 w-[90vw] sm:w-[380px] h-[70vh] sm:h-[600px] opacity-100 scale-100 rounded-[2rem]' 
+            ? 'bottom-24 right-4 w-[90vw] sm:w-[380px] h-[70vh] sm:h-[600px] opacity-100 scale-100 rounded-3xl' 
             : 'bottom-6 right-6 w-0 h-0 opacity-0 scale-0 rounded-full'
           }
         `}
       >
         {/* Header */}
-        <div className="p-4 bg-gradient-to-r from-primary/20 via-surface to-secondary/20 border-b border-white/10 flex items-center justify-center relative">
+        <div className="p-4 bg-white/[0.02] border-b border-white/[0.08] flex items-center justify-center relative">
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <div className="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center border border-primary/50 shadow-inner text-primary">
-                 <Monitor className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-full bg-white/[0.05] border border-white/[0.1] flex items-center justify-center text-white">
+                 <Monitor className="w-5 h-5" />
               </div>
-              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-surface shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
+              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-[#09090b] shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
             </div>
             <div>
-              <h3 className="font-orbitron font-bold text-white text-sm tracking-wider">NOVA NEXUS</h3>
-              <p className="text-[10px] text-primary/80 font-bold uppercase tracking-widest animate-pulse">Online</p>
+              <h3 className="font-display font-bold text-white text-sm tracking-widest uppercase">NOVA NEXUS</h3>
+              <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest animate-pulse">Online</p>
             </div>
           </div>
-          <button onClick={() => setIsOpen(false)} className="absolute right-4 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-white hover:bg-white/10 transition-colors">
+          <button onClick={() => setIsOpen(false)} className="absolute right-4 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
             <ChevronDown className="w-5 h-5" />
           </button>
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar bg-gradient-to-b from-transparent to-black/20">
+        <div className="flex-1 overflow-y-auto p-4 space-y-6 custom-scrollbar bg-transparent">
           {messages.map((msg) => (
             <div 
               key={msg.id} 
               className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'} animate-in slide-in-from-bottom-2 duration-300`}
             >
               <div 
-                className={`max-w-[85%] p-4 rounded-2xl text-xs md:text-sm leading-relaxed shadow-lg backdrop-blur-sm ${
+                className={`max-w-[85%] p-4 rounded-2xl text-xs md:text-sm leading-relaxed shadow-lg ${
                   msg.sender === 'user' 
-                    ? 'bg-gradient-to-br from-primary to-primary/80 text-black font-bold rounded-tr-none' 
-                    : 'bg-white/5 text-text-secondary border border-white/10 rounded-tl-none hover:border-primary/30 transition-colors'
+                    ? 'bg-white text-black font-medium border border-white rounded-tr-sm' 
+                    : 'bg-white/[0.05] text-gray-300 border border-white/[0.1] rounded-tl-sm hover:border-white/[0.2] transition-colors'
                 }`}
               >
                 {msg.text}
-                <div className={`text-[9px] mt-2 opacity-60 font-mono text-right ${msg.sender === 'user' ? 'text-black' : 'text-text-secondary'}`}>
+                <div className={`text-[9px] mt-2 opacity-60 font-mono text-right ${msg.sender === 'user' ? 'text-black' : 'text-gray-500'}`}>
                   {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
               </div>
 
-              {/* WhatsApp Fallback Button Removed */}
               {msg.sender === 'bot' && msg.showWhatsAppButton && (
                 <div className="hidden"></div>
               )}
@@ -236,10 +235,10 @@ const SupportChatBot: React.FC = () => {
           
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-white/5 px-4 py-3 rounded-2xl rounded-tl-none border border-white/5 flex space-x-1 items-center">
-                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce"></div>
-                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+              <div className="bg-white/[0.05] border border-white/[0.1] px-4 py-3 rounded-2xl rounded-tl-sm flex space-x-1 items-center">
+                <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
+                <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
               </div>
             </div>
           )}
@@ -247,18 +246,18 @@ const SupportChatBot: React.FC = () => {
         </div>
 
         {/* Input Area */}
-        <form onSubmit={handleSend} className="p-4 bg-black/40 border-t border-white/5 flex space-x-3 backdrop-blur-md">
+        <form onSubmit={handleSend} className="p-4 bg-transparent border-t border-white/[0.08] flex space-x-3">
           <input 
             type="text" 
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            placeholder="Type 'price', 'offer', 'support'..."
-            className="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-primary focus:bg-white/10 outline-none transition-all placeholder:text-text-secondary/50 font-medium"
+            placeholder="Type your message..."
+            className="flex-grow bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-sm text-white focus:border-white/[0.3] outline-none transition-all placeholder:text-gray-500 font-medium"
           />
           <button 
             type="submit"
             disabled={!inputText.trim() || isTyping}
-            className="w-12 h-12 bg-gradient-to-br from-primary to-blue-500 text-black rounded-xl flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:scale-100 disabled:grayscale"
+            className="w-12 h-12 bg-white text-black rounded-xl flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:scale-100 disabled:bg-gray-700 disabled:text-gray-400"
           >
             <Send className="w-5 h-5" />
           </button>

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Cpu, Users, Zap, Bot, ArrowRight, Sparkles, List } from 'lucide-react';
+import { Cpu, Users, Shield, ArrowRight, Sparkles, Terminal } from 'lucide-react';
 
 interface WelcomeScreenProps {
   onContinue: () => void;
@@ -8,105 +8,72 @@ interface WelcomeScreenProps {
 }
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onContinue, onExploreFeatures }) => {
-  const isOfferActive = true;
-
   return (
-    <div className="animate-in fade-in duration-1000 pb-24">
-      {/* Hero Section */}
-      <div className="relative mb-16 pt-8">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-orange-500/20 blur-[100px] pointer-events-none rounded-full"></div>
+    <div className="animate-in fade-in duration-1000 pb-24 font-sans selection:bg-white selection:text-black">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-12 md:pt-32 pb-20">
         
-        <div className="relative z-10 text-center max-w-4xl mx-auto">
-          {isOfferActive && (
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white mb-8 animate-bounce">
-              <Sparkles className="w-4 h-4 text-orange-400" />
-              <span className="bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent font-bold">Special Offer Available with Redeem Code</span>
-            </div>
-          )}
+        {/* Hero Section */}
+        <div className="text-center max-w-5xl mx-auto mb-16 md:mb-32">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.03] mb-8 backdrop-blur-md shadow-[0_4px_24px_-4px_rgba(0,0,0,0.5)]">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+            <span className="text-[10px] md:text-xs font-bold text-gray-300 tracking-widest uppercase">
+              NOVA OS · Next Generation Intelligence
+            </span>
+          </div>
           
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 leading-tight">
-            The Future of <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/40">Personal Intelligence</span>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] font-display font-extrabold tracking-tighter text-white mb-6 md:mb-8 leading-[1.05]">
+            Welcome to <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/40">
+              The Future.
+            </span>
           </h1>
           
-          <p className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto font-light mb-12 leading-relaxed">
-            Experience the next generation of autonomous AI assistants. Unprecedented performance, lifetime access, and complete privacy.
+          <p className="text-gray-400 text-base md:text-2xl max-w-3xl mx-auto font-medium leading-relaxed tracking-tight px-2 md:px-4 mb-10 md:mb-12">
+            Experience next-generation autonomous AI assistants tailored for your digital ecosystem. Unprecedented performance. Absolute privacy.
           </p>
 
-          {/* Features Action Area */}
-          <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 md:p-12 relative overflow-hidden flex flex-col items-center justify-center gap-6 max-w-2xl mx-auto shadow-2xl group hover:border-white/20 transition-all duration-500 mb-8">
-            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            
-            <div className="relative z-10 text-center">
-              <div className="w-16 h-16 mx-auto bg-white/10 rounded-2xl flex items-center justify-center mb-6 border border-white/10">
-                <Bot className="w-8 h-8 text-blue-400" />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Know what MJ and NOVA can do for you</h3>
-              <p className="text-text-secondary text-base mb-8 leading-relaxed max-w-md mx-auto">
-                Discover the incredible capabilities of our AI assistants. From system control to speaking and understanding any language in the world, see how they can transform your workflow.
-              </p>
-              <button 
-                onClick={onExploreFeatures}
-                className="group/btn2 relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-2xl font-bold text-base tracking-wide hover:bg-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all overflow-hidden"
-              >
-                <List className="w-5 h-5 relative z-10" />
-                <span className="relative z-10">Explore Features</span>
-              </button>
+          <button 
+            onClick={onContinue}
+            className="inline-flex items-center justify-center gap-3 px-6 py-4 md:px-8 md:py-5 bg-white text-black rounded-full font-bold text-base md:text-lg tracking-wide hover:bg-gray-200 hover:scale-[1.02] transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)] group w-full sm:w-auto"
+          >
+            <Sparkles className="w-5 h-5 text-gray-600 group-hover:text-black transition-colors" />
+            <span>Check our Assistants</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+
+        {/* Quick Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-20 md:mt-32 max-w-4xl mx-auto">
+          <div className="bg-[#09090b] rounded-3xl border border-white/[0.08] p-6 text-center flex flex-col items-center gap-4 hover:border-white/[0.15] transition-all duration-300 group">
+            <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:scale-110 group-hover:bg-white/[0.08] transition-all">
+              <Shield className="w-5 h-5 text-gray-300" />
+            </div>
+            <div>
+              <p className="text-white font-display font-bold text-lg tracking-tight">100% Secure</p>
+              <p className="text-gray-500 text-sm font-medium">Enterprise privacy</p>
             </div>
           </div>
-
-          {/* Main Action Area - Get Your AI Now */}
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 md:p-12 relative overflow-hidden flex flex-col items-center justify-center gap-6 max-w-2xl mx-auto shadow-2xl group hover:border-white/20 transition-all duration-500">
-            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-            
-            <div className="relative z-10 text-center">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Get Your AI Now</h3>
-              <p className="text-text-secondary text-base mb-8 leading-relaxed max-w-md mx-auto">
-                Select your preferred AI platform. Secure your lifetime license today with instant delivery.
-              </p>
-              <button 
-                onClick={onContinue}
-                className="group/btn relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-2xl font-bold text-base tracking-wide hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-white via-gray-200 to-white opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
-                <span className="relative z-10">Explore Products</span>
-                <ArrowRight className="w-5 h-5 relative z-10 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
+          <div className="bg-[#09090b] rounded-3xl border border-white/[0.08] p-6 text-center flex flex-col items-center gap-4 hover:border-white/[0.15] transition-all duration-300 group">
+            <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:scale-110 group-hover:bg-white/[0.08] transition-all">
+              <Users className="w-5 h-5 text-gray-300" />
+            </div>
+            <div>
+              <p className="text-white font-display font-bold text-lg tracking-tight">500+ Users</p>
+              <p className="text-gray-500 text-sm font-medium">Global community</p>
+            </div>
+          </div>
+          <div className="bg-[#09090b] rounded-3xl border border-white/[0.08] p-6 text-center flex flex-col items-center gap-4 hover:border-white/[0.15] transition-all duration-300 group">
+            <div className="w-12 h-12 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:scale-110 group-hover:bg-white/[0.08] transition-all">
+              <Terminal className="w-5 h-5 text-gray-300" />
+            </div>
+            <div>
+              <p className="text-white font-display font-bold text-lg tracking-tight">Multi-OS Support</p>
+              <p className="text-gray-500 text-sm font-medium">Windows, Mac, Android</p>
             </div>
           </div>
         </div>
+
       </div>
-
-      {/* Quick Stats / Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-[#050505]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors"></div>
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <Cpu className="w-6 h-6 text-blue-400" />
-          </div>
-          <h3 className="text-text-secondary text-sm font-medium mb-2 uppercase tracking-widest">System Status</h3>
-          <p className="text-2xl font-bold text-white tracking-tight">All Systems Operational</p>
-        </div>
-        
-        <div className="bg-[#050505]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl group-hover:bg-green-500/20 transition-colors"></div>
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <Users className="w-6 h-6 text-green-400" />
-          </div>
-          <h3 className="text-text-secondary text-sm font-medium mb-2 uppercase tracking-widest">Active Users</h3>
-          <p className="text-2xl font-bold text-white tracking-tight">500+ Elite Users</p>
-        </div>
-
-        <div className="bg-[#050505]/80 backdrop-blur-xl border border-white/5 rounded-3xl p-8 relative overflow-hidden group hover:border-white/10 transition-colors">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-colors"></div>
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <Zap className="w-6 h-6 text-purple-400" />
-          </div>
-          <h3 className="text-text-secondary text-sm font-medium mb-2 uppercase tracking-widest">Latest Version</h3>
-          <p className="text-2xl font-bold text-white tracking-tight">NOVA OS v6.0</p>
-        </div>
-      </div>
-
     </div>
   );
 };

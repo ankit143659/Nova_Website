@@ -15,16 +15,6 @@ const FeaturesScreen: React.FC<FeaturesScreenProps> = ({ onBack }) => {
 
   return (
     <div className="animate-in fade-in duration-700 pb-24">
-      <button 
-        onClick={onBack}
-        className="mb-8 flex items-center text-text-secondary hover:text-white transition-colors text-sm font-medium group"
-      >
-        <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mr-3 group-hover:-translate-x-1 transition-transform">
-          <ArrowLeft className="w-4 h-4" />
-        </div>
-        Back to Products
-      </button>
-
       <div className="mb-12">
         <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
           Core Capabilities

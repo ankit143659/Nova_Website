@@ -1,6 +1,8 @@
 
 export enum AppScreen {
   WELCOME = 'welcome',
+  OS_SELECTION = 'os-selection',
+  OS_FEATURES = 'os-features',
   MAIN_SELECTION = 'main-selection',
   FEATURES = 'features',
   PRODUCT_OPTIONS = 'product-options',
@@ -18,10 +20,13 @@ export enum AppScreen {
 export enum Platform {
   NOVA = 'nova',
   MJ = 'mj',
-  COMBO = 'combo'
+  COMBO = 'combo',
+  MAX = 'max',
+  CUSTOM = 'custom'
 }
 
-export type Variant = 'windows' | 'macos' | 'custom';
+export type OSType = 'windows' | 'android' | 'mac' | null;
+export type Variant = 'windows' | 'macos' | 'custom' | 'android';
 
 export interface Feature {
   icon: string;
@@ -47,4 +52,5 @@ export interface UserDetails {
   name: string;
   email: string;
   desiredAiName?: string;
+  baseAiChoice?: 'MJ' | 'NOVA';
 }

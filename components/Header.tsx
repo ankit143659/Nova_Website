@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { AppScreen } from '../types';
-import { Home, Package, HeadphonesIcon, Info, Truck, Box, Undo, Shield, FileText, Menu, X, Cpu } from 'lucide-react';
+import { Menu, X, Cpu } from 'lucide-react';
 
 interface HeaderProps {
   currentScreen: AppScreen;
@@ -10,85 +11,94 @@ interface HeaderProps {
   platformName: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor, platformName }) => {
+const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', screen: AppScreen.WELCOME, icon: Home },
-    { label: 'Products', screen: AppScreen.MAIN_SELECTION, icon: Package },
-    { label: 'Support', screen: AppScreen.CONTACT, icon: HeadphonesIcon },
-    { label: 'About', screen: AppScreen.ABOUT, icon: Info },
-    { label: 'Delivery', screen: AppScreen.DISTRIBUTION, icon: Truck },
-    { label: 'Shipping', screen: AppScreen.SHIPPING, icon: Box },
-    { label: 'Refund', screen: AppScreen.REFUND, icon: Undo },
-    { label: 'Privacy', screen: AppScreen.PRIVACY, icon: Shield },
-    { label: 'Terms', screen: AppScreen.TERMS, icon: FileText },
+    { label: 'Products', screen: AppScreen.MAIN_SELECTION },
+    { label: 'Features', screen: AppScreen.FEATURES },
+    { label: 'Delivery', screen: AppScreen.DISTRIBUTION },
+    { label: 'Shipping', screen: AppScreen.SHIPPING },
+    { label: 'Support', screen: AppScreen.CONTACT },
+    { label: 'Refund Policy', screen: AppScreen.REFUND },
+    { label: 'About', screen: AppScreen.ABOUT },
   ];
 
-    const getScreenName = () => {
-      switch(currentScreen) {
-        case AppScreen.WELCOME: return 'Home';
-        case AppScreen.MAIN_SELECTION: return 'Products';
-        case AppScreen.FEATURES: return 'Features';
-        case AppScreen.PRODUCT_OPTIONS: return 'Choose Version';
-        case AppScreen.PRODUCT_DETAILS: return 'Product Details';
-        case AppScreen.PAYMENT_FORM: return 'Checkout';
-        case AppScreen.CONTACT: return 'Support';
-        case AppScreen.ABOUT: return 'About';
-        default: return 'Dashboard';
-      }
-    };
-
   return (
-    <header className="sticky top-0 z-30 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 h-16 flex items-center justify-between px-4 md:px-8">
-      <div className="flex items-center gap-4">
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden w-10 h-10 flex items-center justify-center text-text-secondary hover:text-white transition-colors rounded-lg hover:bg-white/5"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <Menu className="w-5 h-5" />
-        </button>
+    <header className="sticky top-0 z-50 w-full border-b border-white/[0.05] bg-[#000000]/80 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
         
-        {/* Breadcrumbs / Title */}
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <span className="text-text-secondary hidden sm:inline-block">NOVA.OS</span>
-          <span className="text-text-secondary hidden sm:inline-block">/</span>
-          <span className="text-white">{getScreenName()}</span>
+        {/* Logo left */}
+        <div 
+          className="flex items-center gap-3 cursor-pointer group shrink-0"
+          onClick={() => onNavigate(AppScreen.WELCOME)}
+        >
+          <div className="w-8 h-8 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:bg-white/[0.08] group-hover:border-white/[0.15] transition-all duration-300">
+            <Cpu className="w-4 h-4 text-white" />
+          </div>
+          <span className="font-display font-black tracking-widest text-white text-sm md:text-base uppercase">
+            NOVA<span className="text-gray-500">.OS</span>
+          </span>
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 flex-1 px-8">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={() => onNavigate(item.screen)}
+              className={`px-4 py-2 rounded-full text-[13px] font-bold uppercase tracking-widest transition-all duration-300 ${currentScreen === item.screen ? 'bg-white/[0.05] text-white' : 'text-gray-400 hover:text-white hover:bg-white/[0.02]'}`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Right side status / mobile menu */}
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/[0.05] text-[10px] font-bold tracking-widest uppercase text-gray-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></span>
+            System Online
+          </div>
+          
+          <button 
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-white rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.08] transition-all active:scale-95"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-         <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-widest uppercase text-white/70">
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: themeColor, boxShadow: `0 0 10px ${themeColor}` }}></span>
-            System Online
-         </div>
-      </div>
-
       {/* Mobile Navigation Overlay */}
-      {isOpen && (
-        <div className="md:hidden fixed inset-0 z-50 bg-[#050505] animate-in fade-in duration-200">
-          <div className="flex justify-between items-center p-4 border-b border-white/5">
+      {isOpen && createPortal(
+        <div className="lg:hidden fixed inset-0 z-[100] bg-[#000000]/95 backdrop-blur-2xl animate-in fade-in duration-300 flex flex-col">
+          <div className="flex justify-between items-center px-4 h-16 md:h-20 border-b border-white/[0.05]">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 border border-white/10">
-                <Cpu className="w-4 h-4" style={{ color: themeColor }} />
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-white/[0.03] border border-white/[0.08]">
+                <Cpu className="w-4 h-4 text-white" />
               </div>
               <span className="font-display font-black tracking-widest text-white text-sm uppercase">
-                NOVA<span style={{ color: themeColor }}>.OS</span>
+                NOVA<span className="text-gray-500">.OS</span>
               </span>
             </div>
             <button 
-              className="w-10 h-10 flex items-center justify-center text-text-secondary hover:text-white rounded-lg hover:bg-white/5"
+              className="w-10 h-10 flex items-center justify-center text-white rounded-xl bg-white/[0.03] border border-white/[0.05] hover:bg-white/[0.08]"
               onClick={() => setIsOpen(false)}
             >
               <X className="w-5 h-5" />
             </button>
           </div>
           
-          <div className="p-4 flex flex-col gap-2 overflow-y-auto h-[calc(100vh-73px)]">
+          <div className="flex-1 overflow-y-auto px-4 py-8 flex flex-col gap-2">
+            <button
+              onClick={() => { onNavigate(AppScreen.WELCOME); setIsOpen(false); }}
+              className={`flex items-center w-full px-6 py-4 rounded-2xl transition-all text-sm font-bold uppercase tracking-widest ${currentScreen === AppScreen.WELCOME ? 'bg-white/[0.05] text-white border border-white/[0.05]' : 'text-gray-400 border border-transparent'}`}
+            >
+              Home
+            </button>
             {navItems.map((item) => {
               const isActive = currentScreen === item.screen;
-              const Icon = item.icon;
               return (
                 <button
                   key={item.label}
@@ -96,17 +106,15 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor, 
                     onNavigate(item.screen);
                     setIsOpen(false);
                   }}
-                  className={`flex items-center gap-4 p-4 rounded-2xl transition-all text-sm font-medium border ${isActive ? 'bg-white/10 text-white border-white/10 shadow-inner' : 'text-text-secondary border-transparent hover:bg-white/5 hover:text-white'}`}
+                  className={`flex items-center w-full px-6 py-4 rounded-2xl transition-all text-sm font-bold uppercase tracking-widest gap-4 ${isActive ? 'bg-white/[0.05] text-white border border-white/[0.05]' : 'text-gray-400 border border-transparent hover:text-white'}`}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center border ${isActive ? 'bg-gradient-to-br from-white/10 to-transparent border-white/20' : 'bg-white/5 border-white/5'}`}>
-                    <Icon className="w-5 h-5" style={isActive ? { color: themeColor } : {}} />
-                  </div>
-                  <span className="uppercase tracking-widest font-bold">{item.label}</span>
+                  {item.label}
                 </button>
               );
             })}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

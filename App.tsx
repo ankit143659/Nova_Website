@@ -1,39 +1,38 @@
 
 import React, { useState, useEffect } from 'react';
-import { AppScreen, Platform, ProductData, UserDetails, Feature, Variant } from './types';
+import { AppScreen, Platform, ProductData, UserDetails, OSType } from './types';
 import Header from './components/Header';
 import WelcomeScreen from './components/WelcomeScreen';
+import OSSelectionScreen from './components/OSSelectionScreen';
+import OSFeaturesScreen from './components/OSFeaturesScreen';
 import MainSelectionScreen from './components/MainSelectionScreen';
-import ProductOptionsScreen from './components/ProductOptionsScreen';
 import FeaturesScreen from './components/FeaturesScreen';
 import GenericPage from './components/GenericPage';
 import ProductDetailsPage from './components/ProductDetailsPage';
 import PaymentForm from './components/PaymentForm';
 import SupportChatBot from './components/SupportChatBot';
 import { Mail, Clock, Send, Shield, Brain, Target, Zap, MessageCircle, AlertTriangle } from 'lucide-react';
-import { ELITE_FEATURES } from './featuresData';
 
-const GLOBAL_VIDEO_URL = "https://www.youtube.com/embed/fY17HZcXppE?si=U7dZqtakf--m_OuT";
-
-import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.WELCOME);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+  const [selectedOS, setSelectedOS] = useState<OSType>(null);
   const [activeProduct, setActiveProduct] = useState<ProductData | null>(null);
   const [paymentId, setPaymentId] = useState<string | null>(null);
 
   const getThemeColor = (platform: Platform | null) => {
     switch(platform) {
       case Platform.NOVA: return '#00f2ff';
-      case Platform.MJ: return '#ff2a6d'; // Pink theme for MJ
-      case Platform.COMBO: return '#eab308'; // Gold theme for Combo
-      default: return '#00f2ff';
+      case Platform.MJ: return '#ff2a6d';
+      case Platform.COMBO: return '#eab308';
+      case Platform.MAX: return '#10b981';
+      case Platform.CUSTOM: return '#a855f7';
+      default: return '#ffffff';
     }
   };
 
-  const themeColor = getThemeColor(selectedPlatform);
+  const themeColor = getThemeColor(activeProduct?.platform || null);
 
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-theme', themeColor);
@@ -44,61 +43,9 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handlePlatformSelect = (platform: Platform | 'features') => {
-    if (platform === 'features') {
-      navigateTo(AppScreen.FEATURES);
-      return;
-    }
-    
-    setSelectedPlatform(platform);
-    
-    if (platform === Platform.COMBO) {
-      setActiveProduct({
-        id: 'combo',
-        title: 'UNIFIED NOVA & MJ COMBO',
-        subtitle: 'Elite Performance & Human Empathy Combined',
-        price: 1999,
-        platform: Platform.COMBO,
-        videoUrl: GLOBAL_VIDEO_URL,
-        features: ELITE_FEATURES,
-        variantName: 'UNIFIED'
-      });
-      navigateTo(AppScreen.PRODUCT_DETAILS);
-    } else {
-      navigateTo(AppScreen.PRODUCT_OPTIONS);
-    }
-  };
-
-  const handleProductOption = (option: string, price: number) => {
-    const platformTag = selectedPlatform?.toUpperCase() || 'NOVA';
-    const isMJ = selectedPlatform === Platform.MJ;
-    
-    if (option === 'windows') {
-      setActiveProduct({
-        id: `${selectedPlatform}-windows`,
-        title: `${platformTag} ${isMJ ? 'v4 HEART EDITION' : '6.0'}`,
-        subtitle: isMJ ? 'Advanced Cognitive Intelligence' : 'The Ultimate Autonomous Engine',
-        price: price,
-        platform: selectedPlatform || Platform.NOVA,
-        variantName: 'WINDOWS APP',
-        videoUrl: GLOBAL_VIDEO_URL,
-        features: ELITE_FEATURES
-      });
-      navigateTo(AppScreen.PRODUCT_DETAILS);
-    } else if (option === 'custom') {
-      setActiveProduct({
-        id: 'custom-ai',
-        title: `CUSTOM BRANDED ${platformTag} AI`,
-        subtitle: isMJ ? 'Your Name. Your Voice.' : 'Your Name. Your Voice. Your Brand.',
-        price: price,
-        platform: selectedPlatform || Platform.NOVA,
-        variantName: 'CUSTOM',
-        videoUrl: GLOBAL_VIDEO_URL,
-        features: ELITE_FEATURES,
-        isCustom: true
-      });
-      navigateTo(AppScreen.PRODUCT_DETAILS);
-    }
+  const handleOSSelect = (os: OSType) => {
+    setSelectedOS(os);
+    navigateTo(AppScreen.OS_FEATURES);
   };
 
   const startPayment = (finalPrice: number) => {
@@ -110,7 +57,7 @@ const App: React.FC = () => {
         key: 'rzp_live_OcHSFiDAu0iMZC',
         amount: finalPrice * 100,
         currency: 'INR',
-        name: `${selectedPlatform?.toUpperCase() || 'NOVA'} AI`,
+        name: `NOVA OS ACADEMY`,
         description: `Activation for ${activeProduct.title}`,
         handler: function(response: any) {
           setPaymentId(response.razorpay_payment_id);
@@ -127,14 +74,11 @@ const App: React.FC = () => {
 
   const handleFinalSubmit = (details: UserDetails) => {
     if (!activeProduct || !paymentId) return;
-    const invoiceNo = `${selectedPlatform?.toUpperCase()}-ELITE-${Date.now()}`;
+    const invoiceNo = `ELITE-${Date.now().toString().slice(-6)}`;
     
-    let targetPhone = "919512194144";
-    
-    if (activeProduct.id !== 'custom-ai') {
-      const phones = ["919512194144", "917574821527"];
-      targetPhone = phones[Math.floor(Math.random() * phones.length)];
-    }
+    // Custom products go to special numbers, others random
+    const phones = ["919512194144", "917574821527"];
+    const targetPhone = activeProduct.isCustom ? "919512194144" : phones[Math.floor(Math.random() * phones.length)];
     
     let message = `Hello! I just purchased ${activeProduct.title}.
 
@@ -142,19 +86,22 @@ const App: React.FC = () => {
 ─────────────────
 🆔 *Invoice:* ${invoiceNo}
 💳 *Payment ID:* ${paymentId}
-📦 *Product:* ${activeProduct.title}
+📦 *Product:* ${activeProduct.title} (${selectedOS?.toUpperCase()})
 💰 *Amount:* ₹${activeProduct.price}
 
-👤 *CUSTOMER:*
+👤 *CUSTOMER DETAILS:*
 ─────────────────
 📛 *Name:* ${details.name}
 📧 *Email:* ${details.email}`;
 
-    if (details.desiredAiName) {
-      message += `\n🤖 *Desired AI Name:* ${details.desiredAiName.toUpperCase()}`;
+    if (activeProduct.isCustom && details.desiredAiName) {
+      message += `\n\n🤖 *CUSTOM BUILD REQUEST:*
+─────────────────
+⚙️ *Base Engine:* ${details.baseAiChoice || 'Not Specified'}
+✨ *Desired AI Name:* ${details.desiredAiName.toUpperCase()}`;
     }
 
-    message += `\n\nPlease provide my ELITE access credentials for ${selectedPlatform?.toUpperCase()} AI. Thank you! 🚀`;
+    message += `\n\nPlease provide my ELITE access credentials. Thank you! 🚀`;
     
     window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -479,29 +426,31 @@ const App: React.FC = () => {
   const renderScreen = () => {
     switch(currentScreen) {
       case AppScreen.WELCOME:
-        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.MAIN_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
+        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.OS_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
+      case AppScreen.OS_SELECTION:
+        return <OSSelectionScreen onSelectOS={handleOSSelect} />;
+      case AppScreen.OS_FEATURES:
+        return <OSFeaturesScreen os={selectedOS} onBack={() => navigateTo(AppScreen.OS_SELECTION)} onContinue={() => navigateTo(AppScreen.MAIN_SELECTION)} />;
       case AppScreen.MAIN_SELECTION:
-        return <MainSelectionScreen onPlatformSelect={handlePlatformSelect} />;
-      case AppScreen.FEATURES:
-        return <FeaturesScreen onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} />;
-      case AppScreen.PRODUCT_OPTIONS:
         return (
-          <ProductOptionsScreen 
-            platform={selectedPlatform} 
-            onBack={() => navigateTo(AppScreen.MAIN_SELECTION)}
-            onSelectOption={handleProductOption}
-            themeColor={themeColor}
+          <MainSelectionScreen 
+            selectedOS={selectedOS} 
+            onProductSelect={(prod) => { setActiveProduct(prod); navigateTo(AppScreen.PRODUCT_DETAILS); }}
+            onExploreFeatures={() => navigateTo(AppScreen.FEATURES)}
+            onRequireOS={() => navigateTo(AppScreen.OS_SELECTION)}
+            onBackToFeatures={() => navigateTo(AppScreen.OS_FEATURES)}
           />
         );
+      case AppScreen.FEATURES:
+        return <FeaturesScreen onBack={() => selectedOS ? navigateTo(AppScreen.MAIN_SELECTION) : navigateTo(AppScreen.WELCOME)} />;
       case AppScreen.PRODUCT_DETAILS:
         return activeProduct ? (
           <ProductDetailsPage 
             product={activeProduct} 
-            onBack={() => navigateTo(activeProduct.platform === Platform.COMBO ? AppScreen.MAIN_SELECTION : AppScreen.PRODUCT_OPTIONS)}
+            onBack={() => navigateTo(AppScreen.MAIN_SELECTION)}
             onPurchase={startPayment}
             onInternationalHelp={(country) => {
-              const message = `Hello! I am from ${country}. I want to purchase ${activeProduct.title}. Please help me with international payment options.`;
-              window.open(`https://wa.me/919512194144?text=${encodeURIComponent(message)}`, '_blank');
+              window.open(`https://wa.me/919512194144?text=${encodeURIComponent('Hello! I am from ' + country + '. I want to purchase an AI engine. Please help me with international payment options.')}`, '_blank');
             }}
             themeColor={themeColor}
             onViewFeatures={() => navigateTo(AppScreen.FEATURES)}
@@ -519,53 +468,39 @@ const App: React.FC = () => {
           />
         ) : null;
       case AppScreen.CONTACT:
-        return <GenericPage title="Contact Support" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={contactContent} />;
+        return <GenericPage title="Contact Support" onBack={() => navigateTo(AppScreen.WELCOME)} content={contactContent} />;
       case AppScreen.ABOUT:
-        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={aboutContent} />;
+        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.WELCOME)} content={aboutContent} />;
       case AppScreen.DISTRIBUTION:
-        return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={distributionContent} />;
+        return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.WELCOME)} content={distributionContent} />;
       case AppScreen.SHIPPING:
-        return <GenericPage title="Shipping Info" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={shippingContent} />;
+        return <GenericPage title="Shipping Info" onBack={() => navigateTo(AppScreen.WELCOME)} content={shippingContent} />;
       case AppScreen.REFUND:
-        return <GenericPage title="Refund Policy" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={refundContent} />;
+        return <GenericPage title="Refund Policy" onBack={() => navigateTo(AppScreen.WELCOME)} content={refundContent} />;
       case AppScreen.PRIVACY:
-        return <GenericPage title="Privacy Policy" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={privacyContent} />;
+        return <GenericPage title="Privacy Policy" onBack={() => navigateTo(AppScreen.WELCOME)} content={privacyContent} />;
       case AppScreen.TERMS:
-        return <GenericPage title="Terms of Service" onBack={() => navigateTo(AppScreen.MAIN_SELECTION)} content={termsContent} />;
+        return <GenericPage title="Terms of Service" onBack={() => navigateTo(AppScreen.WELCOME)} content={termsContent} />;
       default:
-        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.MAIN_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
+        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.OS_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
     }
   };
 
   return (
-    <div className="min-h-screen font-sans text-text-primary selection:bg-primary selection:text-black flex relative z-10">
-      <Sidebar 
+    <div className="min-h-screen font-sans text-text-primary selection:bg-white selection:text-black flex flex-col relative z-10 w-full">
+      <Header 
         currentScreen={currentScreen} 
         onNavigate={navigateTo} 
-        themeColor={themeColor} 
+        themeColor={themeColor}
+        platformName={selectedOS?.toUpperCase() || 'NOVA'}
       />
       
-      <div className="flex-1 flex flex-col md:ml-64 min-h-screen transition-all duration-300 overflow-x-hidden">
-        <Header 
-          currentScreen={currentScreen} 
-          onNavigate={navigateTo} 
-          themeColor={themeColor}
-          platformName={selectedPlatform?.toUpperCase() || 'NOVA'}
-        />
-        
-        <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 text-white text-center py-3 px-4 shadow-lg animate-pulse-slow border-b border-white/20 relative z-20">
-          <p className="text-sm md:text-base font-bold tracking-wider uppercase">
-            🚀 Use redeem code <span className="font-black bg-white/20 px-2 py-0.5 rounded">MJXHEART</span> to unlock special pricing! 🚀
-          </p>
+      <main className="flex-1 w-full flex flex-col">
+        <div className="w-full flex-1">
+          {renderScreen()}
         </div>
-
-        <main className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col">
-          <div className="max-w-6xl mx-auto w-full flex-1">
-            {renderScreen()}
-          </div>
-          <Footer onNavigate={navigateTo} />
-        </main>
-      </div>
+        <Footer onNavigate={navigateTo} />
+      </main>
 
       <SupportChatBot />
     </div>
