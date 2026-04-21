@@ -16,7 +16,6 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
 
   const navItems = [
     { label: 'Products', screen: AppScreen.MAIN_SELECTION },
-    { label: 'Features', screen: AppScreen.FEATURES },
     { label: 'Delivery', screen: AppScreen.DISTRIBUTION },
     { label: 'Shipping', screen: AppScreen.SHIPPING },
     { label: 'Support', screen: AppScreen.CONTACT },

@@ -66,7 +66,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
             <Laptop className="w-10 h-10 text-gray-400 group-hover:text-[#ff2a6d] transition-colors duration-500" />
           </div>
           <h3 className="text-3xl font-display font-bold text-white mb-4 tracking-tight group-hover:translate-x-1 transition-transform duration-500">macOS</h3>
-          <p className="text-gray-400 text-sm font-medium px-4 leading-relaxed group-hover:text-gray-300 transition-colors">Streamlined access to MJ v4 Core systems.</p>
+          <p className="text-gray-400 text-sm font-medium px-4 leading-relaxed group-hover:text-gray-300 transition-colors">Full access to MJ, NOVA, Unified Combo, and Custom engines.</p>
         </div>
       </div>
     </div>

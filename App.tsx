@@ -48,15 +48,17 @@ const App: React.FC = () => {
     navigateTo(AppScreen.OS_FEATURES);
   };
 
-  const startPayment = (finalPrice: number) => {
+  const startPayment = (finalPrice: number, currency: string = 'INR') => {
     if (!activeProduct) return;
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.onload = () => {
+      // For INR, use * 100 since Razorpay operates in paise.
+      // Most major international currencies (USD, EUR, GBP, AUD) supported by Razorpay also use minor units (* 100).
       const options = {
         key: 'rzp_live_OcHSFiDAu0iMZC',
-        amount: finalPrice * 100,
-        currency: 'INR',
+        amount: Math.round(finalPrice * 100),
+        currency: currency,
         name: `NOVA OS ACADEMY`,
         description: `Activation for ${activeProduct.title}`,
         handler: function(response: any) {
