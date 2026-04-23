@@ -13,7 +13,7 @@ interface MainSelectionScreenProps {
   onBackToFeatures?: () => void;
 }
 
-const GLOBAL_VIDEO_URL = "https://www.youtube.com/embed/fY17HZcXppE?si=U7dZqtakf--m_OuT";
+const GLOBAL_VIDEO_URL = "https://www.youtube.com/embed/uTaSAFUbS-s?si=x3-zLzXkjJSEBluQ";
 
 const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, onProductSelect, onExploreFeatures, onRequireOS, onBackToFeatures }) => {
   const isOfferActive = true;
