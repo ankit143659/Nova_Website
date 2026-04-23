@@ -115,7 +115,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   };
 
   const getOfferPrice = () => {
-    if (product.isCustom) return product.price;
+    if (product.isCustom) return product.price - 500;
     if (product.platform === 'combo') return 1499;
     if (product.platform === 'max') return 899;
     if (product.platform === 'mj') return 999;
