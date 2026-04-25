@@ -13,7 +13,7 @@ interface MainSelectionScreenProps {
   onBackToFeatures?: () => void;
 }
 
-const GLOBAL_VIDEO_URL = "https://www.youtube.com/embed/uTaSAFUbS-s?si=x3-zLzXkjJSEBluQ";
+const GLOBAL_VIDEO_URL = "https://www.youtube.com/embed/uQo_LHobvCM?si=3MEx7Ug12pUIrsOO";
 
 const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, onProductSelect, onExploreFeatures, onRequireOS, onBackToFeatures }) => {
   const isOfferActive = true;
@@ -88,22 +88,6 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
         { icon: 'Shield', title: 'On-device Processing', desc: 'Secure local compute' },
         { icon: 'Target', title: 'Task Execution', desc: 'Automates regular workflows' }
       ],
-    },
-    {
-      id: 'custom-android',
-      title: 'CUSTOM BRANDED AI',
-      subtitle: 'YOUR NAME. YOUR VOICE.',
-      desc: 'White-label architecture. Choose your base engine and customize its core identity for Android.',
-      price: 2299,
-      platform: Platform.CUSTOM,
-      variantName: 'CUSTOM',
-      videoUrl: GLOBAL_VIDEO_URL,
-      features: [
-        { icon: 'Zap', title: 'White-label Mobile', desc: 'Your own branded Android app' },
-        { icon: 'Shield', title: 'Custom Identity', desc: 'Responds to your selected name' },
-        { icon: 'Target', title: 'Core Autonomy', desc: 'Full custom workflow integration' }
-      ],
-      isCustom: true
     }
   ];
 
@@ -113,45 +97,36 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       title: 'MJ v4',
       subtitle: 'MACOS EDITION',
       desc: 'Advanced Cognitive Intelligence natively compiled for Apple Silicon and macOS environments.',
-      price: 1399,
+      price: 1599,
       platform: Platform.MJ,
       variantName: 'MACOS APP',
       videoUrl: GLOBAL_VIDEO_URL,
       features: ELITE_FEATURES,
-    },
+    }
+  ];
+
+  const comboWinAndProducts: ProductData[] = [
     {
-      id: 'nova-macos',
-      title: 'NOVA 6.0',
-      subtitle: 'SYSTEM MASTER',
-      desc: 'The Ultimate Autonomous Engine. Deep level system control and extreme automation protocols for macOS.',
-      price: 1099,
-      platform: Platform.NOVA,
-      variantName: 'MACOS APP',
-      videoUrl: GLOBAL_VIDEO_URL,
-      features: ELITE_FEATURES,
-    },
-    {
-      id: 'combo-macos',
-      title: 'UNIFIED COMBO',
-      subtitle: 'DUAL CORE',
-      desc: 'Elite Performance & Human Empathy Combined. Run both NOVA and MJ simultaneously on your Mac.',
-      price: 2499,
-      platform: Platform.COMBO,
-      variantName: 'UNIFIED MACOS',
-      videoUrl: GLOBAL_VIDEO_URL,
-      features: ELITE_FEATURES,
-    },
-    {
-      id: 'custom-macos',
-      title: 'CUSTOM BRANDED AI',
-      subtitle: 'YOUR NAME. YOUR VOICE.',
-      desc: 'White-label architecture. Choose your base engine (MJ or NOVA) and customize its core identity for macOS.',
+      id: 'combo-max-nova',
+      title: 'MAX + NOVA',
+      subtitle: 'WINDOWS + ANDROID COMBO',
+      desc: 'Ultimate control anywhere. Get NOVA for Windows desktop and MAX for your Android device in one unified package.',
       price: 2699,
-      platform: Platform.CUSTOM,
-      variantName: 'CUSTOM MACOS',
+      platform: Platform.COMBO,
+      variantName: 'WIN + ANDROID',
       videoUrl: GLOBAL_VIDEO_URL,
       features: ELITE_FEATURES,
-      isCustom: true
+    },
+    {
+      id: 'combo-max-mj',
+      title: 'MAX + MJ',
+      subtitle: 'WINDOWS + ANDROID COMBO',
+      desc: 'Creative intelligence meets portable autonomy. Get MJ for Windows desktop and MAX for your Android device.',
+      price: 2699,
+      platform: Platform.COMBO,
+      variantName: 'WIN + ANDROID',
+      videoUrl: GLOBAL_VIDEO_URL,
+      features: ELITE_FEATURES,
     }
   ];
 
@@ -159,6 +134,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
   if (selectedOS === 'windows') displayProducts = winProducts;
   if (selectedOS === 'android') displayProducts = androidProducts;
   if (selectedOS === 'mac') displayProducts = macProducts;
+  if (selectedOS === 'combo-win-and') displayProducts = comboWinAndProducts;
 
   if (!selectedOS) return null;
 
@@ -207,27 +183,16 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       <div className={`grid grid-cols-1 md:grid-cols-${Math.min(3, displayProducts.length)} gap-6 mb-32 max-w-7xl mx-auto px-4 sm:px-6`}>
         {displayProducts.map((product) => {
           const { icon: Icon, color, bg } = getPlatformMeta(product.platform);
-          const isAndroidProduct = selectedOS === 'android';
+          const isAndroidProduct = false; // Android is now unlocked forever, no need to disable any product block based on this flag
           
           return (
           <div 
             key={product.id}
             onClick={() => {
-              if (!isAndroidProduct) {
                 onProductSelect(product);
-              }
             }}
-            className={`group relative flex flex-col bg-[#09090b] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 md:p-10 ${isAndroidProduct ? 'cursor-default opacity-80' : 'cursor-pointer'} overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]`}
+            className={`group relative flex flex-col bg-[#09090b] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 md:p-10 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]`}
           >
-            {isAndroidProduct && (
-              <div className="absolute inset-0 z-30 bg-[#09090b]/60 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-6 border border-white/[0.05] rounded-3xl">
-                <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold tracking-widest uppercase text-white mb-3 backdrop-blur-md">
-                  Coming Soon
-                </span>
-                <p className="font-display font-extrabold text-white text-2xl tracking-tight mb-2">Launching on May 1</p>
-                <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">Mobile Intelligence Reboot</p>
-              </div>
-            )}
             {/* Background Gradient */}
             <div className={`absolute inset-0 bg-gradient-to-br ${bg} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}></div>
             

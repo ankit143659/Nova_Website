@@ -1,5 +1,6 @@
 
 export enum AppScreen {
+  INTRO_VIDEO = 'intro-video',
   WELCOME = 'welcome',
   OS_SELECTION = 'os-selection',
   OS_FEATURES = 'os-features',
@@ -25,8 +26,8 @@ export enum Platform {
   CUSTOM = 'custom'
 }
 
-export type OSType = 'windows' | 'android' | 'mac' | null;
-export type Variant = 'windows' | 'macos' | 'custom' | 'android';
+export type OSType = 'windows' | 'android' | 'mac' | 'combo-win-and' | null;
+export type Variant = 'windows' | 'macos' | 'custom' | 'android' | 'combo';
 
 export interface Feature {
   icon: string;

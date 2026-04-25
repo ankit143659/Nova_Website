@@ -55,9 +55,9 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
 
         {/* Right side status / mobile menu */}
         <div className="flex items-center gap-3 shrink-0">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/[0.05] text-[10px] font-bold tracking-widest uppercase text-gray-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></span>
-            System Online
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10b981]/15 border border-[#10b981]/30 text-[10px] font-extrabold tracking-widest uppercase text-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] shadow-[0_0_10px_#10b981] animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite]"></span>
+            MAX IS LIVE NOW
           </div>
           
           <button 

@@ -23,50 +23,63 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
         </p>
       </div>
 
-      <div className="grid grid-cols-1 select-none md:grid-cols-3 gap-6 w-full max-w-5xl">
+      <div className="grid grid-cols-1 select-none md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto px-4">
         {/* Windows */}
         <div 
           onClick={() => onSelectOS('windows')}
-          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-white/[0.08] hover:border-[#00f2ff]/30 rounded-[2rem] p-10 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(0,242,255,0.15)]"
+          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-white/[0.08] hover:border-[#00f2ff]/30 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(0,242,255,0.15)]"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[#00f2ff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          <div className="w-24 h-24 rounded-3xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-8 mt-4 group-hover:bg-[#00f2ff]/10 group-hover:border-[#00f2ff]/20">
+          <div className="w-20 h-20 rounded-3xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#00f2ff]/10 group-hover:border-[#00f2ff]/20">
             <Monitor className="w-10 h-10 text-gray-400 group-hover:text-[#00f2ff] transition-colors duration-500" />
           </div>
-          <h3 className="text-3xl font-display font-bold text-white mb-4 tracking-tight group-hover:translate-x-1 transition-transform duration-500">Windows</h3>
-          <p className="text-gray-400 text-sm font-medium px-4 leading-relaxed group-hover:text-gray-300 transition-colors">Full access to MJ, NOVA, Unified Combo, and Custom engines.</p>
+          <h3 className="text-2xl font-display font-bold text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500">Windows</h3>
+          <p className="text-gray-400 text-xs font-medium px-2 leading-relaxed group-hover:text-gray-300 transition-colors">Access MJ, NOVA, Combo, and Custom engines.</p>
         </div>
 
         {/* Android */}
         <div 
-          onClick={() => { /* Disabled until May 1 */ }}
-          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-white/[0.08] rounded-[2rem] p-10 cursor-default overflow-hidden transition-all duration-700 shadow-2xl opacity-80"
+          onClick={() => onSelectOS('android')}
+          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-[#10b981]/20 hover:border-[#10b981]/50 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-[0_0_30px_rgba(16,185,129,0.05)] hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(16,185,129,0.2)] ring-1 ring-[#10b981]/10"
         >
-          <div className="absolute inset-0 z-30 bg-[#09090b]/60 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-6 rounded-[2rem]">
-            <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold tracking-widest uppercase text-white mb-3 backdrop-blur-md shadow-lg">
-              Coming Soon
-            </span>
-            <p className="font-display font-extrabold text-[#10b981] text-2xl tracking-tight mb-2">Launching May 1</p>
-          </div>
           <div className="absolute inset-0 bg-gradient-to-br from-[#10b981]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          <div className="w-24 h-24 rounded-3xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center shadow-inner mb-8 mt-4">
-            <Smartphone className="w-10 h-10 text-gray-500" />
+          <div className="w-20 h-20 rounded-3xl bg-[#10b981]/[0.02] border border-[#10b981]/20 flex items-center justify-center shadow-[inset_0_0_20px_rgba(16,185,129,0.1)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#10b981]/10">
+            <Smartphone className="w-10 h-10 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
           </div>
-          <h3 className="text-3xl font-display font-bold text-gray-500 mb-4 tracking-tight">Android</h3>
-          <p className="text-gray-600 text-sm font-medium px-4 leading-relaxed">Exclusive access to MAX - the portable intelligence.</p>
+          <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]">Android</h3>
+          <p className="text-[#10b981]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#10b981]/90 transition-colors">Exclusive access to MAX - the portable intelligence.</p>
         </div>
 
         {/* Mac OS */}
         <div 
           onClick={() => onSelectOS('mac')}
-          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-white/[0.08] hover:border-[#ff2a6d]/30 rounded-[2rem] p-10 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,42,109,0.15)]"
+          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-white/[0.08] hover:border-[#ff2a6d]/30 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,42,109,0.15)]"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-[#ff2a6d]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          <div className="w-24 h-24 rounded-3xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-8 mt-4 group-hover:bg-[#ff2a6d]/10 group-hover:border-[#ff2a6d]/20">
+          <div className="w-20 h-20 rounded-3xl bg-white/[0.02] border border-white/[0.05] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#ff2a6d]/10 group-hover:border-[#ff2a6d]/20">
             <Laptop className="w-10 h-10 text-gray-400 group-hover:text-[#ff2a6d] transition-colors duration-500" />
           </div>
-          <h3 className="text-3xl font-display font-bold text-white mb-4 tracking-tight group-hover:translate-x-1 transition-transform duration-500">macOS</h3>
-          <p className="text-gray-400 text-sm font-medium px-4 leading-relaxed group-hover:text-gray-300 transition-colors">Full access to MJ, NOVA, Unified Combo, and Custom engines.</p>
+          <h3 className="text-2xl font-display font-bold text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500">macOS</h3>
+          <p className="text-gray-400 text-xs font-medium px-2 leading-relaxed group-hover:text-gray-300 transition-colors">MJ Engine natively compiled for Apple Silicon.</p>
+        </div>
+
+        {/* Combo Win + Android */}
+        <div 
+          onClick={() => onSelectOS('combo-win-and')}
+          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-[#eab308]/20 hover:border-[#eab308]/50 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-[0_0_30px_rgba(234,179,8,0.05)] hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(234,179,8,0.2)] ring-1 ring-[#eab308]/10"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-[#eab308]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div className="w-20 h-20 rounded-3xl bg-[#eab308]/[0.02] border border-[#eab308]/20 flex items-center justify-center shadow-[inset_0_0_20px_rgba(234,179,8,0.1)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#eab308]/10 relative">
+            <div className="absolute -top-1 -left-1">
+              <Monitor className="w-7 h-7 text-[#00f2ff]/80 group-hover:text-[#00f2ff] transition-colors duration-500" />
+            </div>
+            <div className="absolute -bottom-1 -right-1">
+              <Smartphone className="w-7 h-7 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
+            </div>
+            <div className="text-[#eab308] font-bold text-xl">+</div>
+          </div>
+          <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">Win + Android</h3>
+          <p className="text-[#eab308]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#eab308]/90 transition-colors">Access MAX alongside Windows MJ or NOVA.</p>
         </div>
       </div>
     </div>

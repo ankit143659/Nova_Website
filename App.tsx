@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { AppScreen, Platform, ProductData, UserDetails, OSType } from './types';
 import Header from './components/Header';
+import IntroVideoScreen from './components/IntroVideoScreen';
 import WelcomeScreen from './components/WelcomeScreen';
 import OSSelectionScreen from './components/OSSelectionScreen';
 import OSFeaturesScreen from './components/OSFeaturesScreen';
@@ -11,12 +12,13 @@ import GenericPage from './components/GenericPage';
 import ProductDetailsPage from './components/ProductDetailsPage';
 import PaymentForm from './components/PaymentForm';
 import SupportChatBot from './components/SupportChatBot';
+
 import { Mail, Clock, Send, Shield, Brain, Target, Zap, MessageCircle, AlertTriangle } from 'lucide-react';
 
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
-  const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.WELCOME);
+  const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.INTRO_VIDEO);
   const [selectedOS, setSelectedOS] = useState<OSType>(null);
   const [activeProduct, setActiveProduct] = useState<ProductData | null>(null);
   const [paymentId, setPaymentId] = useState<string | null>(null);
@@ -427,6 +429,8 @@ const App: React.FC = () => {
 
   const renderScreen = () => {
     switch(currentScreen) {
+      case AppScreen.INTRO_VIDEO:
+        return <IntroVideoScreen onContinue={() => navigateTo(AppScreen.WELCOME)} />;
       case AppScreen.WELCOME:
         return <WelcomeScreen onContinue={() => navigateTo(AppScreen.OS_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
       case AppScreen.OS_SELECTION:

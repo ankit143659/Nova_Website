@@ -197,11 +197,10 @@ const OSFeaturesScreen: React.FC<OSFeaturesScreenProps> = ({ os, onBack, onConti
           </div>
           {isAndroid ? (
             <button 
-              disabled
-              className="w-full sm:w-auto px-8 py-4 lg:py-4 rounded-xl bg-white/[0.05] text-gray-500 border border-white/[0.1] font-bold text-sm tracking-widest flex flex-col items-center justify-center cursor-not-allowed outline-none"
+              onClick={onContinue}
+              className="w-full sm:w-auto px-8 py-4 lg:py-4 rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold text-sm tracking-widest flex flex-col items-center justify-center hover:scale-105 active:scale-95 transition-all outline-none shadow-[0_0_30px_rgba(16,185,129,0.3)] ring-1 ring-[#34d399]/40"
             >
-              <span className="uppercase mb-0.5 tracking-[0.2em] text-[10px]">Coming Soon</span>
-              <span className="uppercase text-white/50 text-[11px]">Launching May 1</span>
+              <span className="uppercase tracking-[0.2em] text-xs font-black">Download MAX</span>
             </button>
           ) : (
             <button 

@@ -19,6 +19,31 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   const [redeemCode, setRedeemCode] = useState('');
   const [isRedeemed, setIsRedeemed] = useState(false);
   const [redeemError, setRedeemError] = useState('');
+  const [slotsLeft, setSlotsLeft] = useState(47);
+
+  React.useEffect(() => {
+    const hour = new Date().getHours();
+    let count = 47;
+    
+    if (hour >= 5 && hour < 12) {
+      // Morning: 5 AM to 11:59 AM -> 120 down to 80
+      count = Math.floor(120 - ((hour - 5) / 7) * 40);
+    } else if (hour >= 12 && hour < 17) {
+      // Afternoon: 12 PM to 4:59 PM -> 80 down to 40
+      count = Math.floor(80 - ((hour - 12) / 5) * 40);
+    } else if (hour >= 17 && hour < 21) {
+      // Evening: 5 PM to 8:59 PM -> 40 down to 15
+      count = Math.floor(40 - ((hour - 17) / 4) * 25);
+    } else {
+      // Night: 9 PM to 4:59 AM -> 15 down to 3
+      let nightHour = hour >= 21 ? hour - 21 : hour + 3;
+      count = Math.floor(15 - (nightHour / 8) * 12);
+    }
+    
+    // Add small random variation (-2 to +2) to make it feel organic, but keep at least 1
+    const randomOffset = Math.floor(Math.random() * 5) - 2;
+    setSlotsLeft(Math.max(1, count + randomOffset));
+  }, []);
 
   const currencies = [
     { code: 'INR', label: 'India (INR)', rate: 1 },
@@ -106,7 +131,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   ];
 
   const handleRedeem = () => {
-    if (redeemCode.toUpperCase() === 'MJXHEART') {
+    if (redeemCode.toUpperCase() === 'MAXCODE') {
       setIsRedeemed(true);
       setRedeemError('');
     } else {
@@ -115,10 +140,11 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   };
 
   const getOfferPrice = () => {
+    if (product.id === 'combo-max-nova' || product.id === 'combo-max-mj') return 1899;
     if (product.isCustom) return product.price - 500;
     if (product.platform === 'combo') return 1499;
     if (product.platform === 'max') return 899;
-    if (product.platform === 'mj') return 999;
+    if (product.platform === 'mj') return 1199;
     return 899; // NOVA
   };
 
@@ -127,6 +153,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   const currentRate = currencies.find(c => c.code === currency)?.rate || 1;
   const displayFinalPrice = Math.round(baseFinalPrice * currentRate);
   const displayOriginalPrice = Math.round(product.price * currentRate);
+  const showHypeBanner = product.id === 'max-android' || product.id === 'combo-max-nova' || product.id === 'combo-max-mj';
 
   const formatCurrency = (amount: number) => {
     try {
@@ -234,7 +261,15 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
 
             {/* Redeem Logic */}
             {!isRedeemed && (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 relative">
+                {/* HYPE BANNER */}
+                {showHypeBanner && (
+                  <div className="absolute -top-3 right-0 md:-right-2 bg-red-500 text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.4)] animate-pulse z-10 flex items-center gap-1.5 border border-red-400/50">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white animate-ping"></div>
+                    Only {slotsLeft} / 200 Left!
+                  </div>
+                )}
+
                 <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Have a redeem code?</label>
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     <input 
@@ -242,7 +277,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
                       value={redeemCode}
                       onChange={(e) => setRedeemCode(e.target.value)}
                       placeholder="Enter promo code"
-                      className="flex-1 min-w-0 bg-[#040404] border border-white/[0.08] rounded-xl px-4 py-3.5 text-sm font-bold text-white outline-none focus:border-opacity-100 transition-all placeholder:text-gray-600 uppercase tracking-wider"
+                      className="flex-1 min-w-0 bg-[#040404] border border-white/[0.08] rounded-xl px-4 py-3.5 text-sm font-bold text-white outline-none focus:border-opacity-100 transition-all placeholder:text-gray-600 uppercase tracking-wider relative"
                       style={{ borderColor: 'rgba(255,255,255,0.08)' }}
                       onFocus={(e) => { e.currentTarget.style.borderColor = themeColor; e.currentTarget.style.boxShadow = `0 0 0 1px ${themeColor}`; }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
@@ -257,15 +292,20 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
                 </div>
                 {redeemError && <p className="text-red-500 text-xs mt-1 ml-1 font-medium">{redeemError}</p>}
                 
-                <a 
-                    href="https://youtu.be/uTaSAFUbS-s" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-[11px] font-bold mt-1 ml-1 hover:text-white transition-colors w-max"
-                    style={{ color: themeColor }}
-                  >
-                    Need a code? Watch demo →
-                </a>
+                <div className="flex items-center justify-between mt-1 ml-1">
+                  <a 
+                      href="https://youtu.be/uQo_LHobvCM?si=3MEx7Ug12pUIrsOO" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[11px] font-bold hover:text-white transition-colors w-max"
+                      style={{ color: themeColor }}
+                    >
+                      Need a code? Watch demo →
+                  </a>
+                  <span className="text-[9px] font-bold text-gray-500 uppercase tracking-widest">
+                    *Exclusive for top 200 users
+                  </span>
+                </div>
               </div>
             )}
 
