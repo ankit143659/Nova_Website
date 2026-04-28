@@ -7,6 +7,8 @@ interface OSSelectionScreenProps {
 }
 
 const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => {
+  const isLaunchDateReached = new Date().getTime() >= new Date('2026-05-01T00:00:00+05:30').getTime();
+
   return (
     <div className="animate-in fade-in zoom-in-95 duration-700 pb-24 font-sans max-w-7xl mx-auto px-4 sm:px-6 pt-12 md:pt-24 flex flex-col items-center justify-center min-h-[70vh]">
       
@@ -23,7 +25,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
         </p>
       </div>
 
-      <div className="grid grid-cols-1 select-none md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto px-4">
+      <div className={`grid grid-cols-1 select-none gap-6 w-full mx-auto px-4 ${isLaunchDateReached ? 'md:grid-cols-2 lg:grid-cols-4 max-w-7xl' : 'md:grid-cols-2 max-w-4xl'}`}>
         {/* Windows */}
         <div 
           onClick={() => onSelectOS('windows')}
@@ -38,17 +40,19 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
         </div>
 
         {/* Android */}
-        <div 
-          onClick={() => onSelectOS('android')}
-          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-[#10b981]/20 hover:border-[#10b981]/50 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-[0_0_30px_rgba(16,185,129,0.05)] hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(16,185,129,0.2)] ring-1 ring-[#10b981]/10"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#10b981]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          <div className="w-20 h-20 rounded-3xl bg-[#10b981]/[0.02] border border-[#10b981]/20 flex items-center justify-center shadow-[inset_0_0_20px_rgba(16,185,129,0.1)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#10b981]/10">
-            <Smartphone className="w-10 h-10 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
+        {isLaunchDateReached && (
+          <div 
+            onClick={() => onSelectOS('android')}
+            className="group relative flex flex-col items-center text-center bg-[#09090b] border border-[#10b981]/20 hover:border-[#10b981]/50 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-[0_0_30px_rgba(16,185,129,0.05)] hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(16,185,129,0.2)] ring-1 ring-[#10b981]/10"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-[#10b981]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+            <div className="w-20 h-20 rounded-3xl bg-[#10b981]/[0.02] border border-[#10b981]/20 flex items-center justify-center shadow-[inset_0_0_20px_rgba(16,185,129,0.1)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#10b981]/10">
+              <Smartphone className="w-10 h-10 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
+            </div>
+            <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]">Android</h3>
+            <p className="text-[#10b981]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#10b981]/90 transition-colors">Exclusive access to MAX - the portable intelligence.</p>
           </div>
-          <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]">Android</h3>
-          <p className="text-[#10b981]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#10b981]/90 transition-colors">Exclusive access to MAX - the portable intelligence.</p>
-        </div>
+        )}
 
         {/* Mac OS */}
         <div 
@@ -64,23 +68,25 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
         </div>
 
         {/* Combo Win + Android */}
-        <div 
-          onClick={() => onSelectOS('combo-win-and')}
-          className="group relative flex flex-col items-center text-center bg-[#09090b] border border-[#eab308]/20 hover:border-[#eab308]/50 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-[0_0_30px_rgba(234,179,8,0.05)] hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(234,179,8,0.2)] ring-1 ring-[#eab308]/10"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#eab308]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          <div className="w-20 h-20 rounded-3xl bg-[#eab308]/[0.02] border border-[#eab308]/20 flex items-center justify-center shadow-[inset_0_0_20px_rgba(234,179,8,0.1)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#eab308]/10 relative">
-            <div className="absolute -top-1 -left-1">
-              <Monitor className="w-7 h-7 text-[#00f2ff]/80 group-hover:text-[#00f2ff] transition-colors duration-500" />
+        {isLaunchDateReached && (
+          <div 
+            onClick={() => onSelectOS('combo-win-and')}
+            className="group relative flex flex-col items-center text-center bg-[#09090b] border border-[#eab308]/20 hover:border-[#eab308]/50 rounded-[2rem] p-8 cursor-pointer overflow-hidden transition-all duration-700 shadow-[0_0_30px_rgba(234,179,8,0.05)] hover:-translate-y-2 hover:shadow-[0_0_50px_rgba(234,179,8,0.2)] ring-1 ring-[#eab308]/10"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-[#eab308]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+            <div className="w-20 h-20 rounded-3xl bg-[#eab308]/[0.02] border border-[#eab308]/20 flex items-center justify-center shadow-[inset_0_0_20px_rgba(234,179,8,0.1)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 mb-6 mt-2 group-hover:bg-[#eab308]/10 relative">
+              <div className="absolute -top-1 -left-1">
+                <Monitor className="w-7 h-7 text-[#00f2ff]/80 group-hover:text-[#00f2ff] transition-colors duration-500" />
+              </div>
+              <div className="absolute -bottom-1 -right-1">
+                <Smartphone className="w-7 h-7 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
+              </div>
+              <div className="text-[#eab308] font-bold text-xl">+</div>
             </div>
-            <div className="absolute -bottom-1 -right-1">
-              <Smartphone className="w-7 h-7 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
-            </div>
-            <div className="text-[#eab308] font-bold text-xl">+</div>
+            <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">Win + Android</h3>
+            <p className="text-[#eab308]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#eab308]/90 transition-colors">Access MAX alongside Windows MJ or NOVA.</p>
           </div>
-          <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">Win + Android</h3>
-          <p className="text-[#eab308]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#eab308]/90 transition-colors">Access MAX alongside Windows MJ or NOVA.</p>
-        </div>
+        )}
       </div>
     </div>
   );
