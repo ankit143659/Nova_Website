@@ -38,8 +38,8 @@ const IntroVideoScreen: React.FC<IntroVideoScreenProps> = ({ onContinue }) => {
         <div className="w-full relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(16,185,129,0.15)] ring-1 ring-white/5 mb-14 group">
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
           <iframe 
-            src="https://www.youtube.com/embed/uQo_LHobvCM?si=3MEx7Ug12pUIrsOO&autoplay=1" 
-            title="NOVA & MAX Setup Guide" 
+            src="https://www.youtube.com/embed/SAVYqUMfunw?si=BhFvBs1JoWuAfWlz&autoplay=1" 
+            title="YouTube video player" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen

@@ -47,7 +47,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
             <Smartphone className="w-10 h-10 text-[#10b981]/80 group-hover:text-[#10b981] transition-colors duration-500" />
           </div>
           <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]">Android</h3>
-          <p className="text-[#10b981]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#10b981]/90 transition-colors">Exclusive access to MAX - the portable intelligence.</p>
+          <p className="text-[#10b981]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#10b981]/90 transition-colors">Exclusive access to MAX 2.0 - the portable intelligence.</p>
         </div>
 
         {/* Mac OS */}
@@ -81,7 +81,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
             <div className="text-[#eab308] font-bold text-xl">+</div>
           </div>
           <h3 className="text-2xl font-display font-black text-white mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">Win + Android</h3>
-          <p className="text-[#eab308]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#eab308]/90 transition-colors">Access MAX alongside Windows MJ or NOVA.</p>
+          <p className="text-[#eab308]/70 text-xs font-medium px-2 leading-relaxed group-hover:text-[#eab308]/90 transition-colors">Access MAX 2.0 alongside Windows MJ or NOVA.</p>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
   const winProducts: ProductData[] = [
     {
       id: 'mj-windows',
-      title: 'MJ v4',
+      title: 'MJ v5',
       subtitle: 'HEART EDITION',
       desc: 'Advanced Cognitive Intelligence. A sentient companion that understands context and emotion.',
       price: 1399,
@@ -39,7 +39,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
     },
     {
       id: 'nova-windows',
-      title: 'NOVA 6.0',
+      title: 'NOVA 7.0',
       subtitle: 'SYSTEM MASTER',
       desc: 'The Ultimate Autonomous Engine. Deep level system control and extreme automation protocols.',
       price: 1099,
@@ -64,7 +64,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       title: 'CUSTOM BRANDED AI',
       subtitle: 'YOUR NAME. YOUR VOICE.',
       desc: 'White-label architecture. Choose your base engine (MJ or NOVA) and customize its core identity.',
-      price: 2299,
+      price: 2499,
       platform: Platform.CUSTOM,
       variantName: 'CUSTOM',
       videoUrl: GLOBAL_VIDEO_URL,
@@ -76,7 +76,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
   const androidProducts: ProductData[] = [
     {
       id: 'max-android',
-      title: 'MAX Assistant',
+      title: 'MAX 2.0 Assistant',
       subtitle: 'PORTABLE INTELLIGENCE',
       desc: 'Your on-the-go cognitive assistant optimized for Android architecture and mobile workflows.',
       price: 1199,
@@ -94,7 +94,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
   const macProducts: ProductData[] = [
     {
       id: 'mj-macos',
-      title: 'MJ v4',
+      title: 'MJ v5',
       subtitle: 'MACOS EDITION',
       desc: 'Advanced Cognitive Intelligence natively compiled for Apple Silicon and macOS environments.',
       price: 1599,
@@ -108,9 +108,9 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
   const comboWinAndProducts: ProductData[] = [
     {
       id: 'combo-max-nova',
-      title: 'MAX + NOVA',
+      title: 'MAX 2.0 + NOVA',
       subtitle: 'WINDOWS + ANDROID COMBO',
-      desc: 'Ultimate control anywhere. Get NOVA for Windows desktop and MAX for your Android device in one unified package.',
+      desc: 'Ultimate control anywhere. Get NOVA for Windows desktop and MAX 2.0 for your Android device in one unified package.',
       price: 2699,
       platform: Platform.COMBO,
       variantName: 'WIN + ANDROID',
@@ -119,9 +119,9 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
     },
     {
       id: 'combo-max-mj',
-      title: 'MAX + MJ',
+      title: 'MAX 2.0 + MJ',
       subtitle: 'WINDOWS + ANDROID COMBO',
-      desc: 'Creative intelligence meets portable autonomy. Get MJ for Windows desktop and MAX for your Android device.',
+      desc: 'Creative intelligence meets portable autonomy. Get MJ for Windows desktop and MAX 2.0 for your Android device.',
       price: 2699,
       platform: Platform.COMBO,
       variantName: 'WIN + ANDROID',

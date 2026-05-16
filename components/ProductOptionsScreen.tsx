@@ -17,8 +17,8 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
   const windowsPrice = isMJ ? 1399 : 999;
   const offerWindowsPrice = isMJ ? 999 : 799;
   
-  const customPrice = 2199;
-  const offerCustomPrice = 1699;
+  const customPrice = 2499;
+  const offerCustomPrice = 1999;
 
   return (
     <div className="animate-in fade-in duration-700 pb-24">

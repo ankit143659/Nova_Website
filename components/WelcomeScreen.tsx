@@ -24,19 +24,19 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onContinue, onExploreFeat
               <span className="relative inline-flex rounded-full h-3 w-3 bg-[#10b981]"></span>
             </span>
             <span className="text-xs md:text-sm font-extrabold text-[#10b981] tracking-[0.2em] uppercase">
-              OFFICIAL LAUNCH · NOW LIVE
+              VERSION 2.0 · NOW LIVE
             </span>
           </div>
           
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[8rem] font-display font-black tracking-tighter text-white mb-6 md:mb-8 leading-[1.05] drop-shadow-[0_0_40px_rgba(16,185,129,0.1)]">
-            Meet <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#10b981] via-[#34d399] to-white">MAX.</span>
+            Meet <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#10b981] via-[#34d399] to-white">MAX 2.0.</span>
           </h1>
           
           <p className="text-gray-300 text-lg md:text-3xl max-w-4xl mx-auto font-medium leading-relaxed tracking-tight px-2 md:px-4 mb-4">
             The Ultimate Autonomous Intelligence is here.
           </p>
           <p className="text-[#10b981]/80 text-base md:text-xl max-w-3xl mx-auto font-bold tracking-widest uppercase mb-12 md:mb-16">
-            Experience the absolute power of MAX right now.
+            Experience the absolute power of MAX 2.0 right now.
           </p>
 
           <button 

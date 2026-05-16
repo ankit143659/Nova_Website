@@ -105,8 +105,16 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
     { code: 'ZAR', label: 'South Africa (ZAR)', rate: 0.23 }
   ];
 
+  const isOfferDay = (() => {
+    const now = Date.now();
+    // May 17 00:00 IST to May 18 00:00 IST (UTC: May 16 18:30 to May 17 18:30)
+    const offerStart = new Date(Date.UTC(2026, 4, 16, 18, 30, 0)).getTime();
+    const offerEnd = new Date(Date.UTC(2026, 4, 17, 18, 30, 0)).getTime();
+    return now >= offerStart && now < offerEnd;
+  })();
+
   const handleRedeem = () => {
-    if (redeemCode.toUpperCase() === 'MAXCODE') {
+    if (redeemCode.toUpperCase() === 'MJMAXNOVA') {
       setIsRedeemed(true);
       setRedeemError('');
     } else {
@@ -115,6 +123,17 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   };
 
   const getOfferPrice = () => {
+    // 100k Celebration Theme logic (17th May 2026 00:00 to 18th May 2026 00:00 IST)
+    if (isOfferDay) {
+      if (product.isCustom) return 1699;
+      if (product.platform === 'combo') return 1499;
+      if (product.platform === 'max') return 899; // keeping standard max offer
+      if (product.platform === 'mj') return 999;
+      if (product.id === 'nova-windows') return 899;
+      return 899;
+    }
+
+    // Normal Offer Prices
     if (product.id === 'combo-max-nova' || product.id === 'combo-max-mj') return 1899;
     if (product.isCustom) return product.price - 500;
     if (product.platform === 'combo') return 1499;
@@ -213,10 +232,15 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
 
             {/* Price Highlight */}
             <div className="flex flex-col pt-4 border-t border-white/[0.05]">
+              {isOfferDay && isRedeemed && (
+                <div className="bg-[#10b981]/15 border border-[#10b981]/40 text-[#10b981] p-3 rounded-lg text-xs sm:text-sm font-bold text-center mb-4 uppercase tracking-widest animate-[pulse_2s_infinite]">
+                  🎉 100K Subscribers Celebration Offer Applied! 🎉
+                </div>
+              )}
               {isRedeemed ? (
                 <div className="flex flex-col">
                   <span className="text-[10px] font-bold text-[#10b981] uppercase tracking-widest mb-2 flex items-center gap-1.5 bg-[#10b981]/10 px-2 py-1 rounded-md w-max border border-[#10b981]/20">
-                    <Sparkles className="w-3 h-3" /> Offer Unlocked
+                    <Sparkles className="w-3 h-3" /> {isOfferDay ? "100K Special Unlocked" : "Offer Unlocked"}
                   </span>
                   <div className="flex items-end gap-3 flex-wrap">
                     <span className="text-4xl font-display font-black text-white tracking-tight leading-none">{formatCurrency(displayFinalPrice)}</span>
