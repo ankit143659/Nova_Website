@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <button onClick={() => onNavigate(AppScreen.PRIVACY)} className="hover:text-white transition-colors">Privacy</button>
         <button onClick={() => onNavigate(AppScreen.TERMS)} className="hover:text-white transition-colors">Terms</button>
       </div>
-      <p>&copy; {new Date().getFullYear()} NOVA.OS. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} Nova Ai Technologies Pvt Ltd. All rights reserved.</p>
     </footer>
   );
 };

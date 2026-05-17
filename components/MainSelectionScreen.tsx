@@ -2,8 +2,9 @@
 import React, { useEffect } from 'react';
 import { Platform, OSType, ProductData } from '../types';
 import CustomerReviews from './CustomerReviews';
-import { List, Heart, Monitor, Layers, Check, Sparkles, Smartphone, Terminal, ArrowLeft } from 'lucide-react';
+import { List, Heart, Monitor, Layers, Check, Sparkles, Smartphone, Terminal, ArrowLeft, ArrowRight } from 'lucide-react';
 import { ELITE_FEATURES } from '../featuresData';
+import { motion } from 'motion/react';
 
 interface MainSelectionScreenProps {
   selectedOS: OSType;
@@ -24,7 +25,6 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
     }
   }, [selectedOS, onRequireOS]);
 
-  // Define products directly here, to pass them wholesale back to App.tsx when selected.
   const winProducts: ProductData[] = [
     {
       id: 'mj-windows',
@@ -153,86 +153,101 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
     <div className="animate-in fade-in zoom-in-95 duration-700 pb-24 font-sans">
       
       {/* Header Section */}
-      <div className="mb-16 flex flex-col gap-6 max-w-7xl mx-auto px-4 sm:px-6 mt-12">
+      <div className="mb-24 flex flex-col gap-6 max-w-7xl mx-auto px-4 sm:px-6 mt-12 md:mt-24 text-center">
         <div>
           {onBackToFeatures && (
             <button 
               onClick={onBackToFeatures}
-              className="mb-6 flex items-center text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest group"
+              className="mb-8 flex items-center justify-center mx-auto text-gray-400 hover:text-white transition-colors text-sm font-medium tracking-wide group"
             >
-              <div className="w-8 h-8 rounded-lg bg-white/[0.05] border border-white/[0.1] flex items-center justify-center mr-3 group-hover:-translate-x-1 transition-transform">
+              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mr-3 group-hover:-translate-x-1 transition-transform">
                 <ArrowLeft className="w-4 h-4" />
               </div>
               Back to Features
             </button>
           )}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.03] mb-6 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-            <span className="text-xs font-bold text-gray-300 tracking-widest uppercase">{selectedOS} Ecosystem</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            <span className="text-xs font-bold text-gray-300 tracking-[0.2em] uppercase">{selectedOS} Ecosystem</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight text-white mb-4">
+          <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-white mb-6">
             Available Models
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl font-medium tracking-tight">
-            Select the cognitive engine that fits your requirements. Perpetual license. Zero recurring fees.
+          <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto font-light leading-relaxed">
+            Select the cognitive engine that fits your requirements.<br className="hidden md:block" /> Perpetual license. Zero recurring fees.
           </p>
         </div>
       </div>
 
-      {/* Grid Layout */}
-      <div className={`grid grid-cols-1 md:grid-cols-${Math.min(3, displayProducts.length)} gap-6 mb-32 max-w-7xl mx-auto px-4 sm:px-6`}>
-        {displayProducts.map((product) => {
+      {/* Vertical Scroll Layout */}
+      <div className="flex flex-col gap-32 mb-40 max-w-7xl mx-auto px-4 sm:px-6">
+        {displayProducts.map((product, index) => {
           const { icon: Icon, color, bg } = getPlatformMeta(product.platform);
-          const isAndroidProduct = false; // Android is now unlocked forever, no need to disable any product block based on this flag
+          const isEven = index % 2 === 0;
           
           return (
-          <div 
-            key={product.id}
-            onClick={() => {
-                onProductSelect(product);
-            }}
-            className={`group relative flex flex-col bg-[#09090b] border border-white/[0.08] hover:border-white/[0.2] rounded-3xl p-8 md:p-10 cursor-pointer overflow-hidden transition-all duration-700 shadow-2xl hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]`}
-          >
-            {/* Background Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${bg} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}></div>
-            
-            {/* Top Section */}
-            <div className="flex justify-between items-start mb-10 relative z-10 w-full">
-              <div className="w-16 h-16 rounded-2xl bg-white/[0.05] border border-white/[0.1] flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500">
-                <Icon className="w-8 h-8 text-white transition-colors duration-500" style={{ color }} />
-              </div>
-              <div className="flex flex-col items-end gap-2">
-                <div className="px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-[10px] font-bold tracking-widest uppercase text-gray-400 group-hover:text-white transition-colors">
-                  {product.subtitle}
-                </div>
-                {isOfferActive && (
-                  <div className="px-3 py-1 rounded-full bg-white text-black text-[10px] font-bold tracking-widest uppercase flex items-center gap-1 shadow-lg shadow-white/10">
-                    <Sparkles className="w-3 h-3" /> Offer
+            <motion.div 
+              key={product.id}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-150px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 lg:gap-24 group`}
+            >
+              {/* Massive Image/Iconography Side */}
+              <div 
+                className="w-full md:w-1/2 cursor-pointer relative"
+                onClick={() => onProductSelect(product)}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${bg} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[3rem] blur-xl pointer-events-none`}></div>
+                <div className="relative aspect-square sm:aspect-[4/3] md:aspect-square w-full rounded-[3rem] bg-[#050505] border border-white/10 group-hover:border-white/20 overflow-hidden shadow-2xl transition-all duration-700 flex items-center justify-center">
+                  <div className="absolute top-0 right-0 w-[200%] h-[200%] bg-white/[0.02] -rotate-45 translate-x-[-20%] group-hover:translate-x-[10%] transition-transform duration-1000 ease-out pointer-events-none"></div>
+                  
+                  <div className="relative z-10 w-32 h-32 md:w-48 md:h-48 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-700">
+                    <Icon className="w-16 h-16 md:w-24 md:h-24 transition-colors duration-500 drop-shadow-2xl" style={{ color }} />
                   </div>
-                )}
+                </div>
               </div>
-            </div>
 
-            {/* Content */}
-            <div className="relative z-10 flex-1">
-              <h3 className="text-3xl font-display font-bold text-white mb-2 tracking-tight group-hover:translate-x-1 transition-transform duration-500">
-                {product.title}
-              </h3>
-              <p className="text-xl font-bold mb-4" style={{ color }}>₹{product.price}</p>
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-10 font-medium">
-                {/* @ts-ignore */}
-                {product.desc}
-              </p>
-            </div>
+              {/* Text & Action Side */}
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white transition-colors">
+                    {product.subtitle}
+                  </div>
+                  {isOfferActive && (
+                    <div className="px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-xs border border-blue-500/20 font-bold tracking-widest uppercase flex items-center gap-2 shell-glow">
+                      <Sparkles className="w-4 h-4" /> Exclusive Offer
+                    </div>
+                  )}
+                </div>
 
-            {/* Action Button */}
-            <div className="relative z-10 mt-auto w-full pt-4 border-t border-white/[0.05]">
-              <div className="w-full py-4 rounded-xl font-bold text-sm tracking-widest uppercase flex items-center justify-center gap-2 group-hover:gap-4 transition-all duration-300" style={{ color }}>
-                Select Engine <Check className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-4 group-hover:translate-x-0" />
+                <h3 className="text-5xl lg:text-7xl font-display font-black text-white mb-6 tracking-tight leading-[1.1]">
+                  {product.title}
+                </h3>
+                
+                <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-8 font-light">
+                  {/* @ts-ignore */}
+                  {product.desc}
+                </p>
+                
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-4">
+                  <p className="text-4xl font-bold font-mono tracking-tight" style={{ color }}>₹{product.price}</p>
+                  
+                  <button 
+                    onClick={() => onProductSelect(product)}
+                    className="group/btn relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-[15px] transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] w-full sm:w-auto overflow-hidden"
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      Initialize Engine
+                      <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-        )})}
+            </motion.div>
+          )
+        })}
       </div>
 
       <CustomerReviews />

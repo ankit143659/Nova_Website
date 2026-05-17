@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { AppScreen, Platform, ProductData, UserDetails, OSType } from './types';
 import Header from './components/Header';
-import IntroVideoScreen from './components/IntroVideoScreen';
 import WelcomeScreen from './components/WelcomeScreen';
+import CompanyHomePage from './components/CompanyHomePage';
 import OSSelectionScreen from './components/OSSelectionScreen';
 import OSFeaturesScreen from './components/OSFeaturesScreen';
 import MainSelectionScreen from './components/MainSelectionScreen';
@@ -16,20 +16,21 @@ import SupportChatBot from './components/SupportChatBot';
 import { Mail, Clock, Send, Shield, Brain, Target, Zap, MessageCircle, AlertTriangle } from 'lucide-react';
 
 import Footer from './components/Footer';
+import ContactContent from './components/ContactContent';
 
 const App: React.FC = () => {
-  const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.INTRO_VIDEO);
+  const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.WELCOME);
   const [selectedOS, setSelectedOS] = useState<OSType>(null);
   const [activeProduct, setActiveProduct] = useState<ProductData | null>(null);
   const [paymentId, setPaymentId] = useState<string | null>(null);
 
   const getThemeColor = (platform: Platform | null) => {
     switch(platform) {
-      case Platform.NOVA: return '#00f2ff';
-      case Platform.MJ: return '#ff2a6d';
+      case Platform.NOVA: return '#3b82f6'; // Professional blue
+      case Platform.MJ: return '#10b981'; // Emerald
       case Platform.COMBO: return '#eab308';
-      case Platform.MAX: return '#10b981';
-      case Platform.CUSTOM: return '#a855f7';
+      case Platform.MAX: return '#6366f1'; // Indigo
+      case Platform.CUSTOM: return '#8b5cf6';
       default: return '#ffffff';
     }
   };
@@ -61,8 +62,8 @@ const App: React.FC = () => {
         key: 'rzp_live_OcHSFiDAu0iMZC',
         amount: Math.round(finalPrice * 100),
         currency: currency,
-        name: `NOVA OS ACADEMY`,
-        description: `Activation for ${activeProduct.title}`,
+        name: `Nova Ai Technologies Pvt Ltd`,
+        description: `License for ${activeProduct.title}`,
         handler: function(response: any) {
           setPaymentId(response.razorpay_payment_id);
           setActiveProduct({...activeProduct, price: finalPrice});
@@ -271,47 +272,47 @@ const App: React.FC = () => {
 
   const aboutContent = (
     <div className="space-y-8">
-      <p className="text-center text-text-secondary text-sm">Last updated: January 2025</p>
+      <p className="text-center text-text-secondary text-sm">Last updated: {new Date().getFullYear()}</p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
+        <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
             <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
             Our Mission
           </h2>
-          <p className="text-text-secondary font-light leading-relaxed text-base">
-            At <strong className="text-white font-medium">NOVA AI</strong>, our mission is to revolutionize the way users interact with technology through intelligent voice-based automation. We're focused on building a personal assistant that is fast, private, customizable, and always evolving.
+          <p className="text-gray-400 font-light leading-relaxed text-base">
+            At <strong className="text-white font-medium">Nova Ai Technologies Pvt Ltd</strong>, our mission is to revolutionize the way enterprises interact with technology through intelligent automation. We are focused on building secure, private, and customizable AI solutions.
           </p>
         </section>
 
-        <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
+        <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
             <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
             Who We Are
           </h2>
-          <p className="text-text-secondary font-light leading-relaxed text-base">
-            NOVA AI is a futuristic personal assistant built entirely by <strong className="text-white font-medium">Ankit Singh</strong>, a passionate software developer and an MCA pursuing student. Designed with precision and creativity, Nova AI integrates intelligent voice interaction, automation, and cross-platform support.
+          <p className="text-gray-400 font-light leading-relaxed text-base">
+            We are a registered professional technology firm founded by <strong className="text-white font-medium">Ankit Singh</strong>. Now an officially incorporated Pvt Ltd, Nova Ai Technologies delivers robust, enterprise-grade AI applications, backed by a dedicated support and operations team.
           </p>
         </section>
       </div>
 
-      <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
+      <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
         <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
           <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-          Why NOVA?
+          Why Choose Us?
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {[
-            { icon: <Zap className="w-5 h-5 text-primary" />, text: 'Lightweight yet powerful voice assistant for Android & Windows.' },
-            { icon: <Shield className="w-5 h-5 text-primary" />, text: 'Strong focus on privacy and offline capabilities.' },
-            { icon: <Brain className="w-5 h-5 text-primary" />, text: 'Smart learning features that adapt to your routine.' },
-            { icon: <Target className="w-5 h-5 text-primary" />, text: 'Developed for real-world automation and utilities.' }
+            { icon: <Zap className="w-5 h-5 text-blue-400" />, text: 'High-performance, enterprise-grade automation systems.' },
+            { icon: <Shield className="w-5 h-5 text-blue-400" />, text: 'Strict adherence to data privacy and corporate security.' },
+            { icon: <Brain className="w-5 h-5 text-blue-400" />, text: 'State-of-the-art cognitive models tailored to workflows.' },
+            { icon: <Target className="w-5 h-5 text-blue-400" />, text: 'Scalable infrastructure designed for real-world impact.' }
           ].map((item, idx) => (
             <div key={idx} className="flex items-start space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
                 {item.icon}
               </div>
-              <p className="text-sm text-text-secondary font-light leading-relaxed pt-1">{item.text}</p>
+              <p className="text-sm text-gray-400 font-light leading-relaxed pt-1">{item.text}</p>
             </div>
           ))}
         </div>
@@ -429,10 +430,10 @@ const App: React.FC = () => {
 
   const renderScreen = () => {
     switch(currentScreen) {
-      case AppScreen.INTRO_VIDEO:
-        return <IntroVideoScreen onContinue={() => navigateTo(AppScreen.WELCOME)} />;
       case AppScreen.WELCOME:
-        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.OS_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
+        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.HOME)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
+      case AppScreen.HOME:
+        return <CompanyHomePage onViewProducts={() => navigateTo(AppScreen.OS_SELECTION)} />;
       case AppScreen.OS_SELECTION:
         return <OSSelectionScreen onSelectOS={handleOSSelect} />;
       case AppScreen.OS_FEATURES:
@@ -448,16 +449,13 @@ const App: React.FC = () => {
           />
         );
       case AppScreen.FEATURES:
-        return <FeaturesScreen onBack={() => selectedOS ? navigateTo(AppScreen.MAIN_SELECTION) : navigateTo(AppScreen.WELCOME)} />;
+        return <FeaturesScreen onBack={() => selectedOS ? navigateTo(AppScreen.MAIN_SELECTION) : navigateTo(AppScreen.HOME)} />;
       case AppScreen.PRODUCT_DETAILS:
         return activeProduct ? (
           <ProductDetailsPage 
             product={activeProduct} 
             onBack={() => navigateTo(AppScreen.MAIN_SELECTION)}
             onPurchase={startPayment}
-            onInternationalHelp={(country) => {
-              window.open(`https://wa.me/919512194144?text=${encodeURIComponent('Hello! I am from ' + country + '. I want to purchase an AI engine. Please help me with international payment options.')}`, '_blank');
-            }}
             themeColor={themeColor}
             onViewFeatures={() => navigateTo(AppScreen.FEATURES)}
           />
@@ -474,21 +472,21 @@ const App: React.FC = () => {
           />
         ) : null;
       case AppScreen.CONTACT:
-        return <GenericPage title="Contact Support" onBack={() => navigateTo(AppScreen.WELCOME)} content={contactContent} />;
+        return <GenericPage title="Contact Support" onBack={() => navigateTo(AppScreen.HOME)} content={<ContactContent />} />;
       case AppScreen.ABOUT:
-        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.WELCOME)} content={aboutContent} />;
+        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.HOME)} content={aboutContent} />;
       case AppScreen.DISTRIBUTION:
-        return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.WELCOME)} content={distributionContent} />;
+        return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.HOME)} content={distributionContent} />;
       case AppScreen.SHIPPING:
-        return <GenericPage title="Shipping Info" onBack={() => navigateTo(AppScreen.WELCOME)} content={shippingContent} />;
+        return <GenericPage title="Shipping Info" onBack={() => navigateTo(AppScreen.HOME)} content={shippingContent} />;
       case AppScreen.REFUND:
-        return <GenericPage title="Refund Policy" onBack={() => navigateTo(AppScreen.WELCOME)} content={refundContent} />;
+        return <GenericPage title="Refund Policy" onBack={() => navigateTo(AppScreen.HOME)} content={refundContent} />;
       case AppScreen.PRIVACY:
-        return <GenericPage title="Privacy Policy" onBack={() => navigateTo(AppScreen.WELCOME)} content={privacyContent} />;
+        return <GenericPage title="Privacy Policy" onBack={() => navigateTo(AppScreen.HOME)} content={privacyContent} />;
       case AppScreen.TERMS:
-        return <GenericPage title="Terms of Service" onBack={() => navigateTo(AppScreen.WELCOME)} content={termsContent} />;
+        return <GenericPage title="Terms of Service" onBack={() => navigateTo(AppScreen.HOME)} content={termsContent} />;
       default:
-        return <WelcomeScreen onContinue={() => navigateTo(AppScreen.OS_SELECTION)} onExploreFeatures={() => navigateTo(AppScreen.FEATURES)} />;
+        return <CompanyHomePage onViewProducts={() => navigateTo(AppScreen.OS_SELECTION)} />;
     }
   };
 
@@ -498,7 +496,7 @@ const App: React.FC = () => {
         currentScreen={currentScreen} 
         onNavigate={navigateTo} 
         themeColor={themeColor}
-        platformName={selectedOS?.toUpperCase() || 'NOVA'}
+        platformName={selectedOS?.toUpperCase() || 'NOVA AI'}
       />
       
       <main className="flex-1 w-full flex flex-col">

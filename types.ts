@@ -1,7 +1,7 @@
 
 export enum AppScreen {
-  INTRO_VIDEO = 'intro-video',
   WELCOME = 'welcome',
+  HOME = 'home',
   OS_SELECTION = 'os-selection',
   OS_FEATURES = 'os-features',
   MAIN_SELECTION = 'main-selection',

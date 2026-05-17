@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserDetails } from '../types';
-import { Check, Info, MessageCircle, Sparkles } from 'lucide-react';
+import { Check, Info, MessageCircle, Sparkles, Building, Lock, Zap, FileText, Cpu, Network } from 'lucide-react';
+import ContactContent from './ContactContent';
 
 interface PaymentFormProps {
   productTitle: string;
@@ -17,6 +18,11 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
   const [email, setEmail] = useState('');
   const [aiName, setAiName] = useState('');
   const [baseAiChoice, setBaseAiChoice] = useState<'MJ' | 'NOVA'>('NOVA');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,137 +32,154 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
   };
 
   return (
-    <div className="animate-in fade-in duration-700 max-w-2xl mx-auto py-12 px-4 font-sans">
-      <div className="relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 blur-[100px] pointer-events-none" style={{ backgroundColor: themeColor }}></div>
-        
-        <div className="relative z-10 bg-[#09090b] border border-white/[0.08] p-8 md:p-12 rounded-[2.5rem] shadow-2xl overflow-hidden">
-          
-          <div className="flex flex-col items-center text-center mb-10 relative z-10">
-            <div className="w-16 h-16 rounded-2xl border flex items-center justify-center mb-6 shadow-2xl relative overflow-hidden" style={{ borderColor: `${themeColor}40`, backgroundColor: `${themeColor}10` }}>
-              <Check className="w-8 h-8 relative z-10" style={{ color: themeColor }} />
-              <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ background: `linear-gradient(45deg, transparent, ${themeColor}, transparent)` }}></div>
-            </div>
-            <h2 className="text-3xl font-display font-extrabold text-white mb-3 tracking-tight">Payment Successful</h2>
-            <p className="text-gray-400 font-medium">Provide your details to generate your access key.</p>
-          </div>
+    <div className="relative min-h-screen font-sans overflow-hidden pb-24 flex-1">
+      {/* Dynamic Background Effects */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[120px] mix-blend-screen opacity-50 animate-pulse duration-[8000ms] pointer-events-none" style={{ backgroundColor: themeColor }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px] mix-blend-screen animate-pulse duration-7000 delay-1000 pointer-events-none"></div>
+      </div>
+      <div className="absolute inset-0 z-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTAgMGg0MHYxbC00MCAuNTotaloiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz4KPHBhdGggZD0iTTAgMGgxdjQwbC0uNS00MHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz4KPC9zdmc+')] opacity-20 pointer-events-none"></div>
 
-          <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-            {isCustomProduct && (
-              <div className="space-y-6 p-8 rounded-[1.5rem] bg-[#020202] border border-white/[0.05] relative overflow-hidden shadow-inner">
-                <div className="flex items-center gap-3 mb-2">
-                   <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-black" style={{ backgroundColor: themeColor }}>1</div>
-                   <label className="text-sm font-bold text-white tracking-wide">Custom OS Configuration</label>
-                </div>
-                
-                <div className="space-y-4">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                    <Sparkles className="w-3 h-3 text-[#a855f7]" /> Base Architecture
-                  </label>
-                  <div className="grid grid-cols-2 gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setBaseAiChoice('NOVA')}
-                      className={`p-4 rounded-xl border transition-all text-xs font-bold tracking-widest uppercase ${baseAiChoice === 'NOVA' ? 'bg-[#00f2ff]/10 text-[#00f2ff] border-[#00f2ff]/30 shadow-[0_0_20px_rgba(0,242,255,0.15)]' : 'bg-[#09090b] text-gray-500 border-white/[0.05] hover:border-white/[0.1] hover:text-gray-400'}`}
-                    >
-                      NOVA Core
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setBaseAiChoice('MJ')}
-                      className={`p-4 rounded-xl border transition-all text-xs font-bold tracking-widest uppercase ${baseAiChoice === 'MJ' ? 'bg-[#ff2a6d]/10 text-[#ff2a6d] border-[#ff2a6d]/30 shadow-[0_0_20px_rgba(255,42,109,0.15)]' : 'bg-[#09090b] text-gray-500 border-white/[0.05] hover:border-white/[0.1] hover:text-gray-400'}`}
-                    >
-                      MJ Core
-                    </button>
+
+      <div className={`relative z-10 max-w-3xl mx-auto py-12 px-4 transition-all duration-1000 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+        <div className="relative">
+          
+          <div className="relative z-10 glass-card p-8 md:p-14 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] backdrop-blur-xl bg-gradient-to-b from-white/[0.05] to-transparent">
+            
+            <div className="flex flex-col items-center text-center mb-12 relative z-10">
+              <div className="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(59,130,246,0.3)] relative overflow-hidden group">
+                <div className="absolute inset-0 bg-blue-500/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                <Check className="w-10 h-10 text-blue-400 relative z-10" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">Provisioning System</h2>
+              <p className="text-gray-400 font-light text-lg">Provide your corporate credentials for secure license assignment.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              {isCustomProduct && (
+                <div className="space-y-6 p-8 rounded-3xl bg-black/40 border border-white/5 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500 shadow-inner">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                  
+                  <div className="flex items-center gap-3 mb-2">
+                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white bg-blue-600/80 border border-blue-400/30 shadow-[0_0_15px_rgba(37,99,235,0.4)]">1</div>
+                     <label className="text-base font-bold text-white tracking-wide">Custom Engine Architecture</label>
+                  </div>
+                  
+                  <div className="space-y-5">
+                    <label className="text-[11px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                      <Cpu className="w-4 h-4 text-blue-400" /> Target Foundation Model
+                    </label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <button
+                        type="button"
+                        onClick={() => setBaseAiChoice('NOVA')}
+                        className={`p-5 rounded-2xl border transition-all text-sm font-bold tracking-wider uppercase relative overflow-hidden group/btn ${baseAiChoice === 'NOVA' ? 'bg-blue-500/10 text-blue-400 border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.15)]' : 'bg-white/[0.02] text-gray-500 border-white/10 hover:border-white/20'}`}
+                      >
+                         Nova Core
+                         <div className="text-[10px] text-gray-500 mt-1 font-medium capitalize">Optimized for Scale</div>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setBaseAiChoice('MJ')}
+                        className={`p-5 rounded-2xl border transition-all text-sm font-bold tracking-wider uppercase relative overflow-hidden group/btn ${baseAiChoice === 'MJ' ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/50 shadow-[0_0_20px_rgba(99,102,241,0.15)]' : 'bg-white/[0.02] text-gray-500 border-white/10 hover:border-white/20'}`}
+                      >
+                        MJ Core
+                         <div className="text-[10px] text-gray-500 mt-1 font-medium capitalize">Optimized for Depth</div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-6 border-t border-white/5">
+                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Internal Codename</label>
+                    <div className="relative">
+                      <Terminal className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                      <input 
+                        required
+                        type="text" 
+                        value={aiName}
+                        onChange={(e) => setAiName(e.target.value)}
+                        placeholder="e.g. OMEGA, ATLAS, NEXUS"
+                        className="w-full bg-[#050505] border border-white/10 rounded-2xl pl-12 pr-5 py-4 text-white outline-none transition-all text-sm focus:border-blue-500/50 focus:bg-blue-500/5 placeholder:text-gray-700 font-medium"
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2 flex items-center gap-2"><Network className="w-3.5 h-3.5" /> Compiles directly into your runtime continuous integration pipeline.</p>
                   </div>
                 </div>
+              )}
 
-                <div className="space-y-3 pt-4 border-t border-white/[0.05]">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest">Desired Codename</label>
-                  <input 
-                    required
-                    type="text" 
-                    value={aiName}
-                    onChange={(e) => setAiName(e.target.value)}
-                    placeholder="e.g. JARVIS, FRIDAY, TARS"
-                    className="w-full bg-[#09090b] border border-white/[0.08] rounded-2xl px-5 py-4 text-white outline-none transition-all text-sm focus:border-opacity-100 placeholder:text-gray-600 font-medium"
-                    style={{ borderColor: 'rgba(255,255,255,0.08)' }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = themeColor; e.currentTarget.style.boxShadow = `0 0 0 1px ${themeColor}`; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
-                  />
-                  <p className="text-xs text-gray-500 mt-2 flex items-center gap-1.5"><Info className="w-3 h-3" /> Hardcoded into your executable.</p>
+              <div className="space-y-6 p-8 rounded-3xl bg-black/40 border border-white/5 relative overflow-hidden group hover:border-white/10 transition-all duration-500 shadow-inner">
+                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-500/0 via-gray-500/30 to-gray-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+
+                 {isCustomProduct && (
+                   <div className="flex items-center gap-3 mb-4">
+                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white bg-gray-800 border border-gray-600">2</div>
+                     <label className="text-base font-bold text-white tracking-wide">Corporate / User Details</label>
+                   </div>
+                 )}
+                 
+                 <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Full Legal Name</label>
+                    <div className="relative">
+                      <FileText className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                      <input 
+                        required
+                        type="text" 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Authorized Person Name"
+                        className="w-full bg-[#050505] border border-white/10 rounded-2xl pl-12 pr-5 py-4 text-white outline-none transition-all text-sm focus:border-blue-500/50 focus:bg-blue-500/5 placeholder:text-gray-700 font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Corporate Email</label>
+                    <div className="relative">
+                      <Lock className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                      <input 
+                        required
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="admin@company.com"
+                        className="w-full bg-[#050505] border border-white/10 rounded-2xl pl-12 pr-5 py-4 text-white outline-none transition-all text-sm focus:border-blue-500/50 focus:bg-blue-500/5 placeholder:text-gray-700 font-medium"
+                      />
+                    </div>
+                  </div>
+              </div>
+
+              <div className="bg-[#050505]/80 p-8 rounded-3xl border border-white/5 space-y-5">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400 font-medium text-sm">License Plan</span>
+                  <span className="text-white font-bold text-lg tracking-tight">{productTitle}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-400 font-medium text-sm">Initial Cost</span>
+                  <span className="font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 text-2xl">₹{price}</span>
+                </div>
+                <div className="flex justify-between items-center pt-5 border-t border-white/5">
+                  <span className="text-gray-500 font-medium text-xs">Reference ID</span>
+                  <span className="text-gray-400 font-mono text-xs bg-white/5 px-2.5 py-1.5 rounded-lg border border-white/10">{paymentId}</span>
                 </div>
               </div>
-            )}
 
-            <div className="space-y-6">
-               {isCustomProduct && (
-                 <div className="flex items-center gap-3 mb-2 pt-4">
-                   <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-black bg-white/50">2</div>
-                   <label className="text-sm font-bold text-white tracking-wide">Owner Information</label>
-                 </div>
-               )}
-               
-               <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Full Legal Name</label>
-                  <input 
-                    required
-                    type="text" 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="For license registration"
-                    className="w-full bg-[#020202] border border-white/[0.08] rounded-2xl px-5 py-4 text-white outline-none transition-all text-sm focus:border-opacity-100 placeholder:text-gray-600 font-medium"
-                    style={{ borderColor: 'rgba(255,255,255,0.08)' }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = themeColor; e.currentTarget.style.boxShadow = `0 0 0 1px ${themeColor}`; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Primary Email</label>
-                  <input 
-                    required
-                    type="email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Delivery & recovery address"
-                    className="w-full bg-[#020202] border border-white/[0.08] rounded-2xl px-5 py-4 text-white outline-none transition-all text-sm focus:border-opacity-100 placeholder:text-gray-600 font-medium"
-                    style={{ borderColor: 'rgba(255,255,255,0.08)' }}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = themeColor; e.currentTarget.style.boxShadow = `0 0 0 1px ${themeColor}`; }}
-                    onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}
-                  />
-                </div>
-            </div>
-
-            <div className="bg-[#020202] p-6 rounded-[1.5rem] border border-white/[0.05] space-y-4 mt-8">
-              <div className="flex justify-between items-center text-sm">
-                <span className="text-gray-400 font-medium tracking-wide">License Type</span>
-                <span className="text-white font-bold">{productTitle}</span>
-              </div>
-              <div className="flex justify-between items-center text-sm">
-                <span className="text-gray-400 font-medium tracking-wide">Amount Paid</span>
-                <span style={{ color: themeColor }} className="font-bold text-lg">₹{price}</span>
-              </div>
-              <div className="flex justify-between items-center text-xs pt-4 border-t border-white/[0.05]">
-                <span className="text-gray-500 font-medium tracking-wide">Transaction ID</span>
-                <span className="text-gray-400 font-mono bg-white/[0.02] px-2 py-1 rounded-md">{paymentId}</span>
-              </div>
-            </div>
-
-            <button 
-              type="submit"
-              className="w-full py-5 text-black rounded-2xl font-bold text-sm tracking-widest uppercase transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:-translate-y-1 active:translate-y-0 flex items-center justify-center mt-10 gap-3 group relative overflow-hidden"
-              style={{ backgroundColor: themeColor }}
-            >
-              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <MessageCircle className="w-5 h-5 relative z-10" /> 
-              <span className="relative z-10">Send Details to Server</span>
-            </button>
-            <p className="text-center text-[10px] text-gray-500 font-medium uppercase tracking-widest mt-4">
-              Redirects to official secure WhatsApp
-            </p>
-          </form>
+              <button 
+                type="submit"
+                className="w-full py-5 bg-white text-black hover:bg-gray-100 rounded-2xl font-bold text-[15px] transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] flex items-center justify-center mt-8 gap-3 hover:-translate-y-1"
+              >
+                <Lock className="w-5 h-5" /> 
+                Authorize & Secure Registration
+              </button>
+              <p className="text-center text-xs text-gray-500 font-medium flex items-center justify-center gap-2 mt-6">
+                <Building className="w-4 h-4" /> Nova Ai Technologies Pvt Ltd Official Portal
+              </p>
+            </form>
+          </div>
         </div>
+      </div>
+      
+      <div className="max-w-4xl mx-auto px-4 pb-24 mt-12 relative z-10">
+         <ContactContent />
       </div>
     </div>
   );

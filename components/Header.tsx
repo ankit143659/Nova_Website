@@ -31,17 +31,17 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
         {/* Logo left */}
         <div 
           className="flex items-center gap-3 cursor-pointer group shrink-0"
-          onClick={() => onNavigate(AppScreen.WELCOME)}
+          onClick={() => onNavigate(AppScreen.HOME)}
         >
-          <div className="w-8 h-8 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center overflow-hidden group-hover:bg-white/[0.08] group-hover:border-white/[0.15] transition-all duration-300">
+          <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden transition-all duration-300">
             {!logoError ? (
               <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
             ) : (
-              <Cpu className="w-4 h-4 text-white" />
+              <Cpu className="w-4 h-4 text-blue-500" />
             )}
           </div>
-          <span className="font-display font-black tracking-widest text-white text-sm md:text-base uppercase">
-            NOVA<span className="text-gray-500">.OS</span>
+          <span className="font-display font-bold tracking-tight text-white text-sm md:text-base">
+            Nova Ai Technologies
           </span>
         </div>
 
@@ -60,9 +60,9 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
 
         {/* Right side status / mobile menu */}
         <div className="flex items-center gap-3 shrink-0">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#10b981]/15 border border-[#10b981]/30 text-[10px] font-extrabold tracking-widest uppercase text-[#10b981] shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] shadow-[0_0_10px_#10b981] animate-[ping_1.5s_cubic-bezier(0,0,0.2,1)_infinite]"></span>
-            MAX 2.0 IS LIVE NOW
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-semibold tracking-wide uppercase text-blue-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            Enterprise Grade AI
           </div>
           
           <button 
@@ -79,15 +79,15 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
         <div className="lg:hidden fixed inset-0 z-[100] bg-[#000000]/95 backdrop-blur-2xl animate-in fade-in duration-300 flex flex-col">
           <div className="flex justify-between items-center px-4 h-16 md:h-20 border-b border-white/[0.05]">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-white/[0.03] border border-white/[0.08] overflow-hidden">
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-blue-500/10 border border-blue-500/20 overflow-hidden">
                 {!logoError ? (
                   <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
                 ) : (
-                  <Cpu className="w-4 h-4 text-white" />
+                  <Cpu className="w-4 h-4 text-blue-500" />
                 )}
               </div>
-              <span className="font-display font-black tracking-widest text-white text-sm uppercase">
-                NOVA<span className="text-gray-500">.OS</span>
+              <span className="font-display font-bold tracking-tight text-white text-sm">
+                Nova Ai Technologies
               </span>
             </div>
             <button 
@@ -100,8 +100,8 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
           
           <div className="flex-1 overflow-y-auto px-4 py-8 flex flex-col gap-2">
             <button
-              onClick={() => { onNavigate(AppScreen.WELCOME); setIsOpen(false); }}
-              className={`flex items-center w-full px-6 py-4 rounded-2xl transition-all text-sm font-bold uppercase tracking-widest ${currentScreen === AppScreen.WELCOME ? 'bg-white/[0.05] text-white border border-white/[0.05]' : 'text-gray-400 border border-transparent'}`}
+              onClick={() => { onNavigate(AppScreen.HOME); setIsOpen(false); }}
+              className={`flex items-center w-full px-6 py-4 rounded-2xl transition-all text-sm font-bold uppercase tracking-widest ${currentScreen === AppScreen.HOME ? 'bg-white/[0.05] text-white border border-white/[0.05]' : 'text-gray-400 border border-transparent'}`}
             >
               Home
             </button>
