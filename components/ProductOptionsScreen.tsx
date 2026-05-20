@@ -39,10 +39,10 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
             Deployment Options
           </span>
         </div>
-        <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6 leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6 leading-tight">
           Choose Your Deployment Architecture
         </h2>
-        <p className="text-gray-400 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+        <p className="text-gray-400 text-base md:text-xl font-medium max-w-2xl leading-relaxed">
           Select the enterprise version of {platformName} you want to deploy. All options include lifetime commercial access, standard support SLA, and continuous security updates.
         </p>
       </div>

@@ -38,10 +38,10 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
              <Layers className="w-4 h-4 text-blue-400 animate-pulse" />
              <span className="text-[10px] md:text-xs font-bold text-gray-300 tracking-[0.2em] uppercase">Ecosystem Architecture</span>
           </div>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight text-white mb-6 leading-tight">
             Select Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Environment</span>
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl font-light mx-auto leading-relaxed">
+          <p className="text-gray-400 text-base md:text-xl max-w-2xl font-light mx-auto leading-relaxed px-4 md:px-0">
             Our cognitive engines are tailored for specific hardware ecosystems. Choose your primary operating platform to deploy the core intelligence layer.
           </p>
         </div>

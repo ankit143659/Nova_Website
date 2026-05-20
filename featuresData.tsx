@@ -142,7 +142,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
       { icon: '🌿', title: 'Git Branch', desc: 'Make new branch.' },
       { icon: '🐳', title: 'Docker Helper', desc: 'Manage Docker.' },
       { icon: '🗄️', title: 'DB Helper', desc: 'Manage databases.' },
-      { icon: '🌐', title: 'API Tester', desc: 'Test APIs.' },
+      { icon: '🌐', title: 'Web Connector', desc: 'Secure web search.' },
       { icon: '📱', title: 'Mobile View', desc: 'Test mobile view.' },
       { icon: '🎨', title: 'CSS Helper', desc: 'Help with CSS.' },
       { icon: '⚛️', title: 'React Helper', desc: 'Help with React.' },

@@ -82,7 +82,7 @@ const FeaturesScreen: React.FC<FeaturesScreenProps> = ({ onBack }) => {
                         <div className="flex items-start gap-4 relative z-10">
                           <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 group-hover:border-blue-500/20 group-hover:text-blue-400 transition-all duration-300 text-gray-400">
                              {/* Reusing a generic sparkle or terminal if no direct icon prop */}
-                             {feature.icon || <Terminal className="w-4 h-4" />}
+                             {feature.icon || <Sparkles className="w-4 h-4" />}
                           </div>
                           <div>
                             <h4 className="text-white font-bold text-[15px] mb-1.5 group-hover:text-blue-400 transition-colors tracking-tight">{feature.title}</h4>

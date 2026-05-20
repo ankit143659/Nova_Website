@@ -144,7 +144,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       case Platform.NOVA: return { icon: Monitor, color: '#00f2ff', bg: 'from-[#00f2ff]/10' };
       case Platform.COMBO: return { icon: Layers, color: '#eab308', bg: 'from-[#eab308]/10' };
       case Platform.MAX: return { icon: Smartphone, color: '#10b981', bg: 'from-[#10b981]/10' };
-      case Platform.CUSTOM: return { icon: Terminal, color: '#a855f7', bg: 'from-[#a855f7]/10' };
+      case Platform.CUSTOM: return { icon: Sparkles, color: '#a855f7', bg: 'from-[#a855f7]/10' };
       default: return { icon: Monitor, color: '#ffffff', bg: 'from-white/10' };
     }
   };

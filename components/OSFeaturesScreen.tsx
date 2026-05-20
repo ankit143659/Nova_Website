@@ -157,10 +157,10 @@ const OSFeaturesScreen: React.FC<OSFeaturesScreenProps> = ({ os, onBack, onConti
             <Zap className="w-3 h-3 text-white" />
             <span className="text-[10px] font-bold tracking-widest uppercase text-white">System Protocol</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white mb-6 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white mb-6 tracking-tight">
             {headerTitle}
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed max-w-3xl">
+          <p className="text-gray-400 text-base md:text-xl font-medium leading-relaxed max-w-3xl">
             {headerDesc}
           </p>
         </div>

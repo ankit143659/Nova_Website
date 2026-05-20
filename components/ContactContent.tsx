@@ -25,14 +25,14 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
   };
 
   return (
-    <div className="space-y-8">
-      <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
+    <div className="space-y-6 md:space-y-8 px-4 md:px-0">
+      <section className="glass-card p-6 md:p-10 rounded-3xl relative overflow-hidden">
         <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">Get in Touch with Nova Ai Technologies</h2>
         <p className="text-gray-400 font-light leading-relaxed text-base">We're here to help you with any questions, concerns, or feedback regarding our services. Our dedicated support team is committed to providing you with the best possible assistance.</p>
       </section>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="glass-card p-6 md:p-10 rounded-3xl relative overflow-hidden">
           <h3 className="text-lg font-bold text-white mb-8 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
               <Mail className="w-5 h-5 text-blue-400" />
@@ -79,7 +79,7 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
           </div>
         </div>
 
-        <div className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
+        <div className="glass-card p-6 md:p-10 rounded-3xl relative overflow-hidden">
           <h3 className="text-lg font-bold text-white mb-8 flex items-center gap-3">
              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                <Send className="w-5 h-5 text-blue-400" />

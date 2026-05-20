@@ -51,8 +51,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
                 <div className="absolute inset-0 bg-blue-500/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                 <Check className="w-10 h-10 text-blue-400 relative z-10" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">Provisioning System</h2>
-              <p className="text-gray-400 font-light text-lg">Provide your corporate credentials for secure license assignment.</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-4 tracking-tight">Provisioning System</h2>
+              <p className="text-gray-400 font-light text-base md:text-lg">Provide your corporate credentials for secure license assignment.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
@@ -92,7 +92,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
                   <div className="space-y-3 pt-6 border-t border-white/5">
                     <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Internal Codename</label>
                     <div className="relative">
-                      <Terminal className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                      <Check className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" />
                       <input 
                         required
                         type="text" 
