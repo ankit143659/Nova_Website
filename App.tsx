@@ -17,6 +17,10 @@ import { Mail, Clock, Send, Shield, Brain, Target, Zap, MessageCircle, AlertTria
 
 import Footer from './components/Footer';
 import ContactContent from './components/ContactContent';
+import AboutContent from './components/AboutContent';
+import DeliveryContent from './components/DeliveryContent';
+import ShippingContent from './components/ShippingContent';
+import RefundContent from './components/RefundContent';
 
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.WELCOME);
@@ -270,139 +274,6 @@ const App: React.FC = () => {
     </div>
   );
 
-  const aboutContent = (
-    <div className="space-y-8">
-      <p className="text-center text-text-secondary text-sm">Last updated: {new Date().getFullYear()}</p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-            <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-            Our Mission
-          </h2>
-          <p className="text-gray-400 font-light leading-relaxed text-base">
-            At <strong className="text-white font-medium">Nova Ai Technologies Pvt Ltd</strong>, our mission is to revolutionize the way enterprises interact with technology through intelligent automation. We are focused on building secure, private, and customizable AI solutions.
-          </p>
-        </section>
-
-        <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-            <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-            Who We Are
-          </h2>
-          <p className="text-gray-400 font-light leading-relaxed text-base">
-            We are a registered professional technology firm founded by <strong className="text-white font-medium">Ankit Singh</strong>. Now an officially incorporated Pvt Ltd, Nova Ai Technologies delivers robust, enterprise-grade AI applications, backed by a dedicated support and operations team.
-          </p>
-        </section>
-      </div>
-
-      <section className="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-          <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-          Why Choose Us?
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {[
-            { icon: <Zap className="w-5 h-5 text-blue-400" />, text: 'High-performance, enterprise-grade automation systems.' },
-            { icon: <Shield className="w-5 h-5 text-blue-400" />, text: 'Strict adherence to data privacy and corporate security.' },
-            { icon: <Brain className="w-5 h-5 text-blue-400" />, text: 'State-of-the-art cognitive models tailored to workflows.' },
-            { icon: <Target className="w-5 h-5 text-blue-400" />, text: 'Scalable infrastructure designed for real-world impact.' }
-          ].map((item, idx) => (
-            <div key={idx} className="flex items-start space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
-                {item.icon}
-              </div>
-              <p className="text-sm text-gray-400 font-light leading-relaxed pt-1">{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
-
-  const distributionContent = (
-    <div className="space-y-8">
-      <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-          <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-          Official Delivery Method
-        </h2>
-        <p className="text-text-secondary font-light leading-relaxed text-base">To ensure high-security activation and direct owner-to-user support, all NOVA AI and MJ AI products are distributed through our <strong className="text-white font-medium">VIP Delivery System</strong>.</p>
-      </section>
-      <div className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h3 className="text-lg font-bold text-white mb-8 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-            <MessageCircle className="w-5 h-5 text-primary" />
-          </div>
-          Step-by-Step Process
-        </h3>
-        <ol className="space-y-6 text-base text-text-secondary list-decimal list-inside font-light leading-relaxed">
-          <li>Complete your payment via our secure Razorpay gateway.</li>
-          <li>You will be automatically prompted to provide your final activation details.</li>
-          <li>Once submitted, a unique message will be generated for our distribution team.</li>
-          <li><strong className="text-white font-medium">Your personalized Service App (EXE/ZIP) and ELITE Activation Key will be sent directly to your WhatsApp.</strong></li>
-          <li>Typical delivery window: <strong className="text-white font-medium">5 to 15 minutes</strong> after verification.</li>
-        </ol>
-      </div>
-    </div>
-  );
-
-  const shippingContent = (
-    <div className="space-y-8">
-      <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-          <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-          Digital Shipping Policy
-        </h2>
-        <p className="text-text-secondary font-light leading-relaxed text-base">
-          Since NOVA AI products are <strong className="text-white font-medium">digital software licenses</strong>, there is no physical shipping involved. This means you receive your product instantly without any shipping costs.
-        </p>
-      </section>
-      <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-          <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-          How You Receive Your Order
-        </h2>
-        <ul className="list-disc list-inside space-y-4 text-text-secondary font-light leading-relaxed text-base">
-          <li><strong className="text-white font-medium">Instant Confirmation:</strong> You will receive an immediate confirmation on the web portal.</li>
-          <li><strong className="text-white font-medium">Digital Assets:</strong> Your activation key and download link will be delivered via WhatsApp within 15 minutes.</li>
-          <li><strong className="text-white font-medium">No Hidden Costs:</strong> There are zero shipping, handling, or processing fees for our digital products.</li>
-        </ul>
-      </section>
-    </div>
-  );
-
-  const refundContent = (
-    <div className="space-y-8">
-      <div className="bg-red-500/5 border border-red-500/20 p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h2 className="text-xl font-bold text-red-500 mb-6 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-            <AlertTriangle className="w-5 h-5 text-red-500" />
-          </div>
-          Strict Activation Policy
-        </h2>
-        <p className="text-white/90 font-light text-base leading-relaxed">
-          Please read carefully: Once a NOVA AI or MJ AI product has been <strong className="text-white font-medium">ACTIVATED</strong> using your unique Elite access key, it is permanently consumed and linked to your hardware. 
-          <br /><br />
-          <span className="underline font-bold text-red-400">Refunds are strictly prohibited after activation.</span>
-        </p>
-      </div>
-
-      <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-          <div className="w-2 h-6 rounded-full" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
-          30-Day Refund Policy
-        </h2>
-        <p className="font-light text-text-secondary leading-relaxed text-base">We offer a <strong className="text-white font-medium">30-day refund window</strong> for unactivated products. You may request a refund if:</p>
-        <ul className="list-disc list-inside space-y-4 text-text-secondary mt-6 font-light leading-relaxed text-base">
-          <li>The request is made within <strong className="text-white font-medium">30 days</strong> of payment.</li>
-          <li>The access key has <strong className="text-white font-medium">NOT</strong> been used for activation.</li>
-          <li>The Service App (EXE/ZIP) has not been successfully deployed on your machine.</li>
-        </ul>
-      </section>
-    </div>
-  );
-
   const privacyContent = (
     <div className="space-y-8">
       <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
@@ -474,13 +345,13 @@ const App: React.FC = () => {
       case AppScreen.CONTACT:
         return <GenericPage title="Contact Support" onBack={() => navigateTo(AppScreen.HOME)} content={<ContactContent />} />;
       case AppScreen.ABOUT:
-        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.HOME)} content={aboutContent} />;
+        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.HOME)} content={<AboutContent />} />;
       case AppScreen.DISTRIBUTION:
-        return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.HOME)} content={distributionContent} />;
+        return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.HOME)} content={<DeliveryContent />} />;
       case AppScreen.SHIPPING:
-        return <GenericPage title="Shipping Info" onBack={() => navigateTo(AppScreen.HOME)} content={shippingContent} />;
+        return <GenericPage title="Shipping Info" onBack={() => navigateTo(AppScreen.HOME)} content={<ShippingContent />} />;
       case AppScreen.REFUND:
-        return <GenericPage title="Refund Policy" onBack={() => navigateTo(AppScreen.HOME)} content={refundContent} />;
+        return <GenericPage title="Refund Policy" onBack={() => navigateTo(AppScreen.HOME)} content={<RefundContent />} />;
       case AppScreen.PRIVACY:
         return <GenericPage title="Privacy Policy" onBack={() => navigateTo(AppScreen.HOME)} content={privacyContent} />;
       case AppScreen.TERMS:

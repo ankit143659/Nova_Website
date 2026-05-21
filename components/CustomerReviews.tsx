@@ -62,7 +62,7 @@ const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
 
 const CustomerReviews: React.FC = () => {
   return (
-      <div className="mt-24 relative overflow-hidden py-24 bg-[#020202]">
+      <div className="mt-16 md:mt-32 relative overflow-hidden py-16 md:py-24">
         <style>
           {`
             @keyframes marquee-left {
@@ -90,24 +90,24 @@ const CustomerReviews: React.FC = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/[0.02] blur-[120px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-0 left-1/4 w-[600px] h-[300px] bg-purple-500/[0.03] blur-[100px] rounded-full pointer-events-none"></div>
 
-        <div className="text-center mb-20 relative z-10 px-4">
+        <div className="text-center mb-16 md:mb-20 relative z-10 px-4">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 backdrop-blur-md">
             <Star className="w-4 h-4 text-white" />
             <span className="text-xs font-bold tracking-widest uppercase text-white/80">Wall of Love</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-extrabold text-white mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-extrabold text-white mb-4 md:mb-6 tracking-tight">
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-white to-gray-500">The Elite</span>
           </h2>
-          <p className="text-gray-400 text-lg font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-400 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed">
             Join over 500+ active users across India who have upgraded their digital ecosystem with our advanced AI solutions.
           </p>
         </div>
 
         {/* Infinite Scroll Container */}
-        <div className="relative z-10 flex flex-col gap-8 marquee-container">
+        <div className="relative z-10 flex flex-col gap-6 md:gap-8 marquee-container">
           {/* Gradient Masks for smooth edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#020202] to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#020202] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#050505] to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#050505] to-transparent z-20 pointer-events-none"></div>
 
           {/* Row 1: Scrolling Left */}
           <div className="flex overflow-hidden">
