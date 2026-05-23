@@ -20,7 +20,7 @@ const AboutContent: React.FC = () => {
         </div>
         <h2 className="text-4xl md:text-6xl font-display font-medium text-white mb-6 tracking-tight">Pioneering the Future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Intelligent Automation</span></h2>
         <p className="text-gray-400 text-lg md:text-2xl font-light leading-relaxed">
-          At Nova Ai Technologies Pvt Ltd, our mission is to revolutionize the way enterprises interact with technology through secure, private, and customizable AI solutions.
+          At VASH AI (Voice Automated System Handler) TECHNOLOGIES PVT LTD, our mission is to revolutionize the way enterprises interact with technology through secure, private, and customizable AI solutions.
         </p>
       </section>
 
@@ -30,10 +30,10 @@ const AboutContent: React.FC = () => {
         <h3 className="text-2xl md:text-4xl font-display font-medium text-white mb-6">Our Journey</h3>
         <div className="space-y-6">
           <p className="text-gray-300 font-light leading-relaxed text-base md:text-lg">
-            For the past <strong className="text-white font-medium">two years</strong>, our core engineering team has been relentlessly building and refining the Nova AI ecosystem. What started as an ambitious experiment in desktop automation has evolved into a robust, enterprise-grade cognitive engine.
+            For the past <strong className="text-white font-medium">two years</strong>, our core engineering team has been relentlessly building and refining the VASH AI ecosystem. What started as an ambitious experiment in desktop automation has evolved into a robust, enterprise-grade cognitive engine.
           </p>
           <p className="text-gray-300 font-light leading-relaxed text-base md:text-lg">
-            We spent countless hours perfecting the underlying logic layers, optimizing ultra-low latency executions, and ensuring military-grade encryption without compromising on processing speed. Nova AI is the culmination of two years of unyielding dedication to creating the perfect synergy between standalone software and neural intelligence.
+            We spent countless hours perfecting the underlying logic layers, optimizing ultra-low latency executions, and ensuring military-grade encryption without compromising on processing speed. VASH AI is the culmination of two years of unyielding dedication to creating the perfect synergy between standalone software and neural intelligence.
           </p>
         </div>
       </section>
@@ -43,7 +43,7 @@ const AboutContent: React.FC = () => {
         <div className="text-center mb-12">
           <h3 className="text-3xl md:text-5xl font-display font-medium text-white tracking-tight mb-4">Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-600">Core Team</span></h3>
           <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-            The visionary minds who spent over two years architecting the proprietary logic driving Nova AI's workflow innovations.
+            The visionary minds who spent over two years architecting the proprietary logic driving VASH AI's workflow innovations.
           </p>
         </div>
         

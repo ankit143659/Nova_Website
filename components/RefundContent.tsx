@@ -28,7 +28,7 @@ const RefundContent: React.FC = () => {
         
         <div className="space-y-6">
           <p className="text-white/90 font-light text-base md:text-lg leading-relaxed">
-            Due to the proprietary nature of our neural architectures and the irreversible hardware-binding process, we enforce a strict policy: <strong className="text-white font-bold">Once a NOVA AI or MJ AI product has been ACTIVATED using your unique Elite access key, it is permanently consumed.</strong>
+            Due to the proprietary nature of our neural architectures and the irreversible hardware-binding process, we enforce a strict policy: <strong className="text-white font-bold">Once a VASH AI or MJ AI product has been ACTIVATED using your unique Elite access key, it is permanently consumed.</strong>
           </p>
           <div className="p-4 md:p-6 bg-red-500/5 border-l-4 border-red-500 rounded-r-xl">
             <p className="font-bold text-red-400 text-lg">Refunds are strictly prohibited and cannot be issued under any circumstances after activation.</p>

@@ -19,7 +19,7 @@ export enum AppScreen {
 }
 
 export enum Platform {
-  NOVA = 'nova',
+  VASH = 'vash',
   MJ = 'mj',
   COMBO = 'combo',
   MAX = 'max',
@@ -53,5 +53,5 @@ export interface UserDetails {
   name: string;
   email: string;
   desiredAiName?: string;
-  baseAiChoice?: 'MJ' | 'NOVA';
+  baseAiChoice?: 'MJ' | 'VASH';
 }

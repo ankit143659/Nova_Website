@@ -35,7 +35,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onContinue, onExploreFeat
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
             <span className="text-[10px] md:text-xs font-bold text-gray-300 tracking-[0.2em] uppercase">
-              Nova AI Engine Initiated
+              VASH AI Engine Initiated
             </span>
           </div>
         </div>
@@ -54,7 +54,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onContinue, onExploreFeat
 
         <div className={`transition-all duration-1000 delay-700 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} max-w-2xl mx-auto`}>
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-12">
-            Welcome to <strong className="text-white font-medium">Nova Ai Technologies Pvt Ltd</strong>. We build secure, modular, and highly scalable AI systems pushing the boundaries of enterprise automation.
+            Welcome to <strong className="text-white font-medium">VASH AI (Voice Automated System Handler)</strong> TECHNOLOGIES PVT LTD. We build secure, modular, and highly scalable AI systems pushing the boundaries of enterprise automation.
           </p>
         </div>
 

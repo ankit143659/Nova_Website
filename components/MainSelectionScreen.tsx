@@ -38,12 +38,12 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       features: ELITE_FEATURES,
     },
     {
-      id: 'nova-windows',
-      title: 'NOVA 7.0',
+      id: 'vash-windows',
+      title: 'Nova 7.0',
       subtitle: 'SYSTEM MASTER',
       desc: 'The Ultimate Autonomous Engine. Deep level system control and extreme automation protocols.',
       price: 1099,
-      platform: Platform.NOVA,
+      platform: Platform.VASH,
       variantName: 'WINDOWS APP',
       videoUrl: GLOBAL_VIDEO_URL,
       features: ELITE_FEATURES,
@@ -52,7 +52,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       id: 'combo-windows',
       title: 'UNIFIED COMBO',
       subtitle: 'DUAL CORE',
-      desc: 'Elite Performance & Human Empathy Combined. Run both NOVA and MJ simultaneously.',
+      desc: 'Elite Performance & Human Empathy Combined. Run both Nova and MJ simultaneously.',
       price: 1999,
       platform: Platform.COMBO,
       variantName: 'UNIFIED',
@@ -63,7 +63,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       id: 'custom-windows',
       title: 'CUSTOM BRANDED AI',
       subtitle: 'YOUR NAME. YOUR VOICE.',
-      desc: 'White-label architecture. Choose your base engine (MJ or NOVA) and customize its core identity.',
+      desc: 'White-label architecture. Choose your base engine (MJ or Nova) and customize its core identity.',
       price: 2499,
       platform: Platform.CUSTOM,
       variantName: 'CUSTOM',
@@ -107,10 +107,10 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
 
   const comboWinAndProducts: ProductData[] = [
     {
-      id: 'combo-max-nova',
-      title: 'MAX 2.0 + NOVA',
+      id: 'combo-max-vash',
+      title: 'MAX 2.0 + Nova',
       subtitle: 'WINDOWS + ANDROID COMBO',
-      desc: 'Ultimate control anywhere. Get NOVA for Windows desktop and MAX 2.0 for your Android device in one unified package.',
+      desc: 'Ultimate control anywhere. Get Nova for Windows desktop and MAX 2.0 for your Android device in one unified package.',
       price: 2699,
       platform: Platform.COMBO,
       variantName: 'WIN + ANDROID',
@@ -141,7 +141,7 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
   const getPlatformMeta = (platform: Platform) => {
     switch (platform) {
       case Platform.MJ: return { icon: Heart, color: '#ff2a6d', bg: 'from-[#ff2a6d]/10' };
-      case Platform.NOVA: return { icon: Monitor, color: '#00f2ff', bg: 'from-[#00f2ff]/10' };
+      case Platform.VASH: return { icon: Monitor, color: '#00f2ff', bg: 'from-[#00f2ff]/10' };
       case Platform.COMBO: return { icon: Layers, color: '#eab308', bg: 'from-[#eab308]/10' };
       case Platform.MAX: return { icon: Smartphone, color: '#10b981', bg: 'from-[#10b981]/10' };
       case Platform.CUSTOM: return { icon: Sparkles, color: '#a855f7', bg: 'from-[#a855f7]/10' };
@@ -179,69 +179,74 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
         </div>
       </div>
 
-      {/* Vertical Scroll Layout */}
-      <div className="flex flex-col gap-32 mb-40 max-w-7xl mx-auto px-4 sm:px-6">
-        {displayProducts.map((product, index) => {
+      {/* Premium Vertical Stack Layout */}
+      <div className="flex flex-col gap-6 md:gap-8 mb-40 max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {displayProducts.map((product) => {
           const { icon: Icon, color, bg } = getPlatformMeta(product.platform);
-          const isEven = index % 2 === 0;
           
           return (
             <motion.div 
               key={product.id}
-              initial={{ opacity: 0, y: 100 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-150px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 lg:gap-24 group`}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative rounded-[2rem] p-[1px] overflow-hidden cursor-pointer"
+              onClick={() => onProductSelect(product)}
             >
-              {/* Massive Image/Iconography Side */}
-              <div 
-                className="w-full md:w-1/2 cursor-pointer relative"
-                onClick={() => onProductSelect(product)}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${bg} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[3rem] blur-xl pointer-events-none`}></div>
-                <div className="relative aspect-square sm:aspect-[4/3] md:aspect-square w-full rounded-[3rem] bg-[#050505] border border-white/10 group-hover:border-white/20 overflow-hidden shadow-2xl transition-all duration-700 flex items-center justify-center">
-                  <div className="absolute top-0 right-0 w-[200%] h-[200%] bg-white/[0.02] -rotate-45 translate-x-[-20%] group-hover:translate-x-[10%] transition-transform duration-1000 ease-out pointer-events-none"></div>
-                  
-                  <div className="relative z-10 w-32 h-32 md:w-48 md:h-48 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-700">
-                    <Icon className="w-16 h-16 md:w-24 md:h-24 transition-colors duration-500 drop-shadow-2xl" style={{ color }} />
-                  </div>
-                </div>
-              </div>
+              {/* Premium Gradient Border */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent group-hover:from-white/30 transition-colors duration-700"></div>
+              
+              {/* Glowing Background Effect */}
+              <div className={`absolute -inset-10 opacity-0 group-hover:opacity-20 bg-gradient-to-r ${bg} to-transparent blur-3xl transition-opacity duration-1000 rounded-[3rem] pointer-events-none`}></div>
 
-              {/* Text & Action Side */}
-              <div className="w-full md:w-1/2 flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white transition-colors">
-                    {product.subtitle}
-                  </div>
-                  {isOfferActive && (
-                    <div className="px-4 py-2 rounded-full bg-blue-500/10 text-blue-400 text-xs border border-blue-500/20 font-bold tracking-widest uppercase flex items-center gap-2 shell-glow">
-                      <Sparkles className="w-4 h-4" /> Exclusive Offer
+              {/* Main Card Body */}
+              <div className="relative bg-[#050505]/90 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 lg:p-14 flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16 border border-white/5 shadow-2xl h-full">
+                
+                {/* Left Section: Information */}
+                <div className="flex-1 w-full">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500 ease-out">
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 transition-colors duration-500" style={{ color }} />
                     </div>
-                  )}
+                    <div className="flex flex-col">
+                      <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 group-hover:text-white transition-colors self-start mb-1">
+                        {product.subtitle}
+                      </div>
+                      {isOfferActive && (
+                        <div className="flex items-center gap-1 text-[10px] md:text-[11px] font-bold text-blue-400 tracking-widest uppercase">
+                          <Sparkles className="w-3 h-3" /> Special Offer Active
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium text-white mb-5 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-500 transition-all duration-500">
+                    {product.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 text-base md:text-lg lg:text-xl font-light leading-relaxed max-w-2xl">
+                    {/* @ts-ignore */}
+                    {product.desc}
+                  </p>
                 </div>
 
-                <h3 className="text-5xl lg:text-7xl font-display font-black text-white mb-6 tracking-tight leading-[1.1]">
-                  {product.title}
-                </h3>
-                
-                <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-8 font-light">
-                  {/* @ts-ignore */}
-                  {product.desc}
-                </p>
-                
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-4">
-                  <p className="text-4xl font-bold font-mono tracking-tight" style={{ color }}>₹{product.price}</p>
+                {/* Right Section: Price & Action */}
+                <div className="w-full lg:w-auto flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center flex-shrink-0 border-t lg:border-t-0 lg:border-l border-white/10 pt-8 lg:pt-0 lg:pl-16 mt-4 lg:mt-0">
+                  <div className="flex flex-col items-start lg:items-end">
+                    <span className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em] mb-2 hidden lg:block">Perpetual License</span>
+                    <span className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em] mb-1 lg:hidden">Price</span>
+                    <div className="text-4xl md:text-5xl lg:text-6xl font-mono tracking-tighter" style={{ color }}>
+                      ₹{product.price}
+                    </div>
+                  </div>
                   
-                  <button 
-                    onClick={() => onProductSelect(product)}
-                    className="group/btn relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-[15px] transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] w-full sm:w-auto overflow-hidden"
-                  >
+                  <button className="relative overflow-hidden group/btn flex items-center justify-center gap-2 px-6 py-4 md:px-8 md:py-5 bg-white text-black rounded-full font-bold text-sm md:text-sm tracking-widest uppercase mt-0 lg:mt-8 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:shadow-[0_0_50px_rgba(255,255,255,0.3)]">
                     <span className="relative z-10 flex items-center gap-2">
-                      Initialize Engine
-                      <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                       <span className="hidden md:inline">Select</span> Engine
+                       <ArrowRight className="w-4 h-4 md:w-5 md:h-5 md:group-hover/btn:translate-x-1 transition-transform" />
                     </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-[150%] group-hover/btn:translate-x-[150%] transition-transform duration-700 ease-in-out"></div>
                   </button>
                 </div>
               </div>

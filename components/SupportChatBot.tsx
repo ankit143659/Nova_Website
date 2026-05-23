@@ -14,15 +14,15 @@ interface Message {
 const PREDEFINED_RULES = [
   {
     keywords: ['price', 'cost', 'how much', 'rate', 'pricing'],
-    answer: "💰 **Product Pricing:**\n\n• **NOVA 5.0**: ₹899\n• **MJ v2**: ₹899\n• **Android Source**: ₹1499\n• **Custom Name AI**: ₹1999"
+    answer: "💰 **Product Pricing:**\n\n• **VASH 5.0**: ₹899\n• **MJ v2**: ₹899\n• **Android Source**: ₹1499\n• **Custom Name AI**: ₹1999"
   },
   {
     keywords: ['offer', 'discount', 'code', 'promo', 'valentine', 'bogo', 'mj'],
     answer: "✨ **Special Offer:**\n\n**MJ v2 Emotion AI** is available for ₹899 (Lifetime License).\n\nUse code **MJAIV2** for discount."
   },
   {
-    keywords: ['nova', 'vadryk', 'windows', 'pc'],
-    answer: "⚡ **NOVA 5.0 (Vadryk Engine)**:\n\nOur flagship Windows assistant. It can control your mouse, type for you, open apps, and manage system settings autonomously."
+    keywords: ['vash', 'vadryk', 'windows', 'pc'],
+    answer: "⚡ **VASH 5.0 (Vadryk Engine)**:\n\nOur flagship Windows assistant. It can control your mouse, type for you, open apps, and manage system settings autonomously."
   },
   {
     keywords: ['android', 'mobile', 'app', 'source', 'kotlin', 'java'],
@@ -42,7 +42,7 @@ const PREDEFINED_RULES = [
   },
   {
     keywords: ['hello', 'hi', 'hey', 'start', 'help'],
-    answer: "Hello! I am **NOVA NEXUS**. 🤖\n\nI can help you with **Pricing, Offers, and Delivery**.\n\nType your question below! 🚀"
+    answer: "Hello! I am **VASH NEXUS**. 🤖\n\nI can help you with **Pricing, Offers, and Delivery**.\n\nType your question below! 🚀"
   }
 ];
 
@@ -56,7 +56,7 @@ const SupportChatBot: React.FC = () => {
       id: 1,
       text: (
         <span>
-          Hello! I am <strong>NOVA NEXUS</strong>. 🤖<br/><br/>
+          Hello! I am <strong>VASH NEXUS</strong>. 🤖<br/><br/>
           I can help you with pricing, installation, and payment queries.<br/><br/>
           How can I help you today?
         </span>
@@ -198,7 +198,7 @@ const SupportChatBot: React.FC = () => {
               <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border border-[#09090b] shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
             </div>
             <div>
-              <h3 className="font-display font-bold text-white text-sm tracking-widest uppercase">NOVA NEXUS</h3>
+              <h3 className="font-display font-bold text-white text-sm tracking-widest uppercase">VASH NEXUS</h3>
               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest animate-pulse">Online</p>
             </div>
           </div>

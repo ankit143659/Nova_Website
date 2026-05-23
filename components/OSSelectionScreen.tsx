@@ -62,7 +62,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-3xl font-display font-bold text-white mb-2 tracking-tight group-hover:translate-x-1 transition-transform duration-500">Windows OS</h3>
               <p className="text-gray-400 text-base md:text-lg font-light leading-relaxed group-hover:text-gray-300 transition-colors mb-4">
-                Access all our tools like MJ, NOVA, and Custom bots, built directly for your Windows computer.
+                Access all our tools like MJ, VASH, and Custom bots, built directly for your Windows computer.
               </p>
               <div className="inline-flex items-center gap-2 text-blue-400 text-sm font-bold uppercase tracking-widest group-hover:gap-4 transition-all duration-300">
                 Explore Products <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>

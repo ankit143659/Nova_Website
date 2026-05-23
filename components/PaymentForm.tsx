@@ -17,7 +17,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [aiName, setAiName] = useState('');
-  const [baseAiChoice, setBaseAiChoice] = useState<'MJ' | 'NOVA'>('NOVA');
+  const [baseAiChoice, setBaseAiChoice] = useState<'MJ' | 'VASH'>('VASH');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -72,10 +72,10 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
                     <div className="grid grid-cols-2 gap-4">
                       <button
                         type="button"
-                        onClick={() => setBaseAiChoice('NOVA')}
-                        className={`p-5 rounded-2xl border transition-all text-sm font-bold tracking-wider uppercase relative overflow-hidden group/btn ${baseAiChoice === 'NOVA' ? 'bg-blue-500/10 text-blue-400 border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.15)]' : 'bg-white/[0.02] text-gray-500 border-white/10 hover:border-white/20'}`}
+                        onClick={() => setBaseAiChoice('VASH')}
+                        className={`p-5 rounded-2xl border transition-all text-sm font-bold tracking-wider uppercase relative overflow-hidden group/btn ${baseAiChoice === 'VASH' ? 'bg-blue-500/10 text-blue-400 border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.15)]' : 'bg-white/[0.02] text-gray-500 border-white/10 hover:border-white/20'}`}
                       >
-                         Nova Core
+                         VASH Core
                          <div className="text-[10px] text-gray-500 mt-1 font-medium capitalize">Optimized for Scale</div>
                       </button>
                       <button
@@ -171,7 +171,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
                 Authorize & Secure Registration
               </button>
               <p className="text-center text-xs text-gray-500 font-medium flex items-center justify-center gap-2 mt-6">
-                <Building className="w-4 h-4" /> Nova Ai Technologies Pvt Ltd Official Portal
+                <Building className="w-4 h-4" /> VASH AI TECHNOLOGIES PVT LTD Official Portal
               </p>
             </form>
           </div>

@@ -42,24 +42,12 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
           <div className="space-y-6">
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Company</span>
-              <span className="text-sm font-bold text-white">Nova Ai Technologies Pvt Ltd</span>
+              <span className="text-sm font-bold text-white">VASH AI TECHNOLOGIES PVT LTD</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Email Support</span>
               <span className="text-sm font-bold text-white">novawroking1122@gmail.com</span>
             </div>
-            {!isHomePage && (
-              <>
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Owner Name</span>
-                  <span className="text-sm font-bold text-white">Singh Ankit Vijay</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Mobile No</span>
-                  <span className="text-sm font-bold text-blue-400">9512194144</span>
-                </div>
-              </>
-            )}
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Address</span>
               <span className="text-sm text-gray-400 font-light">218, Kimavati complex kim, 394110, Surat Gujarat</span>

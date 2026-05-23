@@ -3,18 +3,18 @@ import React from 'react';
 import { Star, MapPin, ShieldCheck, Quote } from 'lucide-react';
 
 const reviews = [
-  { name: "Rahul Sharma", location: "Delhi", text: "I was skeptical about the one-time payment, but Nova actually works perfectly. The automation for opening apps is instant.", stars: 5, product: "NOVA 5.0" },
+  { name: "Rahul Sharma", location: "Delhi", text: "I was skeptical about the one-time payment, but VASH actually works perfectly. The automation for opening apps is instant.", stars: 5, product: "VASH 5.0" },
   { name: "Priya Patel", location: "Gujarat", text: "MJ feels like a real person. Best gift for myself. The emotional intelligence is scary good.", stars: 5, product: "MJ v2" },
   { name: "Vikram Singh", location: "Karnataka", text: "As a developer, the Android Source code is a goldmine. The modular architecture saved me months of work.", stars: 5, product: "ANDROID SRC" },
   { name: "Arjun Mehta", location: "Mumbai", text: "Finally an Indian AI that understands us. The 'Buy Once Use Forever' policy is the best part.", stars: 5, product: "COMBO" },
-  { name: "Sneha Reddy", location: "Telangana", text: "I use Nova to manage my excel sheets. It saves me 2 hours every day. Voice recognition is surprisingly accurate.", stars: 4, product: "NOVA 5.0" },
+  { name: "Sneha Reddy", location: "Telangana", text: "I use VASH to manage my excel sheets. It saves me 2 hours every day. Voice recognition is surprisingly accurate.", stars: 4, product: "VASH 5.0" },
   { name: "Ankit Verma", location: "Indore", text: "Support team on WhatsApp is very active. They helped me install it within 10 minutes.", stars: 5, product: "SUPPORT" },
   { name: "Rohan Das", location: "Kolkata", text: "Got the custom name version 'JARVIS'. My friends are jealous! The wake word works perfectly.", stars: 5, product: "CUSTOM AI" },
   { name: "Meera Iyer", location: "Chennai", text: "MJ v2 is very empathetic. It helps me calm down after a stressful day at work.", stars: 5, product: "MJ v2" },
-  { name: "Kabir Khan", location: "Pune", text: "Lifetime updates are real. I bought v4 last year and got the v5 update for free today.", stars: 5, product: "NOVA 5.0" },
+  { name: "Kabir Khan", location: "Pune", text: "Lifetime updates are real. I bought v4 last year and got the v5 update for free today.", stars: 5, product: "VASH 5.0" },
   { name: "Divya Joshi", location: "Jaipur", text: "Best value for money. Other AIs charge monthly, but here I paid once and own it completely.", stars: 5, product: "COMBO" },
   { name: "Sarthak Gupta", location: "Noida", text: "The Android project compiles without errors. The documentation provided by Ankit bhai is very clear.", stars: 4, product: "ANDROID SRC" },
-  { name: "Nikhil Nair", location: "Kerala", text: "Super futuristic interface. Using it on my gaming PC and it looks amazing.", stars: 5, product: "NOVA 5.0" }
+  { name: "Nikhil Nair", location: "Kerala", text: "Super futuristic interface. Using it on my gaming PC and it looks amazing.", stars: 5, product: "VASH 5.0" }
 ];
 
 // Split reviews into two rows for a richer layout

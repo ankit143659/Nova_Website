@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
             )}
           </div>
           <span className="font-display font-bold tracking-tight text-white text-sm md:text-base">
-            Nova Ai Technologies
+            VASH AI TECHNOLOGIES
           </span>
         </div>
 
@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
                 )}
               </div>
               <span className="font-display font-bold tracking-tight text-white text-sm">
-                Nova Ai Technologies
+                VASH AI TECHNOLOGIES
               </span>
             </div>
             <button 

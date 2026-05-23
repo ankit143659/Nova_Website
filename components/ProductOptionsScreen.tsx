@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Platform } from '../types';
 import { ArrowLeft, Monitor, Apple, Lock, Crown, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
@@ -11,14 +11,31 @@ interface ProductOptionsScreenProps {
 }
 
 const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, onBack, onSelectOption, themeColor }) => {
+  const [code, setCode] = useState('');
+  const [discountApplied, setDiscountApplied] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleApplyCode = () => {
+    if (code.trim().toUpperCase() === 'NOVA2025') {
+      setDiscountApplied(true);
+      setError('');
+    } else {
+      setDiscountApplied(false);
+      setError('Invalid redeem code.');
+    }
+  };
+
   const platformName = platform?.toUpperCase() || 'AI';
   const isMJ = platform === Platform.MJ;
 
-  const windowsPrice = isMJ ? 1399 : 999;
+  const baseWindowsPrice = isMJ ? 1399 : 999;
   const offerWindowsPrice = isMJ ? 999 : 799;
   
-  const customPrice = 2499;
+  const baseCustomPrice = 2499;
   const offerCustomPrice = 1999;
+
+  const currentWindowsPrice = discountApplied ? offerWindowsPrice : baseWindowsPrice;
+  const currentCustomPrice = discountApplied ? offerCustomPrice : baseCustomPrice;
 
   return (
     <div className="animate-in fade-in duration-700 pb-24 max-w-6xl mx-auto px-4 sm:px-6 relative z-10 w-full">
@@ -33,24 +50,63 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
         Back to Engine Selection
       </button>
 
-      <div className="mb-12">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 mb-6">
-          <span className="text-[10px] font-bold tracking-widest uppercase text-blue-400">
-            Deployment Options
-          </span>
+      <div className="mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 mb-6">
+            <span className="text-[10px] font-bold tracking-widest uppercase text-blue-400">
+              Deployment Options
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6 leading-tight">
+            Choose Your Deployment Architecture
+          </h2>
+          <p className="text-gray-400 text-base md:text-xl font-medium max-w-2xl leading-relaxed">
+            Select the enterprise version of {platformName} you want to deploy. All options include lifetime commercial access, standard support SLA, and continuous security updates.
+          </p>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6 leading-tight">
-          Choose Your Deployment Architecture
-        </h2>
-        <p className="text-gray-400 text-base md:text-xl font-medium max-w-2xl leading-relaxed">
-          Select the enterprise version of {platformName} you want to deploy. All options include lifetime commercial access, standard support SLA, and continuous security updates.
-        </p>
+        
+        {/* Redeem Code Section */}
+        <div className="w-full lg:w-96 bg-white/5 border border-white/10 p-5 rounded-2xl flex flex-col gap-3 backdrop-blur-md">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Have a Redeem Code?</span>
+            <a 
+              href="https://www.youtube.com/embed/Sq7a991gC2c?si=dsMpKEvxEvreKRnw" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-[9px] font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-wider flex items-center gap-1"
+            >
+              How to get code?
+            </a>
+          </div>
+          <div className="flex gap-2">
+            <input 
+              type="text" 
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              placeholder="ENTER CODE" 
+              className="flex-grow bg-[#050505] border border-white/10 rounded-xl px-4 py-2 text-sm font-bold text-white focus:border-blue-500 outline-none transition-colors uppercase"
+            />
+            <button 
+              onClick={handleApplyCode}
+              disabled={discountApplied}
+              className={`px-5 py-2 rounded-xl font-bold text-xs tracking-widest transition-all ${
+                discountApplied 
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
+                  : 'bg-white text-black hover:bg-gray-200'
+              }`}
+            >
+              {discountApplied ? 'APPLIED' : 'APPLY'}
+            </button>
+          </div>
+          {error && <p className="text-red-400 text-[10px] font-bold uppercase">{error}</p>}
+          {discountApplied && <p className="text-emerald-400 text-[10px] font-bold uppercase">Code verified! Discounts active below.</p>}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Windows App */}
         <div 
-          onClick={() => onSelectOption('windows', windowsPrice)}
+          onClick={() => onSelectOption('windows', currentWindowsPrice)}
           className="group relative flex flex-col glass-card border border-white/10 rounded-3xl p-6 md:p-8 cursor-pointer overflow-hidden transition-all duration-500 hover:border-blue-500/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.15)] hover:-translate-y-1"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -76,11 +132,22 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
 
           <div className="relative z-10 mt-auto border-t border-white/10 pt-6 flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-xs text-gray-500 line-through mb-1 font-semibold uppercase tracking-wider">MSRP ₹{windowsPrice}</span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl font-display font-bold text-white tracking-tight">₹{offerWindowsPrice}</span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30 uppercase tracking-wider">With Code</span>
-              </div>
+              {discountApplied ? (
+                <>
+                  <span className="text-xs text-gray-500 line-through mb-1 font-semibold uppercase tracking-wider">MSRP ₹{baseWindowsPrice}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl font-display font-bold text-white tracking-tight">₹{offerWindowsPrice}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30 uppercase tracking-wider">Discount Applied</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span className="text-xs text-transparent mb-1 font-semibold uppercase tracking-wider">&nbsp;</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl font-display font-bold text-white tracking-tight">₹{baseWindowsPrice}</span>
+                  </div>
+                </>
+              )}
             </div>
             <div className="w-12 h-12 rounded-xl bg-blue-600 border border-blue-500 flex items-center justify-center text-white group-hover:bg-blue-500 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all">
               <ArrowRight className="w-5 h-5" />
@@ -117,7 +184,7 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
 
         {/* Custom Identity */}
         <div 
-          onClick={() => onSelectOption('custom', customPrice)}
+          onClick={() => onSelectOption('custom', currentCustomPrice)}
           className="group relative flex flex-col glass-card border border-white/10 rounded-3xl p-6 md:p-8 cursor-pointer overflow-hidden transition-all duration-500 hover:border-indigo-500/50 hover:shadow-[0_0_40px_rgba(99,102,241,0.15)] hover:-translate-y-1 lg:col-span-1 md:col-span-2 lg:mt-0 mt-2"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -145,11 +212,22 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
 
           <div className="relative z-10 mt-auto border-t border-white/10 pt-6 flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-xs text-gray-500 line-through mb-1 font-semibold uppercase tracking-wider">MSRP ₹{customPrice}</span>
-              <div className="flex items-center gap-2">
-                <span className="text-3xl font-display font-bold text-white tracking-tight">₹{offerCustomPrice}</span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 font-bold border border-indigo-500/30 uppercase tracking-wider">With Code</span>
-              </div>
+              {discountApplied ? (
+                <>
+                  <span className="text-xs text-gray-500 line-through mb-1 font-semibold uppercase tracking-wider">MSRP ₹{baseCustomPrice}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl font-display font-bold text-white tracking-tight">₹{offerCustomPrice}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 font-bold border border-indigo-500/30 uppercase tracking-wider">Discount Applied</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <span className="text-xs text-transparent mb-1 font-semibold uppercase tracking-wider">&nbsp;</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-3xl font-display font-bold text-white tracking-tight">₹{baseCustomPrice}</span>
+                  </div>
+                </>
+              )}
             </div>
             <div className="w-12 h-12 rounded-xl bg-indigo-600 border border-indigo-500 flex items-center justify-center text-white group-hover:bg-indigo-500 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] transition-all">
               <ArrowRight className="w-5 h-5" />

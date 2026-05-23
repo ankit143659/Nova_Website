@@ -29,7 +29,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
         <div className={`text-center max-w-[1200px] mx-auto px-6 mb-16 md:mb-32 pt-10 md:pt-16 transition-all duration-1000 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
           <div className="inline-flex items-center gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full border border-blue-500/20 bg-blue-500/5 mb-8 md:mb-10 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.1)]">
             <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
-            <span className="text-[10px] md:text-xs font-bold text-blue-200 tracking-[0.2em] uppercase">Nova AI Technologies Pvt Ltd</span>
+            <span className="text-[10px] md:text-xs font-bold text-blue-200 tracking-[0.2em] uppercase">VASH AI TECHNOLOGIES PVT LTD</span>
           </div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white mb-6 md:mb-10 leading-tight">
             The Next Generation of <br className="hidden md:block"/>
@@ -49,7 +49,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
                 </span>
               </button>
             <a 
-              href="https://instagram.com/nova_voice_assistant" 
+              href="https://instagram.com/vash_voice_assistant" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white rounded-full font-medium text-[15px] transition-all w-full sm:w-auto backdrop-blur-md group"
@@ -73,32 +73,62 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
         </div>
 
         {/* Video Tutorial Section */}
-        <div className={`mb-16 md:mb-32 w-full max-w-5xl mx-auto px-6 transition-all duration-1000 delay-300 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
-          <div className="glass-card p-6 md:p-8 rounded-[2rem] border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent relative overflow-hidden group shadow-2xl">
+        <div className={`mb-16 md:mb-32 w-full max-w-6xl mx-auto px-6 transition-all duration-1000 delay-300 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+          <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/[0.05] to-transparent relative overflow-hidden group shadow-2xl flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
              
-             {/* Decorative glow behind video */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-500/10 blur-[120px] pointer-events-none group-hover:bg-blue-500/20 transition-all duration-700"></div>
+             {/* Decorative glow */}
+             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 blur-[120px] pointer-events-none group-hover:bg-blue-500/20 transition-all duration-700"></div>
 
-             <div className="text-center relative z-10 mb-8 pt-2">
-              <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-black/50 border border-white/10 mb-4 backdrop-blur-md">
-                <PlayCircle className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
-                <span className="text-[10px] md:text-xs font-bold text-gray-300 tracking-widest uppercase">Quick Start Guide</span>
+             {/* Description (Left Side) */}
+             <div className="w-full lg:w-1/2 relative z-10 text-left">
+              <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 backdrop-blur-md">
+                <PlayCircle className="w-3 h-3 lg:w-4 lg:h-4 text-blue-400" />
+                <span className="text-[10px] lg:text-xs font-bold text-blue-400 tracking-widest uppercase">Visual Setup Guide</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">How to Install & Setup</h3>
+              <h3 className="text-3xl lg:text-4xl xl:text-5xl font-display font-medium text-white tracking-tight mb-6">Quick & Easy Setup</h3>
+              <div className="space-y-6 text-gray-400 font-light text-sm lg:text-base leading-relaxed">
+                <p>
+                  Watch our simple video guide to see how easy it is to install our software. No technical knowledge required at all.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-4">
+                    <div className="mt-1 w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0 border border-emerald-500/20">
+                       <span className="text-emerald-400 text-xs font-bold">1</span>
+                    </div>
+                    <span><strong className="text-gray-200 font-medium block mb-1">Download & Open</strong> Just download the file we send you and open it on your PC. It takes only a few seconds.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                    <div className="mt-1 w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 border border-blue-500/20">
+                       <span className="text-blue-400 text-xs font-bold">2</span>
+                    </div>
+                    <span><strong className="text-gray-200 font-medium block mb-1">Enter License Key</strong> Enter the unique activation key provided to you via WhatsApp to unlock your copy.</span>
+                  </li>
+                  <li className="flex items-start gap-4">
+                     <div className="mt-1 w-6 h-6 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0 border border-purple-500/20">
+                       <span className="text-purple-400 text-xs font-bold">3</span>
+                    </div>
+                    <span><strong className="text-gray-200 font-medium block mb-1">Start Using</strong> That's it! The software is now ready to use. Start exploring the powerful features immediately.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="aspect-video w-full rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shadow-lg relative z-10 bg-[#050505]">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/uQo_LHobvCM?si=3MEx7Ug12pUIrsOO" 
-                title="Installation Guide" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                className="opacity-90 hover:opacity-100 transition-opacity"
-              ></iframe>
+            {/* Video (Right Side) */}
+            <div className="w-full lg:w-1/2 relative z-10 perspective-1000">
+              <div className="aspect-video w-full rounded-2xl overflow-hidden border-2 border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:shadow-[0_20px_50px_rgba(59,130,246,0.2)] transition-all duration-500 bg-[#050505] transform -rotate-y-2 group-hover:rotate-y-0">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  src="https://www.youtube.com/embed/uQo_LHobvCM?si=3MEx7Ug12pUIrsOO" 
+                  title="Installation Guide" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                ></iframe>
+              </div>
             </div>
+
           </div>
         </div>
 
@@ -225,7 +255,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
                    </div>
                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-display font-medium text-white mb-3 md:mb-4 tracking-tight">Standalone Desktop App (.exe)</h4>
                    <p className="text-gray-400 text-sm md:text-base leading-relaxed font-light group-hover:text-gray-300 transition-colors">
-                     No complex setups, technical configurations, or command-line scripting required. Just run our lightweight standalone executable file (.exe) and access the full power of Nova AI directly from your desktop.
+                     No complex setups, technical configurations, or command-line scripting required. Just run our lightweight standalone executable file (.exe) and access the full power of VASH AI directly from your desktop.
                    </p>
                  </div>
                  
@@ -234,7 +264,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
                        <div className="w-14 h-14 bg-transparent border border-purple-500/30 rounded-full flex items-center justify-center mb-4 relative z-10 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all duration-500">
                          <Monitor className="w-6 h-6 text-purple-300 relative z-10" />
                        </div>
-                       <div className="text-white font-bold text-sm md:text-base tracking-wide relative z-10">Nova_AI_Setup.exe</div>
+                       <div className="text-white font-bold text-sm md:text-base tracking-wide relative z-10">VASH_AI_Setup.exe</div>
                        <div className="text-gray-500 text-[10px] md:text-xs mt-2 font-mono uppercase tracking-widest relative z-10">Windows 10/11 • 245 MB</div>
                     </div>
                  </div>
@@ -299,7 +329,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
               <h3 className="text-3xl md:text-5xl lg:text-6xl font-display font-medium text-white tracking-tight">Executive <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-600">Team</span></h3>
             </div>
             <p className="text-gray-400 text-sm md:text-base max-w-lg font-light leading-relaxed">
-              The visionaries and structural architects behind Nova AI's workflow innovations and proprietary deep logic.
+              The visionaries and structural architects behind VASH AI's workflow innovations and proprietary deep logic.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -350,9 +380,9 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
             
             <div className="flex-1 w-full space-y-4">
               {[
-                { q: 'Is Nova AI secure enough for enterprise data?', a: 'Yes, we employ zero-trust architecture and AES-256 encryption. Your corporate data is sandboxed and never used to train public models.' },
+                { q: 'Is VASH AI secure enough for enterprise data?', a: 'Yes, we employ zero-trust architecture and AES-256 encryption. Your corporate data is sandboxed and never used to train public models.' },
                 { q: 'How long does the installation process take?', a: 'It takes mere minutes. Simply download the .exe application, run it on your Windows machine, and start utilizing the AI immediately.' },
-                { q: 'Can I use it entirely offline?', a: 'Yes. Nova AI can be configured to run entirely locally on your machine without requiring an active internet connection.' },
+                { q: 'Can I use it entirely offline?', a: 'Yes. VASH AI can be configured to run entirely locally on your machine without requiring an active internet connection.' },
                 { q: 'Do I need developer skills to set it up?', a: 'Not at all. We have packaged the entire model ecosystem into an easy-to-use plug-and-play desktop application software.' }
               ].map((faq, idx) => (
                 <div key={idx} className="glass-card rounded-[1.25rem] p-6 border border-white/5 hover:border-white/20 transition-all shadow-md group">
@@ -372,7 +402,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
              <Rocket className="w-12 h-12 md:w-16 md:h-16 text-white/50 mx-auto mb-8 relative z-10 animate-pulse" />
              <h3 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tight mb-8 relative z-10">Deploy Intelligence</h3>
              <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto font-light leading-relaxed mb-12 relative z-10">
-               Join industry leaders who have already transformed their workflows with Nova AI. Start your custom enterprise deployment today.
+               Join industry leaders who have already transformed their workflows with VASH AI. Start your custom enterprise deployment today.
              </p>
              <button 
                onClick={onViewProducts}

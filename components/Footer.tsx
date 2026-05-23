@@ -15,13 +15,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="flex flex-col items-center mb-8">
           <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden mb-4 transition-all duration-300">
             {!logoError ? (
-              <img src="/logo.png" alt="Nova AI Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
+              <img src="/logo.png" alt="VASH AI Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
             ) : (
               <Cpu className="w-6 h-6 text-blue-500" />
             )}
           </div>
           <span className="font-display font-bold tracking-widest text-white text-lg uppercase">
-            Nova Ai Technologies
+            VASH AI TECHNOLOGIES
           </span>
         </div>
         <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-8 font-medium">
@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <button onClick={() => onNavigate(AppScreen.TERMS)} className="hover:text-white hover:scale-105 transition-all">Terms</button>
         </div>
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
-        <p className="tracking-wide opacity-70">&copy; {new Date().getFullYear()} Nova Ai Technologies Pvt Ltd. All rights reserved.</p>
+        <p className="tracking-wide opacity-70">&copy; {new Date().getFullYear()} VASH AI TECHNOLOGIES PVT LTD. All rights reserved.</p>
       </div>
     </footer>
   );

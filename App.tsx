@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
   const getThemeColor = (platform: Platform | null) => {
     switch(platform) {
-      case Platform.NOVA: return '#3b82f6'; // Professional blue
+      case Platform.VASH: return '#3b82f6'; // Professional blue
       case Platform.MJ: return '#10b981'; // Emerald
       case Platform.COMBO: return '#eab308';
       case Platform.MAX: return '#6366f1'; // Indigo
@@ -66,7 +66,7 @@ const App: React.FC = () => {
         key: 'rzp_live_OcHSFiDAu0iMZC',
         amount: Math.round(finalPrice * 100),
         currency: currency,
-        name: `Nova Ai Technologies Pvt Ltd`,
+        name: `VASH AI TECHNOLOGIES PVT LTD`,
         description: `License for ${activeProduct.title}`,
         handler: function(response: any) {
           setPaymentId(response.razorpay_payment_id);
@@ -122,7 +122,7 @@ const App: React.FC = () => {
       <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 opacity-10 rounded-full blur-3xl pointer-events-none" style={{ backgroundColor: 'var(--primary-theme)' }}></div>
         <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">Get in Touch</h2>
-        <p className="text-text-secondary font-light leading-relaxed text-base">We're here to help you with any questions, concerns, or feedback regarding NOVA AI. Our dedicated support team is committed to providing you with the best possible assistance.</p>
+        <p className="text-text-secondary font-light leading-relaxed text-base">We're here to help you with any questions, concerns, or feedback regarding VASH AI. Our dedicated support team is committed to providing you with the best possible assistance.</p>
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -206,7 +206,7 @@ const App: React.FC = () => {
           1. Acceptance of Terms
         </h2>
         <p className="text-text-secondary font-light leading-relaxed text-base">
-          By downloading, installing, or using <strong className="text-white font-medium">NOVA AI</strong> software and services, you agree to be bound by these Terms and Conditions. These Terms constitute a legally binding agreement between you and NOVA AI.
+          By downloading, installing, or using <strong className="text-white font-medium">VASH AI</strong> software and services, you agree to be bound by these Terms and Conditions. These Terms constitute a legally binding agreement between you and VASH AI.
         </p>
       </section>
 
@@ -218,7 +218,7 @@ const App: React.FC = () => {
         <div className="space-y-6">
           <div>
             <h3 className="text-white text-sm font-bold uppercase mb-2 tracking-wider">2.1 License Grant</h3>
-            <p className="text-text-secondary font-light leading-relaxed text-base">Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use NOVA AI for personal or business purposes on devices you own.</p>
+            <p className="text-text-secondary font-light leading-relaxed text-base">Subject to these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to use VASH AI for personal or business purposes on devices you own.</p>
           </div>
           <div>
             <h3 className="text-white text-sm font-bold uppercase mb-2 tracking-wider">2.2 Restrictions</h3>
@@ -258,7 +258,7 @@ const App: React.FC = () => {
           5. Intellectual Property
         </h2>
         <p className="text-text-secondary font-light leading-relaxed text-base">
-          NOVA AI and the VADRYK engine are protected by copyright laws. We retain all rights, title, and interest in the software. Unauthorized use may result in legal action.
+          VASH AI and the VADRYK engine are protected by copyright laws. We retain all rights, title, and interest in the software. Unauthorized use may result in legal action.
         </p>
       </section>
 
@@ -268,7 +268,7 @@ const App: React.FC = () => {
           6. Limitations of Liability
         </h2>
         <p className="text-text-secondary font-light leading-relaxed text-base">
-          NOVA AI is provided "as is" without warranties. We are not liable for any indirect or incidental damages arising from software usage.
+          VASH AI is provided "as is" without warranties. We are not liable for any indirect or incidental damages arising from software usage.
         </p>
       </section>
     </div>
@@ -282,7 +282,7 @@ const App: React.FC = () => {
           Privacy Commitment
         </h2>
         <p className="text-text-secondary font-light leading-relaxed text-base">
-          At NOVA AI, we prioritize your data sovereignty. Unlike standard assistants, our core processing is designed to remain <strong className="text-white font-medium">on-device</strong> whenever possible.
+          At VASH AI, we prioritize your data sovereignty. Unlike standard assistants, our core processing is designed to remain <strong className="text-white font-medium">on-device</strong> whenever possible.
         </p>
       </section>
       <section className="bg-[#0a0a0a] border border-white/10 p-8 md:p-10 rounded-3xl relative overflow-hidden">
@@ -293,7 +293,7 @@ const App: React.FC = () => {
         <ul className="list-disc list-inside space-y-4 text-text-secondary font-light leading-relaxed text-base">
           <li><strong className="text-white font-medium">Personal Info:</strong> We only collect your email and name for license management.</li>
           <li><strong className="text-white font-medium">Voice Data:</strong> Your voice commands are processed locally.</li>
-          <li><strong className="text-white font-medium">System Access:</strong> NOVA requires system permissions for automation. This data never leaves your machine.</li>
+          <li><strong className="text-white font-medium">System Access:</strong> VASH requires system permissions for automation. This data never leaves your machine.</li>
         </ul>
       </section>
     </div>
@@ -345,7 +345,7 @@ const App: React.FC = () => {
       case AppScreen.CONTACT:
         return <GenericPage title="Contact Support" onBack={() => navigateTo(AppScreen.HOME)} content={<ContactContent />} />;
       case AppScreen.ABOUT:
-        return <GenericPage title="About Nova" onBack={() => navigateTo(AppScreen.HOME)} content={<AboutContent />} />;
+        return <GenericPage title="About VASH" onBack={() => navigateTo(AppScreen.HOME)} content={<AboutContent />} />;
       case AppScreen.DISTRIBUTION:
         return <GenericPage title="Delivery Policy" onBack={() => navigateTo(AppScreen.HOME)} content={<DeliveryContent />} />;
       case AppScreen.SHIPPING:
@@ -367,7 +367,7 @@ const App: React.FC = () => {
         currentScreen={currentScreen} 
         onNavigate={navigateTo} 
         themeColor={themeColor}
-        platformName={selectedOS?.toUpperCase() || 'NOVA AI'}
+        platformName={selectedOS?.toUpperCase() || 'VASH AI'}
       />
       
       <main className="flex-1 w-full flex flex-col">

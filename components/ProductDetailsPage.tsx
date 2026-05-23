@@ -27,7 +27,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   })();
 
   const handleRedeem = () => {
-    if (redeemCode.toUpperCase() === 'MJMAXNOVA') {
+    if (redeemCode.trim().toUpperCase() === 'NOVA2025') {
       setIsRedeemed(true);
       setRedeemError('');
     } else {
@@ -42,17 +42,17 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
       if (product.platform === 'combo') return 1499;
       if (product.platform === 'max') return 899; // keeping standard max offer
       if (product.platform === 'mj') return 999;
-      if (product.id === 'nova-windows') return 899;
+      if (product.id === 'vash-windows') return 899;
       return 899;
     }
 
     // Normal Offer Prices
-    if (product.id === 'combo-max-nova' || product.id === 'combo-max-mj') return 1899;
+    if (product.id === 'combo-max-vash' || product.id === 'combo-max-mj') return 1899;
     if (product.isCustom) return product.price - 500;
     if (product.platform === 'combo') return 1499;
     if (product.platform === 'max') return 899;
     if (product.platform === 'mj') return 1199;
-    return 899; // NOVA
+    return 899; // VASH
   };
 
   const baseFinalPrice = isRedeemed ? getOfferPrice() : product.price;
@@ -136,6 +136,42 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
                   <RefreshCw className="w-5 h-5 text-blue-500" />
                   <span className="text-sm font-medium text-gray-300">Free Ongoing Architecture Updates</span>
                 </div>
+              </div>
+
+              {/* Redeem Code Section */}
+              <div className="flex flex-col gap-2 p-5 rounded-2xl border border-white/5 bg-white/[0.02]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Have a Redeem Code?</span>
+                  <a 
+                    href="https://www.youtube.com/embed/Sq7a991gC2c?si=dsMpKEvxEvreKRnw" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[9px] font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-wider"
+                  >
+                    How to get code?
+                  </a>
+                </div>
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    value={redeemCode}
+                    onChange={(e) => setRedeemCode(e.target.value)}
+                    placeholder="ENTER CODE" 
+                    className="flex-grow bg-black border border-white/10 rounded-xl px-4 py-2.5 text-sm font-bold text-white focus:border-blue-500 outline-none transition-colors uppercase placeholder:text-gray-600"
+                  />
+                  <button 
+                    onClick={handleRedeem}
+                    disabled={isRedeemed || !redeemCode.trim()}
+                    className={`px-6 py-2.5 rounded-xl font-bold text-xs tracking-widest transition-all ${
+                      isRedeemed 
+                        ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30' 
+                        : 'bg-white text-black hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed'
+                    }`}
+                  >
+                    {isRedeemed ? 'APPLIED' : 'APPLY'}
+                  </button>
+                </div>
+                {redeemError && <p className="text-red-400 text-[10px] font-bold uppercase mt-1">{redeemError}</p>}
               </div>
 
               {/* Price Highlight */}
