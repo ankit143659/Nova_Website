@@ -60,6 +60,18 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       features: ELITE_FEATURES,
     },
     {
+      id: 'combo-custom-unified',
+      title: 'CUSTOM UNIFIED COMBO',
+      subtitle: 'CUSTOM MJ + CUSTOM NOVA',
+      desc: 'Fully customized identities for both MJ and Nova engines in one powerful package.',
+      price: 3299,
+      platform: Platform.COMBO,
+      variantName: 'CUSTOM UNIFIED',
+      videoUrl: GLOBAL_VIDEO_URL,
+      features: ELITE_FEATURES,
+      isCustom: true
+    },
+    {
       id: 'custom-windows',
       title: 'CUSTOM BRANDED AI',
       subtitle: 'YOUR NAME. YOUR VOICE.',
@@ -127,6 +139,30 @@ const MainSelectionScreen: React.FC<MainSelectionScreenProps> = ({ selectedOS, o
       variantName: 'WIN + ANDROID',
       videoUrl: GLOBAL_VIDEO_URL,
       features: ELITE_FEATURES,
+    },
+    {
+      id: 'combo-max-custom-nova',
+      title: 'CUSTOM NOVA + MAX 2.0',
+      subtitle: 'WINDOWS + ANDROID COMBO',
+      desc: 'Get a custom branded Nova engine for Windows desktop and MAX 2.0 for your Android device.',
+      price: 3299,
+      platform: Platform.COMBO,
+      variantName: 'CUSTOM + ANDROID',
+      videoUrl: GLOBAL_VIDEO_URL,
+      features: ELITE_FEATURES,
+      isCustom: true
+    },
+    {
+      id: 'combo-max-custom-mj',
+      title: 'CUSTOM MJ + MAX 2.0',
+      subtitle: 'WINDOWS + ANDROID COMBO',
+      desc: 'Get a custom branded MJ companion for Windows desktop and MAX 2.0 for your Android device.',
+      price: 3299,
+      platform: Platform.COMBO,
+      variantName: 'CUSTOM + ANDROID',
+      videoUrl: GLOBAL_VIDEO_URL,
+      features: ELITE_FEATURES,
+      isCustom: true
     }
   ];
 

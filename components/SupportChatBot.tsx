@@ -30,7 +30,7 @@ const PREDEFINED_RULES = [
   },
   {
     keywords: ['payment', 'pay', 'money', 'fail', 'deducted', 'transaction', 'pending'],
-    answer: "💳 **Payment Issue?**\n\nDon't panic! Your money is safe.\n\n1. Take a screenshot of the payment.\n2. Email it to us at **novawroking1122@gmail.com** for immediate assistance."
+    answer: "💳 **Payment Issue?**\n\nDon't panic! Your money is safe.\n\n1. Take a screenshot of the payment.\n2. Email it to us at **vashaitechnologies@gmail.com** for immediate assistance."
   },
   {
     keywords: ['refund', 'return', 'cancel', 'money back'],
@@ -149,7 +149,7 @@ const SupportChatBot: React.FC = () => {
         // Fallback for 0% match
         botResponse = {
           id: Date.now() + 1,
-          text: formatResponse("🤔 I'm not sure about that.\n\nPlease email us at **novawroking1122@gmail.com** for detailed assistance."),
+          text: formatResponse("🤔 I'm not sure about that.\n\nPlease email us at **vashaitechnologies@gmail.com** for detailed assistance."),
           sender: 'bot',
           timestamp: new Date(),
           showWhatsAppButton: false

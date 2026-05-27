@@ -7,7 +7,7 @@ import ContactContent from './ContactContent';
 interface ProductDetailsPageProps {
   product: ProductData;
   onBack: () => void;
-  onPurchase: (price: number, currency: string) => void;
+  onPurchase: (price: number, currency: string, quantity: number) => void;
   onInternationalHelp: (country: string) => void;
   themeColor: string;
   onViewFeatures: () => void;
@@ -17,6 +17,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   const [redeemCode, setRedeemCode] = useState('');
   const [isRedeemed, setIsRedeemed] = useState(false);
   const [redeemError, setRedeemError] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   const isOfferDay = (() => {
     const now = Date.now();
@@ -38,6 +39,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   const getOfferPrice = () => {
     // 100k Celebration Theme logic (17th May 2026 00:00 to 18th May 2026 00:00 IST)
     if (isOfferDay) {
+      if (product.id === 'combo-max-custom-mj' || product.id === 'combo-max-custom-nova' || product.id === 'combo-custom-unified') return 2499;
       if (product.isCustom) return 1699;
       if (product.platform === 'combo') return 1499;
       if (product.platform === 'max') return 899; // keeping standard max offer
@@ -47,6 +49,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
     }
 
     // Normal Offer Prices
+    if (product.id === 'combo-max-custom-mj' || product.id === 'combo-max-custom-nova' || product.id === 'combo-custom-unified') return 2499;
     if (product.id === 'combo-max-vash' || product.id === 'combo-max-mj') return 1899;
     if (product.isCustom) return product.price - 500;
     if (product.platform === 'combo') return 1499;
@@ -55,10 +58,19 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
     return 899; // VASH
   };
 
-  const baseFinalPrice = isRedeemed ? getOfferPrice() : product.price;
+  const getBulkDiscount = (qty: number) => {
+    if (qty === 1) return 1;
+    if (qty === 2) return 0.90; // 10% off
+    if (qty >= 3) return 0.85; // 15% off
+    return 1;
+  };
+
+  const baseUnitFinalPrice = isRedeemed ? getOfferPrice() : product.price;
+  const bulkDiscount = getBulkDiscount(quantity);
+  const discountedUnitFinalPrice = Math.floor(baseUnitFinalPrice * bulkDiscount);
   
-  const displayFinalPrice = baseFinalPrice;
-  const displayOriginalPrice = product.price;
+  const displayFinalPrice = discountedUnitFinalPrice * quantity;
+  const displayOriginalPrice = product.price * quantity;
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
@@ -174,6 +186,37 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
                 {redeemError && <p className="text-red-400 text-[10px] font-bold uppercase mt-1">{redeemError}</p>}
               </div>
 
+              {/* Quantity Selector Section */}
+              <div className="flex items-center justify-between p-5 rounded-2xl border border-white/5 bg-white/[0.02]">
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Select Quantity</span>
+                  {quantity >= 2 ? (
+                    <span className="text-[9px] font-bold text-emerald-400 uppercase tracking-wider">
+                      {quantity === 2 ? '10% Bulk Discount Applied' : '15% Bulk Discount Applied'}
+                    </span>
+                  ) : (
+                    <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">
+                      Buy more, save more
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-3 bg-black border border-white/10 rounded-xl p-1">
+                  <button 
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors font-bold"
+                  >
+                    -
+                  </button>
+                  <span className="text-white font-bold w-4 text-center">{quantity}</span>
+                  <button 
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors font-bold"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
               {/* Price Highlight */}
               <div className="flex flex-col pt-5 border-t border-white/10">
                 {isOfferDay && isRedeemed && (
@@ -204,7 +247,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
               {/* Action Area */}
               <div className="flex flex-col gap-4 mt-2 border-t border-white/10 pt-6">
                 <button 
-                  onClick={() => onPurchase(displayFinalPrice, currentCurrency)}
+                  onClick={() => onPurchase(displayFinalPrice, currentCurrency, quantity)}
                   className="w-full py-4 md:py-4 rounded-xl font-medium text-[15px] transition-all bg-blue-600 hover:bg-blue-500 hover:shadow-lg text-white flex items-center justify-center gap-3 relative overflow-hidden group"
                 >
                   <Shield className="w-5 h-5 flex-shrink-0" />

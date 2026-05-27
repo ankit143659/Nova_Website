@@ -1,0 +1,88 @@
+===================================================
+WEBSITE ARCHITECTURE AND BUSINESS INFORMATION
+===================================================
+
+1. GENERAL INFORMATION
+---------------------------------------------------
+Company Name: VASH AI Technologies Pvt Ltd
+Brand Names: NOVA AI, MJ AI, MAX
+Owner / Point of Contact: Singh Ankit Vijay
+Email: vashaitechnologies@gmail.com
+Support/Admin Mobile: 9512194144, 917574821527
+Address: 218, Kimavati complex kim, 394110, Surat Gujarat
+
+2. BUSINESS WORKFLOW & PURPOSE
+---------------------------------------------------
+Purpose: We sell premium AI companion and system automation software (Nova, MJ, MAX) as digital software licenses.
+Target Platforms: Windows, Android, MacOS.
+Digital Delivery Workflow:
+  1) User selects their Operating System (Windows / Android / MacOS / Combo).
+  2) User picks an AI Model/Product (Nova, MJ, Unified Combo, or Custom).
+  3) User proceeds to the Product Details page where they can increase quantity (with bulk discounts) and apply redeem codes.
+  4) User clicks "Proceed to Secure Checkout".
+  5) Razorpay payment gateway opens up for Indian Rupees (INR) payment.
+  6) After successful payment, a Payment Form collects the customer's Name and Email.
+  7) An automated WhatsApp message is generated with the invoice and payment ID, directing the user to our WhatsApp numbers to receive their software (EXE/ZIP) and activation key within 5-15 minutes.
+
+3. PRODUCTS & PRICING
+---------------------------------------------------
+WINDOWS APP PLATFORMS:
+- Nova 7.0 (System Master): ₹1099 - Deep level system control and extreme automation protocols.
+- MJ v5 (Heart Edition): ₹1399 - Advanced Cognitive Intelligence, understands context and emotion.
+- Unified Combo (Dual Core): ₹1999 - Runs both Nova and MJ simultaneously.
+- Custom Branded AI: ₹2499 - White-label architecture, customize the core identity of MJ or Nova.
+
+ANDROID PLATFORMS:
+- MAX 2.0 Assistant: ₹1199 - On-the-go cognitive assistant with deep Android integration.
+
+MACOS PLATFORMS:
+- MJ v5 (MacOS Edition): ₹1599 - Natively compiled for Apple Silicon/macOS.
+
+MULTI-PLATFORM COMBOS (WINDOWS + ANDROID):
+- MAX 2.0 + Nova: ₹2699
+- MAX 2.0 + MJ: ₹2699
+- Custom Nova + MAX 2.0: ₹3299
+- Custom MJ + MAX 2.0: ₹3299
+- Custom Unified Combo (Custom MJ + Custom Nova): ₹3899 / ₹3299 (Offer specific)
+
+* Note: There is a bulk discount system built-in on the exact product checkout page:
+  - Buy 2: 10% Discount applied automatically
+  - Buy 3+: 15% Discount applied automatically
+
+4. TECHNICAL ARCHITECTURE & STACK
+---------------------------------------------------
+- Frontend Framework: React (Functional Components with hooks)
+- Language: TypeScript (.tsx / .ts files)
+- Styling: Tailwind CSS (Utility-first styling, heavy use of dark mode themes: blacks, neon blue #00f2ff, neon pinks, etc.)
+- Icons: Lucide React & FontAwesome
+- Payment Integration: Razorpay Checkout.js (key: rzp_live_OcHSFiDAu0iMZC)
+- Hosting / Environment: Vite + Node.js (Full Client Side SPA, likely hosted on a CDN or standard Node ingress with an `index.html` entry)
+
+5. PAGES / SCREENS ARCHITECTURE
+---------------------------------------------------
+Our architecture relies on a single-page app (SPA) approach using a dynamic state (`currentScreen`).
+Key screens included:
+1. WelcomeScreen
+2. MainSelectionScreen (Where OS and Ecosystems are selected)
+3. ProductOptionsScreen
+4. ProductDetailsPage (Shows product features, video trailers, bulk quantity discount, redeem code input, and "Buy" button)
+5. PaymentForm (Collects user info after payment and triggers WhatsApp redirection)
+6. Generic Pages / Legal Pages:
+   - About Us (About Nova AI)
+   - Contact Support
+   - Shipping Info (Digital Shipping policy)
+   - Delivery Policy (Distribution context)
+   - Refund Policy (Strict no refund after activation, 30 days before activation)
+   - Privacy Policy (Local-first processing focus)
+   - Terms of Service
+
+6. KEY COMPONENTS
+---------------------------------------------------
+- Header.tsx: Interactive navigation bar.
+- SupportChatBot.tsx: A floating widget using pre-programmed keywords to answer common queries (e.g., payments, refunds) and guide users to the support email (vashaitechnologies@gmail.com).
+
+7. UNIQUE PROPOSITIONS & POLICIES
+---------------------------------------------------
+- No Physical Shipping: All software assets (EXE/ZIP) and keys are digitally sent via WhatsApp.
+- Strict Activation Policy: Once the software key is used/activated, refunds are 100% prohibited.
+- Privacy-First: Emphasizing on-device data processing, ensuring user queries don't leave the machine without permission.

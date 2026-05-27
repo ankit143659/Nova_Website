@@ -47,6 +47,7 @@ export interface ProductData {
   platform: Platform;
   variantName?: string;
   isCustom?: boolean;
+  quantity?: number;
 }
 
 export interface UserDetails {

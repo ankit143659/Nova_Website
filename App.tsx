@@ -55,7 +55,7 @@ const App: React.FC = () => {
     navigateTo(AppScreen.OS_FEATURES);
   };
 
-  const startPayment = (finalPrice: number, currency: string = 'INR') => {
+  const startPayment = (finalPrice: number, currency: string = 'INR', quantity: number = 1) => {
     if (!activeProduct) return;
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -70,7 +70,7 @@ const App: React.FC = () => {
         description: `License for ${activeProduct.title}`,
         handler: function(response: any) {
           setPaymentId(response.razorpay_payment_id);
-          setActiveProduct({...activeProduct, price: finalPrice});
+          setActiveProduct({...activeProduct, price: finalPrice, quantity: quantity});
           navigateTo(AppScreen.PAYMENT_FORM);
         },
         theme: { color: themeColor }
@@ -95,7 +95,7 @@ const App: React.FC = () => {
 ─────────────────
 🆔 *Invoice:* ${invoiceNo}
 💳 *Payment ID:* ${paymentId}
-📦 *Product:* ${activeProduct.title} (${selectedOS?.toUpperCase()})
+📦 *Product:* ${activeProduct.title} (${selectedOS?.toUpperCase()})${activeProduct.quantity && activeProduct.quantity > 1 ? `\n🔢 *Quantity:* ${activeProduct.quantity}` : ''}
 💰 *Amount:* ₹${activeProduct.price}
 
 👤 *CUSTOMER DETAILS:*
@@ -136,19 +136,11 @@ const App: React.FC = () => {
           <div className="space-y-6">
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Email Support</span>
-              <span className="text-sm font-bold text-white">novawroking1122@gmail.com</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Owner Name</span>
-              <span className="text-sm font-bold text-white">Singh Ankit Vijay</span>
+              <span className="text-sm font-bold text-white">vashaitechnologies@gmail.com</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Address</span>
               <span className="text-sm text-text-secondary font-light">218, Kimavati complex kim, 394110, Surat Gujarat</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Mobile No</span>
-              <span className="text-sm font-bold text-primary">9512194144</span>
             </div>
             <div className="pt-6 border-t border-white/10 mt-6">
               <p className="text-xs text-text-secondary flex items-center gap-2">
@@ -326,7 +318,7 @@ const App: React.FC = () => {
           <ProductDetailsPage 
             product={activeProduct} 
             onBack={() => navigateTo(AppScreen.MAIN_SELECTION)}
-            onPurchase={startPayment}
+            onPurchase={(price, currency, qty) => startPayment(price, currency, qty)}
             themeColor={themeColor}
             onViewFeatures={() => navigateTo(AppScreen.FEATURES)}
           />

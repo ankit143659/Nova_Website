@@ -46,7 +46,7 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Email Support</span>
-              <span className="text-sm font-bold text-white">novawroking1122@gmail.com</span>
+              <span className="text-sm font-bold text-white">vashaitechnologies@gmail.com</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Address</span>
