@@ -29,6 +29,10 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onContinue, onExploreFeat
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 flex flex-col items-center text-center">
         
         <div className={`transition-all duration-1000 delay-300 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+          <div className="mb-10 w-48 h-48 md:w-64 md:h-64 mx-auto relative group">
+            <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-all duration-700"></div>
+            <img src="/welcome-logo.png" alt="VASH AI Welcome Logo" className="w-full h-full object-contain relative z-10 drop-shadow-2xl" />
+          </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8 backdrop-blur-xl shadow-[0_0_20px_rgba(255,255,255,0.05)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
