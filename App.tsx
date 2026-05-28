@@ -72,7 +72,8 @@ const App: React.FC = () => {
       screen = AppScreen.OS_FEATURES;
     } else {
       const screenMap: { [key: string]: AppScreen } = {
-        '/': AppScreen.HOME,
+        '/': AppScreen.WELCOME,
+        '/home': AppScreen.HOME,
         '/welcome': AppScreen.WELCOME,
         '/os': AppScreen.OS_SELECTION,
         '/features': AppScreen.FEATURES,
@@ -84,7 +85,7 @@ const App: React.FC = () => {
         '/privacy': AppScreen.PRIVACY,
         '/terms': AppScreen.TERMS,
       };
-      screen = screenMap[path] || AppScreen.HOME;
+      screen = screenMap[path] || AppScreen.WELCOME;
     }
     setCurrentScreen(screen);
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -92,8 +93,8 @@ const App: React.FC = () => {
 
   const navigateTo = (screen: AppScreen) => {
     const routes = {
-      [AppScreen.HOME]: '/',
-      [AppScreen.WELCOME]: '/welcome',
+      [AppScreen.HOME]: '/home',
+      [AppScreen.WELCOME]: '/',
       [AppScreen.OS_SELECTION]: '/os',
       [AppScreen.OS_FEATURES]: '/os-features',
       [AppScreen.MAIN_SELECTION]: '/platforms',
@@ -132,7 +133,7 @@ const App: React.FC = () => {
         key: 'rzp_live_OcHSFiDAu0iMZC',
         amount: Math.round(finalPrice * 100),
         currency: currency,
-        name: `VASH AI TECHNOLOGIES PVT LTD`,
+        name: `VASH AI TECHNOLOGIES PRIVATE LIMITED`,
         description: `License for ${activeProduct.title}`,
         handler: function(response: any) {
           setPaymentId(response.razorpay_payment_id);
@@ -202,7 +203,7 @@ const App: React.FC = () => {
           <div className="space-y-6">
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Email Support</span>
-              <span className="text-sm font-bold text-white">vashaitechnologies@gmail.com</span>
+              <span className="text-sm font-bold text-white">contact@novavoiceassistant.com</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Address</span>

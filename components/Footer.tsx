@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <button onClick={() => onNavigate(AppScreen.TERMS)} className="hover:text-white hover:scale-105 transition-all">Terms</button>
         </div>
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
-        <p className="tracking-wide opacity-70">&copy; {new Date().getFullYear()} VASH AI TECHNOLOGIES PVT LTD. All rights reserved.</p>
+        <p className="tracking-wide opacity-70">&copy; {new Date().getFullYear()} VASH AI TECHNOLOGIES PRIVATE LIMITED. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -4,12 +4,12 @@ WEBSITE ARCHITECTURE AND BUSINESS INFORMATION
 
 1. GENERAL INFORMATION
 ---------------------------------------------------
-Company Name: VASH AI Technologies Pvt Ltd
+Company Name: VASH AI Technologies Private Limited
 Brand Names: NOVA AI, MJ AI, MAX
 Owner / Point of Contact: Singh Ankit Vijay
-Email: vashaitechnologies@gmail.com
+Email: contact@novavoiceassistant.com
 Support/Admin Mobile: 9512194144, 917574821527
-Address: 218, Kimavati complex kim, 394110, Surat Gujarat
+Address: 218 kimavati complex kim, near lic office Surat, Kim, Olpad, Surat- 394110, Gujarat
 
 2. BUSINESS WORKFLOW & PURPOSE
 ---------------------------------------------------
@@ -79,7 +79,7 @@ Key screens included:
 6. KEY COMPONENTS
 ---------------------------------------------------
 - Header.tsx: Interactive navigation bar.
-- SupportChatBot.tsx: A floating widget using pre-programmed keywords to answer common queries (e.g., payments, refunds) and guide users to the support email (vashaitechnologies@gmail.com).
+- SupportChatBot.tsx: A floating widget using pre-programmed keywords to answer common queries (e.g., payments, refunds) and guide users to the support email (contact@novavoiceassistant.com).
 
 7. UNIQUE PROPOSITIONS & POLICIES
 ---------------------------------------------------

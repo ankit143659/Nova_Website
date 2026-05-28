@@ -49,20 +49,20 @@ const AboutContent: React.FC = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {team.map((member, idx) => (
-             <div key={idx} className="glass-card rounded-[1.5rem] p-6 text-center group border border-white/5 hover:border-white/20 transition-all hover:-translate-y-2 shadow-lg">
+             <div key={idx} className="p-2 text-center group relative flex flex-col items-center justify-start transition-all hover:-translate-y-2">
                {member.img ? (
-                 <div className="w-28 h-28 mx-auto rounded-full mb-6 overflow-hidden bg-[#050505] group-hover:scale-105 transition-transform duration-700 border-2 border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                 <div className="w-36 h-36 md:w-48 md:h-48 rounded-full mb-6 overflow-hidden group-hover:scale-[1.03] transition-transform duration-700 shadow-2xl ring-1 ring-white/5 group-hover:ring-white/20 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]">
                    <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(member.name) + '&background=random&color=fff&size=512' }} />
                  </div>
                ) : (
-                 <div className="w-28 h-28 mx-auto rounded-full mb-6 border-2 border-white/10 flex items-center justify-center shadow-lg transition-colors duration-500 bg-[#0a0a0b] group-hover:bg-indigo-500/10">
-                   <span className="text-3xl font-display font-medium text-indigo-300/40 group-hover:text-indigo-400 group-hover:scale-110 transition-all duration-700">
+                 <div className="w-36 h-36 md:w-48 md:h-48 rounded-full mb-6 border border-white/10 flex items-center justify-center shadow-lg transition-colors duration-500 bg-transparent group-hover:bg-white/[0.02]">
+                   <span className="text-3xl md:text-4xl font-display font-medium text-white/20 group-hover:text-white/40 group-hover:scale-110 transition-all duration-700">
                      {member.name.split(' ').map(n => n[0]).join('')}
                    </span>
                  </div>
                )}
-               <h4 className="text-xl font-display font-medium text-white mb-2">{member.name}</h4>
-               <p className="text-indigo-400/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-3">{member.role}</p>
+               <h4 className="text-lg md:text-xl lg:text-2xl font-display font-medium text-white mb-2 tracking-tight group-hover:text-blue-50 transition-colors">{member.name}</h4>
+               <p className="text-blue-400/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4">{member.role}</p>
                <p className="text-gray-500 text-sm font-light leading-relaxed hidden sm:block">{member.desc}</p>
              </div>
           ))}

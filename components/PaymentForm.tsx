@@ -171,7 +171,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
                 Authorize & Secure Registration
               </button>
               <p className="text-center text-xs text-gray-500 font-medium flex items-center justify-center gap-2 mt-6">
-                <Building className="w-4 h-4" /> VASH AI TECHNOLOGIES PVT LTD Official Portal
+                <Building className="w-4 h-4" /> VASH AI TECHNOLOGIES PRIVATE LIMITED Official Portal
               </p>
             </form>
           </div>

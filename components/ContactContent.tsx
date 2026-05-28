@@ -48,15 +48,19 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
           <div className="space-y-6">
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Company</span>
-              <span className="text-sm font-bold text-white">VASH AI TECHNOLOGIES PVT LTD</span>
+              <span className="text-sm font-bold text-white">VASH AI TECHNOLOGIES PRIVATE LIMITED</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">CIN</span>
+              <span className="text-sm font-bold text-gray-300">U62013GJ2026PTC178522</span>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Email Support</span>
-              <span className="text-sm font-bold text-white">vashaitechnologies@gmail.com</span>
+              <span className="text-sm font-bold text-white">contact@novavoiceassistant.com</span>
             </div>
             <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Address</span>
-              <span className="text-sm text-gray-400 font-light">218, Kimavati complex kim, 394110, Surat Gujarat</span>
+              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Registered Office</span>
+              <span className="text-sm text-gray-400 font-light">218 kimavati complex kim, near lic office Surat, Kim, Olpad, Surat- 394110, Gujarat</span>
             </div>
             {isHomePage && (
               <div className="flex flex-col gap-1 mt-4 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">

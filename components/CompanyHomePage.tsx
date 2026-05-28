@@ -29,14 +29,14 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
         <div className={`text-center max-w-[1200px] mx-auto px-6 mb-16 md:mb-32 pt-10 md:pt-16 transition-all duration-1000 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
           <div className="inline-flex items-center gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full border border-blue-500/20 bg-blue-500/5 mb-8 md:mb-10 backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.1)]">
             <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
-            <span className="text-[10px] md:text-xs font-bold text-blue-200 tracking-[0.2em] uppercase">VASH AI TECHNOLOGIES PVT LTD</span>
+            <span className="text-[10px] md:text-xs font-bold text-blue-200 tracking-[0.2em] uppercase">VASH AI TECHNOLOGIES PRIVATE LIMITED</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white mb-6 md:mb-10 leading-tight">
-            The Next Generation of <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-lg">Cognitive Intelligence</span>
-          </h2>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white mb-6 md:mb-10 leading-tight">
+            AI Voice Assistant for <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-lg">Windows & Android Automation</span>
+          </h1>
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10 md:mb-12 max-w-3xl mx-auto px-2">
-            We specialize in building secure, automated, and highly customized AI ecosystems for a digital-first world. Driving operational excellence seamlessly.
+            Control your PC and smartphone using voice commands. Automate tasks, open apps, send messages, manage notifications, and interact with AI naturally using Nova AI Assistant by VASH AI Technologies.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
              <button 
@@ -44,19 +44,27 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-[15px] transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] w-full sm:w-auto overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Explore Products
+                  Download Now
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
             <a 
-              href="https://instagram.com/vash_voice_assistant" 
+              href="https://www.youtube.com/embed/uQo_LHobvCM?si=3MEx7Ug12pUIrsOO" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white rounded-full font-medium text-[15px] transition-all w-full sm:w-auto backdrop-blur-md group"
             >
-              <ImageIcon className="w-5 h-5 text-pink-400 group-hover:scale-110 group-hover:-rotate-6 transition-transform" />
-              Follow on Instagram
+              <PlayCircle className="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform" />
+              Watch Demo
             </a>
+            <button 
+                onClick={() => {
+                   document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent text-white rounded-full font-medium text-[15px] transition-all hover:text-blue-300 w-full sm:w-auto"
+              >
+                Explore Features
+              </button>
           </div>
         </div>
 
@@ -339,22 +347,22 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
               { name: 'Harsh Ghatad', role: 'Lead AI Eng.', desc: 'Developing logic layers and training sets.', img: '/harsh.jpg' },
               { name: 'Vishal Chauhan', role: 'Head of Marketing & Sales', desc: 'Expanding global market presence.', img: '/vishal.jpg' }
             ].map((member, idx) => (
-              <div key={idx} className="glass-card rounded-2xl p-6 text-center group relative overflow-hidden flex flex-col justify-start border border-white/5 hover:border-white/20 transition-all hover:-translate-y-1">
+              <div key={idx} className="p-2 text-center group relative flex flex-col items-center justify-start transition-all hover:-translate-y-2">
                 {member.img ? (
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full mb-6 overflow-hidden bg-[#050505] group-hover:scale-105 transition-transform duration-700 border border-white/10 shadow-lg">
+                  <div className="relative w-36 h-36 md:w-48 md:h-48 rounded-full mb-6 overflow-hidden group-hover:scale-[1.03] transition-transform duration-700 shadow-2xl ring-1 ring-white/5 group-hover:ring-white/20 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]">
                     <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(member.name) + '&background=random&color=fff&size=512' }} />
                   </div>
                 ) : (
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full mb-6 border border-white/10 flex items-center justify-center shadow-lg transition-colors duration-500 bg-[#0a0a0b] group-hover:bg-indigo-500/10">
-                    <span className="text-2xl md:text-3xl font-display font-medium text-indigo-300/30 group-hover:scale-110 group-hover:text-indigo-400 transition-all duration-700 tracking-widest">
+                  <div className="relative w-36 h-36 md:w-48 md:h-48 rounded-full mb-6 border border-white/10 flex items-center justify-center shadow-lg transition-colors duration-500 bg-transparent group-hover:bg-white/[0.02]">
+                    <span className="text-3xl md:text-4xl font-display font-medium text-white/20 group-hover:scale-110 group-hover:text-white/40 transition-all duration-700 tracking-widest">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                 )}
                 
-                <div className="relative z-10 w-full">
-                  <h4 className="text-base md:text-lg lg:text-xl font-display font-medium text-white mb-1 tracking-tight">{member.name}</h4>
-                  <p className="text-indigo-400/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2">
+                <div className="relative z-10 w-full flex flex-col items-center">
+                  <h4 className="text-lg md:text-xl lg:text-2xl font-display font-medium text-white mb-2 tracking-tight group-hover:text-blue-50 transition-colors">{member.name}</h4>
+                  <p className="text-blue-400/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4">
                     {member.role}
                   </p>
                   <p className="text-gray-500 text-[10px] md:text-xs font-light leading-relaxed hidden sm:block">
