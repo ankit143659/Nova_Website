@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getDatabase, ref, push, get, child, serverTimestamp, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyD6gkH5ft7bPCAqsJtD8fQAJ_96NAoz3gg",
@@ -13,17 +13,39 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const db = getDatabase(app);
 
 export const submitQuery = async (data: { name: string, email: string, phone: string, message: string }) => {
   try {
-    const docRef = await addDoc(collection(db, "queries"), {
+    const today = new Date().toISOString().split('T')[0];
+    const userRefKey = data.phone.replace(/[^0-9]/g, '') + "_" + data.email.replace(/[\.\#\$\[\]]/g, '_');
+    const userLimitsRef = ref(db, `rate_limits/${userRefKey}/${today}`);
+    
+    const snapshot = await get(userLimitsRef);
+    let count = snapshot.exists() ? snapshot.val().count : 0;
+    
+    if (count >= 3) {
+      return { success: false, error: "Daily limit exceeded. You can only submit 3 queries per day." };
+    }
+    
+    // Add the query with query_solve key set to false
+    const queriesRef = ref(db, 'queries');
+    const newQueryRef = push(queriesRef);
+    await set(newQueryRef, {
       ...data,
-      timestamp: new Date().toISOString()
+      query_solve: false,
+      timestamp: serverTimestamp()
     });
-    return { success: true, id: docRef.id };
-  } catch (e) {
+    
+    // Increment the limit count
+    await set(userLimitsRef, {
+      count: count + 1
+    });
+
+    return { success: true, id: newQueryRef.key };
+  } catch (e: any) {
     console.error("Error adding document: ", e);
-    return { success: false, error: e };
+    return { success: false, error: e.message || "Failed to submit query" };
   }
 };
+

@@ -51,7 +51,7 @@ const AboutContent: React.FC = () => {
           {team.map((member, idx) => (
              <div key={idx} className="glass-card rounded-[1.5rem] p-6 text-center group border border-white/5 hover:border-white/20 transition-all hover:-translate-y-2 shadow-lg">
                {member.img ? (
-                 <div className="w-28 h-28 mx-auto rounded-full mb-6 overflow-hidden bg-[#050505] group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0 border-2 border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                 <div className="w-28 h-28 mx-auto rounded-full mb-6 overflow-hidden bg-[#050505] group-hover:scale-105 transition-transform duration-700 border-2 border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
                    <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(member.name) + '&background=random&color=fff&size=512' }} />
                  </div>
                ) : (

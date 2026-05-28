@@ -9,10 +9,12 @@ interface ContactContentProps {
 const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', phone: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMessage('');
     const res = await submitQuery(formData);
     if (res.success) {
       setStatus('success');
@@ -20,7 +22,11 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
       setTimeout(() => setStatus('idle'), 3000);
     } else {
       setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
+      setErrorMessage(typeof res.error === 'string' ? res.error : 'Failed to submit query. Please try again.');
+      setTimeout(() => {
+        setStatus('idle');
+        setErrorMessage('');
+      }, 5000);
     }
   };
 
@@ -102,8 +108,15 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
               <textarea required rows={4} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Please describe your inquiry in detail..." className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all resize-none placeholder:text-gray-500"></textarea>
             </div>
             <button disabled={status === 'loading'} type="submit" className="w-full py-4 text-white font-bold text-sm tracking-wide rounded-xl hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all mt-4 bg-blue-600 hover:bg-blue-500 disabled:opacity-70">
-              {status === 'loading' ? 'Sending...' : status === 'success' ? 'Query Submitted Successfully!' : status === 'error' ? 'Error Submitting Query' : 'Submit Inquiry'}
+              {status === 'loading' ? 'Sending...' : status === 'success' ? 'Query Submitted Successfully!' : 'Submit Inquiry'}
             </button>
+            {status === 'error' && (
+              <div className="mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-center">
+                <span className="text-sm font-medium text-red-400">
+                  {errorMessage}
+                </span>
+              </div>
+            )}
           </form>
         </div>
       </section>

@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AppScreen, Platform, ProductData, UserDetails, OSType } from './types';
 import Header from './components/Header';
 import WelcomeScreen from './components/WelcomeScreen';
@@ -22,11 +23,16 @@ import DeliveryContent from './components/DeliveryContent';
 import ShippingContent from './components/ShippingContent';
 import RefundContent from './components/RefundContent';
 
+import { allProducts } from './products';
+
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<AppScreen>(AppScreen.WELCOME);
   const [selectedOS, setSelectedOS] = useState<OSType>(null);
   const [activeProduct, setActiveProduct] = useState<ProductData | null>(null);
   const [paymentId, setPaymentId] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const getThemeColor = (platform: Platform | null) => {
     switch(platform) {
@@ -45,9 +51,69 @@ const App: React.FC = () => {
     document.documentElement.style.setProperty('--primary-theme', themeColor);
   }, [themeColor]);
 
-  const navigateTo = (screen: AppScreen) => {
+  useEffect(() => {
+    const path = location.pathname;
+    let screen = AppScreen.WELCOME;
+
+    if (path.startsWith('/product/')) {
+      const id = path.split('/product/')[1];
+      const prod = allProducts.find(p => p.id === id);
+      if (prod) {
+        setActiveProduct(prod);
+        screen = AppScreen.PRODUCT_DETAILS;
+      } else {
+        screen = AppScreen.HOME;
+      }
+    } else if (path === '/checkout') {
+      screen = AppScreen.PAYMENT_FORM;
+    } else if (path === '/platforms') {
+      screen = AppScreen.MAIN_SELECTION;
+    } else if (path === '/os-features') {
+      screen = AppScreen.OS_FEATURES;
+    } else {
+      const screenMap: { [key: string]: AppScreen } = {
+        '/': AppScreen.HOME,
+        '/welcome': AppScreen.WELCOME,
+        '/os': AppScreen.OS_SELECTION,
+        '/features': AppScreen.FEATURES,
+        '/contact': AppScreen.CONTACT,
+        '/about': AppScreen.ABOUT,
+        '/distribution': AppScreen.DISTRIBUTION,
+        '/shipping': AppScreen.SHIPPING,
+        '/refund': AppScreen.REFUND,
+        '/privacy': AppScreen.PRIVACY,
+        '/terms': AppScreen.TERMS,
+      };
+      screen = screenMap[path] || AppScreen.HOME;
+    }
     setCurrentScreen(screen);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [location.pathname]);
+
+  const navigateTo = (screen: AppScreen) => {
+    const routes = {
+      [AppScreen.HOME]: '/',
+      [AppScreen.WELCOME]: '/welcome',
+      [AppScreen.OS_SELECTION]: '/os',
+      [AppScreen.OS_FEATURES]: '/os-features',
+      [AppScreen.MAIN_SELECTION]: '/platforms',
+      [AppScreen.FEATURES]: '/features',
+      [AppScreen.CONTACT]: '/contact',
+      [AppScreen.ABOUT]: '/about',
+      [AppScreen.DISTRIBUTION]: '/distribution',
+      [AppScreen.SHIPPING]: '/shipping',
+      [AppScreen.REFUND]: '/refund',
+      [AppScreen.PRIVACY]: '/privacy',
+      [AppScreen.TERMS]: '/terms',
+      [AppScreen.PAYMENT_FORM]: '/checkout',
+    };
+    
+    if (screen === AppScreen.PRODUCT_DETAILS && activeProduct) {
+       navigate(`/product/${activeProduct.id}`);
+    } else {
+       const p = routes[screen as keyof typeof routes] || '/';
+       navigate(p);
+    }
   };
 
   const handleOSSelect = (os: OSType) => {

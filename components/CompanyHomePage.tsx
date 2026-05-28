@@ -341,7 +341,7 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
             ].map((member, idx) => (
               <div key={idx} className="glass-card rounded-2xl p-6 text-center group relative overflow-hidden flex flex-col justify-start border border-white/5 hover:border-white/20 transition-all hover:-translate-y-1">
                 {member.img ? (
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full mb-6 overflow-hidden bg-[#050505] group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0 border border-white/10 shadow-lg">
+                  <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full mb-6 overflow-hidden bg-[#050505] group-hover:scale-105 transition-transform duration-700 border border-white/10 shadow-lg">
                     <img src={member.img} alt={member.name} className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(member.name) + '&background=random&color=fff&size=512' }} />
                   </div>
                 ) : (

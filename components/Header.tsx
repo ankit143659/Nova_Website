@@ -33,11 +33,11 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
           className="flex items-center gap-3 cursor-pointer group shrink-0"
           onClick={() => onNavigate(AppScreen.HOME)}
         >
-          <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden transition-all duration-300">
+          <div className="w-10 h-10 flex items-center justify-center overflow-hidden transition-all duration-300">
             {!logoError ? (
               <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
             ) : (
-              <Cpu className="w-4 h-4 text-blue-500" />
+              <Cpu className="w-5 h-5 text-blue-500" />
             )}
           </div>
           <span className="font-display font-bold tracking-tight text-white text-sm md:text-base">
@@ -79,11 +79,11 @@ const Header: React.FC<HeaderProps> = ({ currentScreen, onNavigate, themeColor }
         <div className="lg:hidden fixed inset-0 z-[100] bg-[#000000]/95 backdrop-blur-2xl animate-in fade-in duration-300 flex flex-col">
           <div className="flex justify-between items-center px-4 h-16 md:h-20 border-b border-white/[0.05]">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl flex items-center justify-center bg-blue-500/10 border border-blue-500/20 overflow-hidden">
+              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
                 {!logoError ? (
                   <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
                 ) : (
-                  <Cpu className="w-4 h-4 text-blue-500" />
+                  <Cpu className="w-5 h-5 text-blue-500" />
                 )}
               </div>
               <span className="font-display font-bold tracking-tight text-white text-sm">

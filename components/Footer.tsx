@@ -13,11 +13,11 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <footer className="mt-12 py-10 md:py-16 border-t border-white/10 text-center text-text-secondary text-sm bg-black/40">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center overflow-hidden mb-4 transition-all duration-300">
+          <div className="w-14 h-14 flex items-center justify-center overflow-hidden mb-4 transition-all duration-300">
             {!logoError ? (
               <img src="/logo.png" alt="VASH AI Logo" className="w-full h-full object-contain" onError={() => setLogoError(true)} />
             ) : (
-              <Cpu className="w-6 h-6 text-blue-500" />
+              <Cpu className="w-7 h-7 text-blue-500" />
             )}
           </div>
           <span className="font-display font-bold tracking-widest text-white text-lg uppercase">
