@@ -152,9 +152,7 @@ const App: React.FC = () => {
     if (!activeProduct || !paymentId) return;
     const invoiceNo = `ELITE-${Date.now().toString().slice(-6)}`;
     
-    // Custom products go to special numbers, others random
-    const phones = ["919512194144", "917574821527"];
-    const targetPhone = activeProduct.isCustom ? "919512194144" : phones[Math.floor(Math.random() * phones.length)];
+    const targetPhone = "917698534273";
     
     let message = `Hello! I just purchased ${activeProduct.title}.
 
@@ -168,7 +166,8 @@ const App: React.FC = () => {
 👤 *CUSTOMER DETAILS:*
 ─────────────────
 📛 *Name:* ${details.name}
-📧 *Email:* ${details.email}`;
+📧 *Email:* ${details.email}
+📞 *Phone:* ${details.phone}`;
 
     if (activeProduct.isCustom && details.desiredAiName) {
       message += `\n\n🤖 *CUSTOM BUILD REQUEST:*

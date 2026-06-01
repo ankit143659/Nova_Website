@@ -53,6 +53,7 @@ export interface ProductData {
 export interface UserDetails {
   name: string;
   email: string;
+  phone: string;
   desiredAiName?: string;
   baseAiChoice?: 'MJ' | 'VASH';
 }

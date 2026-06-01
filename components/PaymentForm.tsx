@@ -16,6 +16,7 @@ interface PaymentFormProps {
 const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentId, isCustomProduct, onSubmit, themeColor }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [aiName, setAiName] = useState('');
   const [baseAiChoice, setBaseAiChoice] = useState<'MJ' | 'VASH'>('VASH');
   const [mounted, setMounted] = useState(false);
@@ -27,8 +28,8 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isCustomProduct && !aiName) return;
-    if (!name || !email) return;
-    onSubmit({ name, email, desiredAiName: aiName, baseAiChoice });
+    if (!name || !email || !phone) return;
+    onSubmit({ name, email, phone, desiredAiName: aiName, baseAiChoice });
   };
 
   return (
@@ -142,6 +143,21 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ productTitle, price, paymentI
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="admin@company.com"
+                        className="w-full bg-[#050505] border border-white/10 rounded-2xl pl-12 pr-5 py-4 text-white outline-none transition-all text-sm focus:border-blue-500/50 focus:bg-blue-500/5 placeholder:text-gray-700 font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Phone Number</label>
+                    <div className="relative">
+                      <MessageCircle className="w-5 h-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                      <input 
+                        required
+                        type="tel" 
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+91 9876543210"
                         className="w-full bg-[#050505] border border-white/10 rounded-2xl pl-12 pr-5 py-4 text-white outline-none transition-all text-sm focus:border-blue-500/50 focus:bg-blue-500/5 placeholder:text-gray-700 font-medium"
                       />
                     </div>
