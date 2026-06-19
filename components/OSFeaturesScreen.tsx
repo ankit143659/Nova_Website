@@ -24,8 +24,11 @@ const ANDROID_FEATURES = [
     ]
   },
   {
-    category: "Camera",
+    category: "Camera & Vision (Max 3.0)",
     items: [
+      { title: "Screen Analysis", desc: "Instantly analyze whatever is visible on your screen." },
+      { title: "Camera Analysis", desc: "Live camera vision to understand your physical surroundings." },
+      { title: "Security Capture", desc: "Takes a photo automatically if someone else peaks at the screen when active." },
       { title: "Take Photo", desc: "Capture a photo hands-free." },
       { title: "Open Camera", desc: "Launch the camera app immediately." },
       { title: "Click Shutter", desc: "Click a photo if the camera is already open." },
@@ -133,8 +136,8 @@ const OSFeaturesScreen: React.FC<OSFeaturesScreenProps> = ({ os, onBack, onConti
 
   const headerTitle = isAndroid ? 'Android Engine Capabilities' : (os === 'mac' ? 'macOS Engine Capabilities' : 'Windows Engine Capabilities');
   const headerDesc = isAndroid 
-    ? 'Discover the absolute power of MAX 2.0. Deep system hooks allow for true autonomous device control directly from your pocket.'
-    : 'Explore the vast and unrestricted system-level permissions our Desktop Cognitive Engines possess.';
+    ? 'Discover the absolute power of MAX 3.0. Deep system hooks allow for true autonomous device control directly from your pocket. Now with advanced camera vision and AI screen analysis.'
+    : 'Explore the vast and unrestricted system-level permissions our Desktop Cognitive Engines possess. Now including chat support, voice authentication, and image analysis.';
 
   return (
     <div className="animate-in fade-in duration-700 pb-32">
@@ -200,7 +203,7 @@ const OSFeaturesScreen: React.FC<OSFeaturesScreenProps> = ({ os, onBack, onConti
               onClick={onContinue}
               className="w-full sm:w-auto px-8 py-4 lg:py-4 rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold text-sm tracking-widest flex flex-col items-center justify-center hover:scale-105 active:scale-95 transition-all outline-none shadow-[0_0_30px_rgba(16,185,129,0.3)] ring-1 ring-[#34d399]/40"
             >
-              <span className="uppercase tracking-[0.2em] text-xs font-black">Download MAX 2.0</span>
+              <span className="uppercase tracking-[0.2em] text-xs font-black">Download MAX 3.0</span>
             </button>
           ) : (
             <button 

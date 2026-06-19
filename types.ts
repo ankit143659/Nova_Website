@@ -55,5 +55,5 @@ export interface UserDetails {
   email: string;
   phone: string;
   desiredAiName?: string;
-  baseAiChoice?: 'MJ' | 'VASH';
+  baseAiChoice?: 'MJ' | 'NOVA';
 }

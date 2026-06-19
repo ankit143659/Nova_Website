@@ -7,7 +7,7 @@ interface ContactContentProps {
 }
 
 const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', phone: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', phone: '', assistantType: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -18,7 +18,7 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
     const res = await submitQuery(formData);
     if (res.success) {
       setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '', phone: '' });
+      setFormData({ name: '', email: '', subject: '', message: '', phone: '', assistantType: '' });
       setTimeout(() => setStatus('idle'), 3000);
     } else {
       setStatus('error');
@@ -62,6 +62,11 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
               <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Registered Office</span>
               <span className="text-sm text-gray-400 font-light">218 kimavati complex kim, near lic office Surat, Kim, Olpad, Surat- 394110, Gujarat</span>
             </div>
+            <div className="flex flex-col gap-1 mt-4">
+              <span className="text-xs font-medium text-gray-500 uppercase tracking-wider">Grievances & Nodal Officer</span>
+              <span className="text-sm text-gray-400 font-light">Name: PRAVEEN PARIHAR<br/>Email: contact@novavoiceassistant.com</span>
+              <span className="text-xs text-blue-400 mt-1">We guarantee complaint resolution within D+4 business days (D is the date of receipt).</span>
+            </div>
             {isHomePage && (
               <div className="flex flex-col gap-1 mt-4 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
                 <span className="text-sm font-medium text-blue-400 leading-relaxed">
@@ -96,6 +101,16 @@ const ContactContent: React.FC<ContactContentProps> = ({ isHomePage = false }) =
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-gray-400 ml-1">Phone Number *</label>
               <input required type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-gray-500" placeholder="+91 9876543210" />
+            </div>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-gray-400 ml-1">Assistant Type *</label>
+              <select required value={formData.assistantType} onChange={e => setFormData({...formData, assistantType: e.target.value})} className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all [&>option]:bg-[#111] [&>option]:text-white">
+                <option value="" disabled>Select an assistant</option>
+                <option value="nova">NOVA Assistant</option>
+                <option value="mj">MJ Assistant</option>
+                <option value="max">Max Assistant</option>
+                <option value="other">Not Sure / Other</option>
+              </select>
             </div>
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-gray-400 ml-1">Subject *</label>

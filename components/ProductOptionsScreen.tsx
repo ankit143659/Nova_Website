@@ -16,7 +16,7 @@ const ProductOptionsScreen: React.FC<ProductOptionsScreenProps> = ({ platform, o
   const [error, setError] = useState('');
 
   const handleApplyCode = () => {
-    if (code.trim().toUpperCase() === 'NOVA2025') {
+    if (code.trim().toUpperCase() === 'VASHAI26') {
       setDiscountApplied(true);
       setError('');
     } else {

@@ -6,7 +6,7 @@ const GLOBAL_VIDEO_URL = "https://www.youtube.com/embed/uQo_LHobvCM?si=3MEx7Ug12
 export const winProducts: ProductData[] = [
   {
     id: 'mj-windows',
-    title: 'MJ v5',
+    title: 'MJ v6',
     subtitle: 'HEART EDITION',
     desc: 'Advanced Cognitive Intelligence. A sentient companion that understands context and emotion.',
     price: 1399,
@@ -17,7 +17,7 @@ export const winProducts: ProductData[] = [
   },
   {
     id: 'vash-windows',
-    title: 'Nova 7.0',
+    title: 'Nova 8.0',
     subtitle: 'SYSTEM MASTER',
     desc: 'The Ultimate Autonomous Engine. Deep level system control and extreme automation protocols.',
     price: 1099,
@@ -66,7 +66,7 @@ export const winProducts: ProductData[] = [
 export const androidProducts: ProductData[] = [
   {
     id: 'max-android',
-    title: 'MAX 2.0 Assistant',
+    title: 'MAX 3.0 Assistant',
     subtitle: 'PORTABLE INTELLIGENCE',
     desc: 'Your on-the-go cognitive assistant optimized for Android architecture and mobile workflows.',
     price: 1199,
@@ -84,7 +84,7 @@ export const androidProducts: ProductData[] = [
 export const macProducts: ProductData[] = [
   {
     id: 'mj-macos',
-    title: 'MJ v5',
+    title: 'MJ v6',
     subtitle: 'MACOS EDITION',
     desc: 'Advanced Cognitive Intelligence natively compiled for Apple Silicon and macOS environments.',
     price: 1599,
@@ -98,9 +98,9 @@ export const macProducts: ProductData[] = [
 export const comboWinAndProducts: ProductData[] = [
   {
     id: 'combo-max-vash',
-    title: 'MAX 2.0 + Nova',
+    title: 'MAX 3.0 + Nova',
     subtitle: 'WINDOWS + ANDROID COMBO',
-    desc: 'Ultimate control anywhere. Get Nova for Windows desktop and MAX 2.0 for your Android device in one unified package.',
+    desc: 'Ultimate control anywhere. Get Nova for Windows desktop and MAX 3.0 for your Android device in one unified package.',
     price: 2699,
     platform: Platform.COMBO,
     variantName: 'WIN + ANDROID',
@@ -109,9 +109,9 @@ export const comboWinAndProducts: ProductData[] = [
   },
   {
     id: 'combo-max-mj',
-    title: 'MAX 2.0 + MJ',
+    title: 'MAX 3.0 + MJ',
     subtitle: 'WINDOWS + ANDROID COMBO',
-    desc: 'Creative intelligence meets portable autonomy. Get MJ for Windows desktop and MAX 2.0 for your Android device.',
+    desc: 'Creative intelligence meets portable autonomy. Get MJ for Windows desktop and MAX 3.0 for your Android device.',
     price: 2699,
     platform: Platform.COMBO,
     variantName: 'WIN + ANDROID',
@@ -120,9 +120,9 @@ export const comboWinAndProducts: ProductData[] = [
   },
   {
     id: 'combo-max-custom-nova',
-    title: 'CUSTOM NOVA + MAX 2.0',
+    title: 'CUSTOM NOVA + MAX 3.0',
     subtitle: 'WINDOWS + ANDROID COMBO',
-    desc: 'Get a custom branded Nova engine for Windows desktop and MAX 2.0 for your Android device.',
+    desc: 'Get a custom branded Nova engine for Windows desktop and MAX 3.0 for your Android device.',
     price: 3299,
     platform: Platform.COMBO,
     variantName: 'CUSTOM + ANDROID',
@@ -132,9 +132,9 @@ export const comboWinAndProducts: ProductData[] = [
   },
   {
     id: 'combo-max-custom-mj',
-    title: 'CUSTOM MJ + MAX 2.0',
+    title: 'CUSTOM MJ + MAX 3.0',
     subtitle: 'WINDOWS + ANDROID COMBO',
-    desc: 'Get a custom branded MJ companion for Windows desktop and MAX 2.0 for your Android device.',
+    desc: 'Get a custom branded MJ companion for Windows desktop and MAX 3.0 for your Android device.',
     price: 3299,
     platform: Platform.COMBO,
     variantName: 'CUSTOM + ANDROID',

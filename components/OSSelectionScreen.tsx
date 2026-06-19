@@ -84,7 +84,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-3xl font-display font-bold text-white mb-2 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(16,185,129,0.2)]">Android Mobile</h3>
               <p className="text-emerald-500/70 text-base md:text-lg font-light leading-relaxed group-hover:text-emerald-400 transition-colors mb-4">
-                Get the powerful MAX 2.0 assistant right on your Android phone. Portable and fast.
+                Get the powerful MAX 3.0 assistant right on your Android phone. Portable and fast.
               </p>
               <div className="inline-flex items-center gap-2 text-emerald-400 text-sm font-bold uppercase tracking-widest group-hover:gap-4 transition-all duration-300">
                 Explore Products <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
@@ -112,7 +112,7 @@ const OSSelectionScreen: React.FC<OSSelectionScreenProps> = ({ onSelectOS }) => 
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-3xl font-display font-bold text-white mb-2 tracking-tight group-hover:translate-x-1 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(245,158,11,0.2)]">Combo (Windows + Android)</h3>
               <p className="text-amber-500/70 text-base md:text-lg font-light leading-relaxed group-hover:text-amber-500 transition-colors mb-4">
-                Get everything in one package. Access all our Windows bots plus the MAX 2.0 Android app at a great price.
+                Get everything in one package. Access all our Windows bots plus the MAX 3.0 Android app at a great price.
               </p>
               <div className="inline-flex items-center gap-2 text-amber-500 text-sm font-bold uppercase tracking-widest group-hover:gap-4 transition-all duration-300">
                 Explore Products <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>

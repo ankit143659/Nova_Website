@@ -10,6 +10,17 @@ interface CompanyHomePageProps {
 const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => {
   const [mounted, setMounted] = useState(false);
 
+  const [hasClickedDownloadFirstTime, setHasClickedDownloadFirstTime] = useState(false);
+
+  const handleDownloadClick = () => {
+    if (!hasClickedDownloadFirstTime) {
+      setHasClickedDownloadFirstTime(true);
+      document.getElementById('video-guide-section')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      onViewProducts();
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -31,20 +42,27 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
             <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />
             <span className="text-[10px] md:text-xs font-bold text-blue-200 tracking-[0.2em] uppercase">VASH AI TECHNOLOGIES PRIVATE LIMITED</span>
           </div>
+          <div className="inline-flex flex-wrap justify-center items-center gap-2 mb-6 md:mb-8 font-mono text-xs font-medium text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 rounded-lg">
+            <span>🚀 NEW RELEASES: Max 3.0</span>
+            <span className="opacity-50">|</span>
+            <span>Nova 8.0</span>
+            <span className="opacity-50">|</span>
+            <span>MJ v6</span>
+          </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white mb-6 md:mb-10 leading-tight">
             AI Voice Assistant for <br className="hidden md:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 drop-shadow-lg">Windows & Android Automation</span>
           </h1>
           <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-10 md:mb-12 max-w-3xl mx-auto px-2">
-            Control your PC and smartphone using voice commands. Automate tasks, open apps, send messages, manage notifications, and interact with AI naturally using Nova AI Assistant by VASH AI Technologies.
+            Experience the next generation. Control your PC and smartphone using voice commands. Now featuring Screen Analysis, Camera Vision, Voice Authentication, and Advanced Chat Support in our latest updates.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
              <button 
-                onClick={onViewProducts}
+                onClick={handleDownloadClick}
                 className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold text-[15px] transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] w-full sm:w-auto overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Download Now
+                  {hasClickedDownloadFirstTime ? 'Download Assistant' : 'Watch & Download Assistant'}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
@@ -81,43 +99,47 @@ const CompanyHomePage: React.FC<CompanyHomePageProps> = ({ onViewProducts }) => 
         </div>
 
         {/* Video Tutorial Section */}
-        <div className={`mb-16 md:mb-32 w-full max-w-6xl mx-auto px-6 transition-all duration-1000 delay-300 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
-          <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/[0.05] to-transparent relative overflow-hidden group shadow-2xl flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+        <div id="video-guide-section" className={`mb-16 md:mb-32 w-full max-w-6xl mx-auto px-6 transition-all duration-1000 delay-300 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}>
+          <div className="glass-card p-8 md:p-12 rounded-[2.5rem] border border-red-500/20 bg-gradient-to-br from-red-500/[0.05] to-transparent relative overflow-hidden group shadow-2xl flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
              
              {/* Decorative glow */}
-             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 blur-[120px] pointer-events-none group-hover:bg-blue-500/20 transition-all duration-700"></div>
+             <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 blur-[120px] pointer-events-none group-hover:bg-red-500/20 transition-all duration-700"></div>
 
              {/* Description (Left Side) */}
              <div className="w-full lg:w-1/2 relative z-10 text-left">
-              <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 backdrop-blur-md">
-                <PlayCircle className="w-3 h-3 lg:w-4 lg:h-4 text-blue-400" />
-                <span className="text-[10px] lg:text-xs font-bold text-blue-400 tracking-widest uppercase">Visual Setup Guide</span>
+              <div className="inline-flex items-center gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-6 backdrop-blur-md animate-pulse">
+                <PlayCircle className="w-3 h-3 lg:w-4 lg:h-4 text-red-500" />
+                <span className="text-[10px] lg:text-xs font-black text-red-500 tracking-widest uppercase">Important Requirement</span>
               </div>
-              <h3 className="text-3xl lg:text-4xl xl:text-5xl font-display font-medium text-white tracking-tight mb-6">Quick & Easy Setup</h3>
+              <h3 className="text-3xl lg:text-4xl xl:text-5xl font-display font-medium text-white tracking-tight mb-6">Watch Video To Download</h3>
               <div className="space-y-6 text-gray-400 font-light text-sm lg:text-base leading-relaxed">
-                <p>
-                  Watch our simple video guide to see how easy it is to install our software. No technical knowledge required at all.
+                <p className="text-red-200/90 font-medium">
+                  We highly recommend watching this 2-minute setup guide to understand the smooth installation process before downloading the assistant.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-4">
                     <div className="mt-1 w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0 border border-emerald-500/20">
                        <span className="text-emerald-400 text-xs font-bold">1</span>
                     </div>
-                    <span><strong className="text-gray-200 font-medium block mb-1">Download & Open</strong> Just download the file we send you and open it on your PC. It takes only a few seconds.</span>
+                    <span><strong className="text-gray-200 font-medium block mb-1">Watch & Learn</strong> Watch the video to see how to install the software safely and seamlessly.</span>
                   </li>
                   <li className="flex items-start gap-4">
                     <div className="mt-1 w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0 border border-blue-500/20">
                        <span className="text-blue-400 text-xs font-bold">2</span>
                     </div>
-                    <span><strong className="text-gray-200 font-medium block mb-1">Enter License Key</strong> Enter the unique activation key provided to you via WhatsApp to unlock your copy.</span>
-                  </li>
-                  <li className="flex items-start gap-4">
-                     <div className="mt-1 w-6 h-6 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0 border border-purple-500/20">
-                       <span className="text-purple-400 text-xs font-bold">3</span>
-                    </div>
-                    <span><strong className="text-gray-200 font-medium block mb-1">Start Using</strong> That's it! The software is now ready to use. Start exploring the powerful features immediately.</span>
+                    <span><strong className="text-gray-200 font-medium block mb-1">Download Assistant</strong> Click the button below to proceed to the secure download and setup area.</span>
                   </li>
                 </ul>
+
+                <div className="pt-6">
+                  <button 
+                    onClick={onViewProducts}
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-red-500 text-white rounded-full font-bold text-[15px] transition-all hover:scale-105 hover:bg-red-600 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] w-full sm:w-auto"
+                  >
+                    Continue to Download
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
 

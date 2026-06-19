@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
-export const submitQuery = async (data: { name: string, email: string, phone: string, message: string }) => {
+export const submitQuery = async (data: { name: string, email: string, phone: string, message: string, subject?: string, assistantType?: string }) => {
   try {
     const today = new Date().toISOString().split('T')[0];
     const userRefKey = data.phone.replace(/[^0-9]/g, '') + "_" + data.email.replace(/[\.\#\$\[\]]/g, '_');

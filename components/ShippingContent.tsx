@@ -19,7 +19,7 @@ const ShippingContent: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
         {[
           { icon: <Box className="w-6 h-6 text-emerald-400" />, title: 'No Physical Media', desc: 'We do not ship USB drives, CDs, or printed manuals. The entirety of the VASH AI platform is encapsulated in a streamlined digital format.' },
-          { icon: <Clock className="w-6 h-6 text-purple-400" />, title: 'Instant Processing', desc: 'No transit times. Once verified, your custom instance is packaged and prepared for direct digital transfer within 15 minutes.' },
+          { icon: <Clock className="w-6 h-6 text-purple-400" />, title: 'Delivery Timeline', desc: 'No transit times. Your custom instance is packaged and prepared for direct digital transfer usually within 15 minutes, and guaranteed up to a maximum of 2-24 hours via email after payment verification.' },
           { icon: <Send className="w-6 h-6 text-blue-400" />, title: 'Zero Shipping Costs', desc: 'There are absolutely no handling fees, processing charges, or shipping costs associated with our digital products.' },
           { icon: <Globe className="w-6 h-6 text-pink-400" />, title: 'Global Availability', desc: 'By utilizing digital infrastructure, we guarantee equal access and immediate delivery regardless of your geographical location.' }
         ].map((item, idx) => (

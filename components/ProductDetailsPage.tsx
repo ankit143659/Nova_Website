@@ -21,14 +21,14 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
 
   const isOfferDay = (() => {
     const now = Date.now();
-    // May 17 00:00 IST to May 18 00:00 IST (UTC: May 16 18:30 to May 17 18:30)
-    const offerStart = new Date(Date.UTC(2026, 4, 16, 18, 30, 0)).getTime();
-    const offerEnd = new Date(Date.UTC(2026, 4, 17, 18, 30, 0)).getTime();
+    // 20th June 2026 00:00 to 21th June 2026 00:00 (UTC)
+    const offerStart = new Date(Date.UTC(2026, 5, 19, 0, 0, 0)).getTime();
+    const offerEnd = new Date(Date.UTC(2026, 5, 21, 0, 0, 0)).getTime();
     return now >= offerStart && now < offerEnd;
   })();
 
   const handleRedeem = () => {
-    if (redeemCode.trim().toUpperCase() === 'NOVA2025') {
+    if (redeemCode.trim().toUpperCase() === 'MJNOVAMAX') {
       setIsRedeemed(true);
       setRedeemError('');
     } else {
@@ -37,15 +37,11 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({ product, onBack
   };
 
   const getOfferPrice = () => {
-    // 100k Celebration Theme logic (17th May 2026 00:00 to 18th May 2026 00:00 IST)
+    // 20th June 2026 Offer Pricing
     if (isOfferDay) {
-      if (product.id === 'combo-max-custom-mj' || product.id === 'combo-max-custom-nova' || product.id === 'combo-custom-unified') return 2499;
-      if (product.isCustom) return 1699;
+      if (product.isCustom) return 1899;
       if (product.platform === 'combo') return 1499;
-      if (product.platform === 'max') return 899; // keeping standard max offer
-      if (product.platform === 'mj') return 999;
-      if (product.id === 'vash-windows') return 899;
-      return 899;
+      return 999; // For MJ, Nova, Max
     }
 
     // Normal Offer Prices

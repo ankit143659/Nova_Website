@@ -60,6 +60,9 @@ const RefundContent: React.FC = () => {
               </li>
             ))}
           </ul>
+          <p className="font-light text-emerald-400 mt-6 leading-relaxed text-sm md:text-base">
+            Refund Timeline: Approved refunds will be processed and credited back to the original payment method within 5-7 working days.
+          </p>
         </div>
         
         <div className="glass-card p-8 md:p-10 rounded-[2rem] border border-white/5 relative overflow-hidden group">

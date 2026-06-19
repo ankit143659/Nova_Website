@@ -12,9 +12,10 @@ export interface FeatureCategory {
 export const FEATURE_CATEGORIES: FeatureCategory[] = [
   {
     id: 'system',
-    title: 'System Control',
+    title: 'System Control & Security',
     icon: <Monitor className="w-5 h-5" />,
     features: [
+      { icon: '🗣️', title: 'Voice Authentication', desc: 'Secure biometric voice unlock for Nova & MJ.' },
       { icon: '🧠', title: 'System Info', desc: 'Check PC details easily.' },
       { icon: '🔌', title: 'Power Manager', desc: 'Turn off or restart PC.' },
       { icon: '🔊', title: 'Volume Control', desc: 'Change sound levels.' },
@@ -50,9 +51,11 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   },
   {
     id: 'desktop',
-    title: 'Desktop & Files',
+    title: 'Desktop & Vision Analysis',
     icon: <Layout className="w-5 h-5" />,
     features: [
+      { icon: '👁️', title: 'Image Analysis', desc: 'Deep image analysis and screen comprehension.' },
+      { icon: '📷', title: 'Camera Screen Analysis', desc: 'Live camera insights integrated with UI.' },
       { icon: '🪟', title: 'Window Move', desc: 'Move windows around.' },
       { icon: '↕️', title: 'Auto Scroll', desc: 'Scroll pages for you.' },
       { icon: '🖥️', title: 'Remote Control', desc: 'Control PC from far.' },
@@ -88,9 +91,10 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   },
   {
     id: 'productivity',
-    title: 'Productivity & Tools',
+    title: 'Productivity & Communication',
     icon: <Zap className="w-5 h-5" />,
     features: [
+      { icon: '💬', title: 'Advanced Chat Support', desc: 'Context-aware multimodal chat support.' },
       { icon: '🌍', title: 'Any Language', desc: 'Speak & understand any language in the world.' },
       { icon: '💬', title: 'WhatsApp Bot', desc: 'Send auto messages.' },
       { icon: '📧', title: 'Email Sender', desc: 'Send emails fast.' },
